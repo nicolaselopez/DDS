@@ -36,7 +36,6 @@
 </head>
 
 <body>
-<%BeanUsuario busuario=(BeanUsuario)request.getAttribute("busuario"); %>
 
     <!-- Header -->
     <header id="top" class="header">
@@ -52,19 +51,15 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                	<div class="login-error">
-                    	<p>El usuario no existe o la contraseña fue incorrecta, intente de nuevo.</p>
-                  	</div>
-                    <h1>Ingresa a tu cuenta</h1><br>
-                  <form action="ServletConsulta" method="get">
-                    <input type="text" name="usuario" value=<%= busuario.getUsuario() %>>
+                    <h1>Registra tu cuenta</h1><br>
+                  <form action="ServletRegistrar" method="get">
+                    <input type="text" name="usuario" placeholder="Usuario">
                     <input type="password" name="pass" placeholder="Contraseña">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
+                    <input type="text" name="name" placeholder="Nombre">
+                    <input type="text" name="mail" placeholder="Email">
+                    <input type="text" name="fecnac" placeholder="Fecha Nacimiento (AAAAMMDD)">
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Registrar">
                   </form>
-                    
-                  <div class="login-help">
-                    <a href="registrar.jsp">Registrate</a>
-                  </div>
                 </div>
             </div>
     </div>

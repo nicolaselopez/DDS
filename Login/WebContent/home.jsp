@@ -58,6 +58,9 @@
             <li>
                 <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
             </li>
+            <li>
+                <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
+            </li>
         </ul>
     </nav>
 
