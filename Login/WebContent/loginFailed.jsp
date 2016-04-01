@@ -42,6 +42,7 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Diseño de Sistemas 2016</h1>
+            <h1>Grupo 43</h1>
             <h3>Prueba Login</h3>
             <br>
             <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>

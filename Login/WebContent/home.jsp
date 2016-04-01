@@ -68,7 +68,9 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Bienvenido <%= busuario.getNombre() %></h1>
-            <h3>Ya estas cursando Diseño!</h3>
+            <h1>Al Grupo 43</h1>
+            <h3>¡Ya estas cursando Diseño!</h3>
+            
             <br>
         </div>
     </header>
