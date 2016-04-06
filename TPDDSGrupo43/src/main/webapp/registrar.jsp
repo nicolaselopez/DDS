@@ -1,3 +1,4 @@
+<%@page import="controlador.BeanUsuario"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,25 +43,25 @@
             <h1>Diseño de Sistemas 2016</h1>
             <h1>Grupo 43</h1>
             <h3>Prueba Login</h3>
+            
             <br>
             <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
         </div>
     </header>
 
     <!--Login Fade-->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Ingresa a tu cuenta</h1><br>
-                  <form action="ServletConsulta" method="get">
+                    <h1>Registra tu cuenta</h1><br>
+                  <form action="ServletRegistrar" method="get">
                     <input type="text" name="usuario" placeholder="Usuario">
                     <input type="password" name="pass" placeholder="Contraseña">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
+                    <input type="text" name="name" placeholder="Nombre">
+                    <input type="text" name="mail" placeholder="Email">
+                    <input type="text" name="fecnac" placeholder="Fecha Nacimiento (AAAAMMDD)">
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Registrar">
                   </form>
-                    
-                  <div class="login-help">
-                    <a href="registrar.jsp">Registrate</a>
-                  </div>
                 </div>
             </div>
     </div>
@@ -73,6 +74,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script>
+    $(document).ready(function() {
+    	$("#login-modal").modal("show");
+    });
+    
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();

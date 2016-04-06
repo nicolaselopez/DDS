@@ -7,6 +7,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>TPDDSGrupo43 Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <repositories>
+    <repository>
+      <id>in-project</id>
+      <name>In Project Repo</name>
+	  <url>file://${project.basedir}/libs</url>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -19,8 +26,29 @@
 	  <artifactId>javax.servlet-api</artifactId>
 	  <version>3.1.0</version>
 	</dependency>
+	<dependency>
+      <groupId>jasypt</groupId>
+      <artifactId>jasypt</artifactId>
+      <version>1.9.2</version>
+    </dependency>
+	<dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.13</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>TPDDSGrupo43</finalName>
+	<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
   </build>
 </project>

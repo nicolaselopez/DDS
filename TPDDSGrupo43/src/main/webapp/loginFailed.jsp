@@ -1,3 +1,4 @@
+<%@page import="controlador.BeanUsuario"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +36,7 @@
 </head>
 
 <body>
+<%BeanUsuario busuario=(BeanUsuario)request.getAttribute("busuario"); %>
 
     <!-- Header -->
     <header id="top" class="header">
@@ -48,12 +50,15 @@
     </header>
 
     <!--Login Fade-->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
+                	<div class="login-error">
+                    	<p>El usuario no existe o la contraseña fue incorrecta, intente de nuevo.</p>
+                  	</div>
                     <h1>Ingresa a tu cuenta</h1><br>
                   <form action="ServletConsulta" method="get">
-                    <input type="text" name="usuario" placeholder="Usuario">
+                    <input type="text" name="usuario" value=<%= busuario.getUsuario() %>>
                     <input type="password" name="pass" placeholder="Contraseña">
                     <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
                   </form>
@@ -73,6 +78,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script>
+    $(document).ready(function() {
+    	$("#login-modal").modal("show");
+    });
+    
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
