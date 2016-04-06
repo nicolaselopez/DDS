@@ -16,7 +16,7 @@ public class Usuario {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery("Select * from usuarios where usuario='"+usuario+"'");
+			ResultSet rs=st.executeQuery("Select * from usuarios where usuario='"+usuario+"' and activo=1");
 			while(rs.next()){
 				busuario=new BeanUsuario(rs.getString(5), null, rs.getString(4), usuario, rs.getString(3));
 			}
@@ -35,8 +35,8 @@ public class Usuario {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs=st.executeUpdate("INSERT INTO usuarios (usuario, password, email, nombre, fechanac) VALUES "
-					+ "('"+usuario.getUsuario()+"','"+usuario.getClave()+"','"+usuario.getCorreo()+"','"+usuario.getNombre()+"',"+usuario.getEdad()+");");
+			Integer rs=st.executeUpdate("INSERT INTO usuarios (usuario, password, email, nombre, fechanac,activo) VALUES "
+					+ "('"+usuario.getUsuario()+"','"+usuario.getClave()+"','"+usuario.getCorreo()+"','"+usuario.getNombre()+"',"+usuario.getEdad()+",1);");
 			if(rs == 1){
 				OK = true;
 			}
