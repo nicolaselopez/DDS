@@ -49,11 +49,6 @@ public class BeanUsuario {
 	public BeanUsuario() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.nombre ="";
-		this.edad ="";
-		this.correo ="";
-		this.usuario ="";
-		this.clave ="";
 	}
 
 }
