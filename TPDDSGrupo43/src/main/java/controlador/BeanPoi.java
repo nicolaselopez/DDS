@@ -6,6 +6,8 @@ public class BeanPoi {
 	private int PoiIdTipoPoi;
 	private String PoiDescripcion;
 	private int PoiIdRubro;
+	private BeanRubro PoiRubro;
+	private BeanServicio[] PoiServicio;
 	private String PoiCalle;
 	private String PoiNumero;
 	private String PoiPiso;
@@ -14,6 +16,7 @@ public class BeanPoi {
 	private String PoiCodPos;
 	private int PoiIdLocalidad;
 	private int PoiIdBarrio;
+	private BeanBarrio PoiBarrio;
 	private int PoiIdProvincia;
 	private int PoiIdPais;
 	private String PoiLatitudGeo;
@@ -137,6 +140,25 @@ public class BeanPoi {
 		PoiActivo = poiActivo;
 	}
 	
+	
+	public BeanRubro getPoiRubro() {
+		return PoiRubro;
+	}
+	public void setPoiRubro(BeanRubro poiRubro) {
+		PoiRubro = poiRubro;
+	}
+	public BeanServicio[] getPoiServicio() {
+		return PoiServicio;
+	}
+	public void setPoiServicio(BeanServicio[] poiServicio) {
+		PoiServicio = poiServicio;
+	}
+	public BeanBarrio getPoiBarrio() {
+		return PoiBarrio;
+	}
+	public void setPoiBarrio(BeanBarrio poiBarrio) {
+		PoiBarrio = poiBarrio;
+	}
 	public BeanPoi(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, String poiCalle,
 			String poiNumero, String poiPiso, String poiDepto, String poiUnidad, String poiCodPos, int poiIdLocalidad,
 			int poiIdBarrio, int poiIdProvincia, int poiIdPais, String poiLatitudGeo, String poiLongitudGeo,
