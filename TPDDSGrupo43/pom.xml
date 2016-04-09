@@ -27,15 +27,15 @@
 	  <version>3.1.0</version>
 	</dependency>
 	<dependency>
-      <groupId>jasypt</groupId>
-      <artifactId>jasypt</artifactId>
-      <version>1.9.2</version>
-    </dependency>
-	<dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.13</version>
-    </dependency>
+	<groupId>org.jasypt</groupId>
+	<artifactId>jasypt</artifactId>
+	<version>1.9.2</version>
+	</dependency>
+    <dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>5.1.38</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>TPDDSGrupo43</finalName>
