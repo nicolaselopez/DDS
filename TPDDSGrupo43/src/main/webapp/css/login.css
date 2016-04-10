@@ -104,3 +104,7 @@
   font-size: 12px;
   color: #E53935;
 }
+
+#outerdiv {width: 99%; height: 45%; position:static; text-align:center}
+
+#map {border: 2px solid black; width: 45%; height: 100%; margin:0px auto; display:inline-block}

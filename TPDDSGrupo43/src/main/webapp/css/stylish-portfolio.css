@@ -29,6 +29,19 @@ body {
     font-weight: 700;
 }
 
+.text-center {
+    display: table-cell;
+    text-align: center;
+}
+
+.text-center h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 4.5em;
+    font-weight: 700;
+}
+
+
 /* Custom Button Styles */
 
 .btn-dark {
