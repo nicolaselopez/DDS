@@ -6,19 +6,66 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
-import controlador.BeanUsuario;
-
 public class Usuario {
 	
-	public static BeanUsuario consultarUsuario(String usuario){
-		BeanUsuario busuario=null;
+	private String nombre;
+	private String edad;
+	private String correo;
+	private String usuario;
+	private String clave;
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getEdad() {
+		return edad;
+	}
+	public void setEdad(String edad) {
+		this.edad = edad;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getClave() {
+		return clave;
+	}
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+	public Usuario(String nombre, String edad,
+			String correo, String usuario, String clave) {
+		super();
+		this.nombre = nombre;
+		this.edad = edad;
+		this.correo = correo;
+		this.usuario = usuario;
+		this.clave = clave;
+	}
+	public Usuario() {
+		// TODO Auto-generated constructor stub
+		super();
+	}	
+	
+	public static Usuario consultarUsuario(String usuario){
+		Usuario busuario=null;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
 			ResultSet rs=st.executeQuery("Select * from usuarios where usuario='"+usuario+"' and activo=1");
 			while(rs.next()){
-				busuario=new BeanUsuario(rs.getString(5), null, rs.getString(4), usuario, rs.getString(3));
+				busuario=new Usuario(rs.getString(5), null, rs.getString(4), usuario, rs.getString(3));
 			}
 		}catch(SQLException se){
 			se.printStackTrace();
@@ -27,7 +74,7 @@ public class Usuario {
 		return busuario;
 	}
 	
-	public static Boolean registrarUsuario(BeanUsuario usuario){
+	public static Boolean registrarUsuario(Usuario usuario){
 		Boolean OK = false;
 		BasicPasswordEncryptor encriptador = new BasicPasswordEncryptor();
 		usuario.setClave(encriptador.encryptPassword(usuario.getClave()));

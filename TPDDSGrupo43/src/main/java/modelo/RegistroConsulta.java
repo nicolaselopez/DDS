@@ -1,6 +1,6 @@
-package controlador;
+package modelo;
 
-public class BeanRegistroConsulta {
+public class RegistroConsulta {
 	
 	private int IdRegistroConsulta;
 	private int RegConIdUsuario;
@@ -32,7 +32,7 @@ public class BeanRegistroConsulta {
 		RegConFechaConsulta = regConFechaConsulta;
 	}
 	
-	public BeanRegistroConsulta(int idRegistroConsulta, int regConIdUsuario, int regConIdPoi,
+	public RegistroConsulta(int idRegistroConsulta, int regConIdUsuario, int regConIdPoi,
 			String regConFechaConsulta) {
 		super();
 		IdRegistroConsulta = idRegistroConsulta;
@@ -41,7 +41,7 @@ public class BeanRegistroConsulta {
 		RegConFechaConsulta = regConFechaConsulta;
 	}
 	
-	public BeanRegistroConsulta() {
+	public RegistroConsulta() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

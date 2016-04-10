@@ -1,4 +1,4 @@
-<%@page import="controlador.BeanUsuario"%>
+<%@page import="modelo.Usuario"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +36,7 @@
 </head>
 
 <body>
-<%BeanUsuario busuario=(BeanUsuario)request.getAttribute("busuario"); %>
+<%Usuario busuario=(Usuario)request.getAttribute("busuario"); %>
 
     <!-- Header -->
     <header id="top" class="header">

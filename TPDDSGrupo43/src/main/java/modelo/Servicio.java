@@ -1,6 +1,6 @@
-package controlador;
+package modelo;
 
-public class BeanServicio {
+public class Servicio {
 	
 	private int IdServicio;
 	private int ServicioIdPoi;
@@ -94,7 +94,7 @@ public class BeanServicio {
 	public void setServicioActivo(int servicioActivo) {
 		ServicioActivo = servicioActivo;
 	}
-	public BeanServicio(int idServicio, int servicioIdPoi, int servicioIdTipoPoi, String servicioDescripcion,
+	public Servicio(int idServicio, int servicioIdPoi, int servicioIdTipoPoi, String servicioDescripcion,
 			String servicioDiaDisponible, String servicioHoraDesde1, String servicioHoraHasta1,
 			String servicioHoraDesde2, String servicioHoraHasta2, String servicioTags, String servicioFechaAlta,
 			String servicioFechaModificacion, int servicioActivo) {
@@ -114,7 +114,7 @@ public class BeanServicio {
 		ServicioActivo = servicioActivo;
 	}
 	
-	public BeanServicio() {
+	public Servicio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

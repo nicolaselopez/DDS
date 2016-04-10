@@ -1,6 +1,6 @@
-package controlador;
+package modelo;
 
-public class BeanComuna {
+public class Comuna {
 	
 	private int IdComuna;
 	private String ComunaDescripcion;
@@ -18,18 +18,18 @@ public class BeanComuna {
 		ComunaDescripcion = comunaDescripcion;
 	}
 	
-	public BeanComuna(int idComuna, String comunaDescripcion) {
+	public Comuna(int idComuna, String comunaDescripcion) {
 		super();
 		IdComuna = idComuna;
 		ComunaDescripcion = comunaDescripcion;
 	}
 	
-	public BeanComuna(String comunaDescripcion) {
+	public Comuna(String comunaDescripcion) {
 		super();
 		ComunaDescripcion = comunaDescripcion;
 	}
 	
-	public BeanComuna() {
+	public Comuna() {
 		super();
 		// TODO Auto-generated constructor stub
 	}	
