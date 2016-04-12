@@ -242,6 +242,29 @@ public class Poi {
 		PoiActivo = poiActivo;
 	}
 	
+	
+
+	public Poi(int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, String poiCalle, String poiNumero,
+			String poiPiso, String poiDepto, String poiUnidad, String poiCodPos, int poiIdLocalidad, int poiIdBarrio,
+			int poiIdProvincia, int poiIdPais, String poiLatitudGeo, String poiLongitudGeo, int poiActivo) {
+		super();
+		PoiIdTipoPoi = poiIdTipoPoi;
+		PoiDescripcion = poiDescripcion;
+		PoiIdRubro = poiIdRubro;
+		PoiCalle = poiCalle;
+		PoiNumero = poiNumero;
+		PoiPiso = poiPiso;
+		PoiDepto = poiDepto;
+		PoiUnidad = poiUnidad;
+		PoiCodPos = poiCodPos;
+		PoiIdLocalidad = poiIdLocalidad;
+		PoiIdBarrio = poiIdBarrio;
+		PoiIdProvincia = poiIdProvincia;
+		PoiIdPais = poiIdPais;
+		PoiLatitudGeo = poiLatitudGeo;
+		PoiLongitudGeo = poiLongitudGeo;
+		PoiActivo = poiActivo;
+	}
 
 	public Poi() {
 		super();
@@ -254,15 +277,14 @@ public class Poi {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			poi.setPoiActivo(1);
 			Integer rs=st.executeUpdate("INSERT INTO poi "+
 				"(PoiIdTipoPoi,PoiDescripcion,PoiIdRubro,PoiCalle,PoiNumero,PoiPiso,PoiDepto,PoiUnidad,"+
 				"PoiCodPos,PoiIdLocalidad,PoiIdBarrio,PoiIdProvincia,PoiIdPais,PoiLatitudGeo,PoiLongitudGeo,PoiActivo) "+
 				"VALUES "+
-				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiCalle()+"','"+poi.getPoiNumero()+"',"
-				+poi.getPoiPiso()+","+poi.getPoiDepto()+","+poi.getPoiUnidad()+","+poi.getPoiCodPos()+","+poi.getPoiIdLocalidad()+","
-				+poi.getPoiIdBarrio()+","+poi.getPoiIdProvincia()+","+poi.getPoiIdPais()+","+poi.getPoiLatitudGeo()+","
-				+poi.getPoiLongitudGeo()+","+poi.getPoiFechaAlta()+","+poi.getPoiFechaModificacion()+","+poi.getPoiActivo()+");");
+				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiCalle()+"','"+poi.getPoiNumero()+"','"
+				+poi.getPoiPiso()+"','"+poi.getPoiDepto()+"','"+poi.getPoiUnidad()+"','"+poi.getPoiCodPos()+"',"+poi.getPoiIdLocalidad()+","
+				+poi.getPoiIdBarrio()+","+poi.getPoiIdProvincia()+","+poi.getPoiIdPais()+",'"+poi.getPoiLatitudGeo()+"','"
+				+poi.getPoiLongitudGeo()+"',"+poi.getPoiActivo()+");");
 			if(rs == 1){
 				OK = true;
 			}

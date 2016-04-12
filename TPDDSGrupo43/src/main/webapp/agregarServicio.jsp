@@ -1,7 +1,5 @@
 <%@page import="vista.listObject"%>
-<%@page import="modelo.Barrio" %>
-<%@page import="modelo.Rubro" %>
-<%@page import="modelo.TipoPoi" %>
+<%@page import="modelo.Poi" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
