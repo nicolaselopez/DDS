@@ -1,5 +1,10 @@
 package modelo;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import modelo.Poi;
+
 public class Servicio {
 	
 	private int IdServicio;
@@ -114,9 +119,53 @@ public class Servicio {
 		ServicioActivo = servicioActivo;
 	}
 	
+	
+	
+	public Servicio(int servicioIdPoi, String servicioDescripcion, String servicioDiaDisponible,
+			String servicioHoraDesde1, String servicioHoraHasta1, String servicioHoraDesde2, String servicioHoraHasta2,
+			String servicioTags, int servicioActivo) {
+		super();
+		ServicioIdPoi = servicioIdPoi;
+		ServicioDescripcion = servicioDescripcion;
+		ServicioDiaDisponible = servicioDiaDisponible;
+		ServicioHoraDesde1 = servicioHoraDesde1;
+		ServicioHoraHasta1 = servicioHoraHasta1;
+		ServicioHoraDesde2 = servicioHoraDesde2;
+		ServicioHoraHasta2 = servicioHoraHasta2;
+		ServicioTags = servicioTags;
+		ServicioActivo = servicioActivo;
+	}
 	public Servicio() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public static Boolean registrarServicio(Servicio servicio){
+		Boolean OK = false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			servicio.setServicioIdTipoPoi(Poi.buscarPoi(servicio.getServicioIdPoi()).getPoiIdTipoPoi());
+			Integer rs = st.executeUpdate("INSERT INTO servicio(ServicioIdPoi,ServicioIdTipoPoi,ServicioDescripcion,"
+						+"ServicioDiaDisponible,ServicioHoraDesde1,ServicioHoraHasta1,ServicioHoraDesde2,"
+						+"ServicioHoraHasta2,ServicioTags,ServicioActivo) VALUES("
+						+servicio.getServicioIdPoi()+","+servicio.getServicioIdTipoPoi()+",'"+servicio.getServicioDescripcion()+"','"
+						+servicio.getServicioDiaDisponible()+"','"+servicio.getServicioHoraDesde1()+"','"+servicio.getServicioHoraHasta1()+"','"
+						+servicio.getServicioHoraDesde2()+"','"+servicio.getServicioHoraHasta2()+"','"+servicio.getServicioTags()+"',"+servicio.getServicioActivo()+");");
+			if(rs == 1){
+				OK = true;
+			}				
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}		
+		return OK;
+	}
+	public static String generarDias(String dLun, String dMar, String dMie, String dJue, String dVie, String dSab,
+			String dDom) {
+		String dias = dLun+";"+dMar+";"+dMie+";"+dJue+";"+dVie+";"+dSab+";"+dDom+";";
+		return dias;
 	}
 	
 }

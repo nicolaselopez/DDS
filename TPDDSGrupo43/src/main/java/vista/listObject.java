@@ -1,6 +1,7 @@
 package vista;
 
 import modelo.Barrio;
+import modelo.Poi;
 import modelo.Rubro;
 import modelo.TipoPoi;
 
@@ -24,4 +25,10 @@ public class listObject{
 		return tipoPoi;
 	}
 
+	public Poi[] getlistPoi(){
+		Poi[] pois;
+		pois = Poi.consultarPois();
+		return pois;
+	}
+	
 }

@@ -270,6 +270,72 @@ public class Poi {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Poi(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, String poiCalle, String poiNumero,
+			String poiPiso, String poiDepto, String poiUnidad, String poiCodPos, int poiIdLocalidad, int poiIdBarrio,
+			int poiIdProvincia, int poiIdPais, String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
+			String poiFechaModificacion, int poiActivo) {
+		super();
+		IdPoi = idPoi;
+		PoiIdTipoPoi = poiIdTipoPoi;
+		PoiDescripcion = poiDescripcion;
+		PoiIdRubro = poiIdRubro;
+		PoiCalle = poiCalle;
+		PoiNumero = poiNumero;
+		PoiPiso = poiPiso;
+		PoiDepto = poiDepto;
+		PoiUnidad = poiUnidad;
+		PoiCodPos = poiCodPos;
+		PoiIdLocalidad = poiIdLocalidad;
+		PoiIdBarrio = poiIdBarrio;
+		PoiIdProvincia = poiIdProvincia;
+		PoiIdPais = poiIdPais;
+		PoiLatitudGeo = poiLatitudGeo;
+		PoiLongitudGeo = poiLongitudGeo;
+		PoiFechaAlta = poiFechaAlta;
+		PoiFechaModificacion = poiFechaModificacion;
+		PoiActivo = poiActivo;
+	}
+	
+	public static Poi[] consultarPois(){
+		Poi[] pois = new Poi[5000];
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi");
+			int i=0;
+			while(rs.next()){
+				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+				i++;
+			}
+			for(int k=i;k<5000;k++){
+				pois[k]=new Poi();
+				pois[k].setIdPoi(-1);
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return pois;
+	}
+	
+	public static Poi buscarPoi(int idPoi){
+		Poi poi=null;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi where idPoi=" + idPoi + ";");
+			while(rs.next()){
+				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return poi;
+	}
 
 	public static Boolean registrarPoi(Poi poi){
 		Boolean OK = false;

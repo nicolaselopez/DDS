@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DDS - 2016 1er Cuatrimestre - Prueba Login</title>
+    <title>DDS - 2016 1er Cuatrimestre</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -45,134 +45,52 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Seleccione el punto a registrar:</h2>
-            <br>
-            <div id="outerdiv">
-            	<div id="map"></div>
-        	</div>
+            <h2>Alta de Servicios por POI:</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Registrar POI</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Registrar Servicio</a>
         </div>
     </header>
 
-    <!--POI Fade-->
+    <!--Servicio Fade-->
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Registra tu POI</h1><br>
-                  <form action="ServletRegistrarPoi" method="get">
-                    <input type="text" name="nombrePoi" placeholder="Nombre del Poi">
-                    <input type="text" name="latitud" id="latitud">
-                    <input type="text" name="longitud" id="longitud">
-                    <input type="text" name="calle" placeholder="Calle">
-                    <input type="text" name="numero" placeholder="Numero">
-                    <input type="text" name="piso" placeholder="Piso">
-                    <input type="text" name="dpto" placeholder="Depto">
-                    <input type="text" name="codpos" placeholder="Codigo Postal">
+                    <h1>Registra tu Servicio</h1><br>
+                  <form action="ServletRegistrarServicio" method="get">
                     <div class="styled-select">
-	                    <select id="tipoPoi" name="tipoPoi">
+	                    <select id="poi" name="poi">
 	                    <%
-						TipoPoi[] tipoPoi = new listObject().getlistTipoPoi();
-	                    out.write("<option value=\"0\">--Tipo de POI--</option>");
-						for(int i=0;i<4;i++) {
-						    out.write("<option value=" + tipoPoi[i].getIdTipoPoi()+ ">" + tipoPoi[i].getTipoPoiDescripcion()+"</option>");
-						}
-						%>
-	                    </select>
-	                </div>
-                    <div class="styled-select">
-	                    <select id="barrio" name="barrio">
-	                    <%
-						Barrio[] barrios = new listObject().getlistBarrio();
-	                    out.write("<option value=\"0\">--Localidad--</option>");
-						for(int i=0;i<48;i++) {
-						    out.write("<option value=" + barrios[i].getIdBarrio()+ ">" + barrios[i].getBarrioDescripcion()+"</option>");
-						}
-						%>
-	                    </select>
-	                </div>
-	                <div class="styled-select">
-	                    <select id="rubro" name="rubro">
-	                    <%
-						Rubro[] rubros = new listObject().getlistRubro();
-	                    out.write("<option value=\"0\">Rubro (Si corresponde)</option>");
+						Poi[] pois = new listObject().getlistPoi();
+	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
 	                    for(int i=0;i<100;i++) {
-	                    	if(rubros[i].getIdRubro()== -1){
+	                    	if(pois[i].getIdPoi()== -1){
 	                    		break;	
 	                    	}
-	                    	out.write("<option value=" + rubros[i].getIdRubro()+ ">" + rubros[i].getRubroDescripcion()+"</option>");
+	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
 						}
 						%>
 	                    </select>
 	                </div>
-	                
+	                <input type="text" name="nombreServicio" placeholder="Nombre del Servicio">
+                    <h3>Dias Disponible</h3>
+                    <input type="checkbox" id="dLun" name="dLun" value="Lun">Lunes
+                    <input type="checkbox" id="dMar" name="dMar" value="Mar">Martes
+                    <input type="checkbox" id="dMie" name="dMie" value="Mie">Miercoles
+                    <input type="checkbox" id="dJue" name="dJue" value="Jue">Jueves<br>
+                    <input type="checkbox" id="dVie" name="dVie" value="Vie">Viernes
+                    <input type="checkbox" id="dSab" name="dSab" value="Sab">Sabado
+                    <input type="checkbox" id="dDom" name="dDom" value="Dom">Domingo<br>
+                    <input type="text" name="horaDesde1" placeholder="Horario Desde Op1">
+                    <input type="text" name="horaHasta1" placeholder="Horario Hasta Op1">
+                    <input type="text" name="horaDesde2" placeholder="Horario Desde Op2">
+                    <input type="text" name="horaHasta2" placeholder="Horario Hasta Op2">
+                    <input type="text" name="tags" placeholder="Tags separados por ';'">
                     <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Poi">
                   </form>
                 </div>
             </div>
     </div>
-    
-    <script>
-    var map;
-    var markers = [];
-    function initMap() {
-    	
-    	var myLatlng1 = new google.maps.LatLng(-34.607430, -58.432560);
-	     var mapOptions = {
-	         zoom: 12,
-	         center: myLatlng1,
-	         mapTypeId: google.maps.MapTypeId.ROADMAP
-	     };
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-        map.addListener('click', function(e) {
-          clearMarkers();
-          markers = [];
-          placeMarkerAndPanTo(e.latLng, map);
-        });
-      }
-      
-      function setMapOnAll(map) {
-    	  for (var i = 0; i < markers.length; i++) {
-    	    markers[i].setMap(map);
-    	  }
-    	}
-    
-      function clearMarkers() {
-    	  setMapOnAll(null);
-      }
-    
-      function placeMarkerAndPanTo(latLng, map) {
-        var marker = new google.maps.Marker({
-          position: latLng,
-          map: map
-        });
-        markers.push(marker);
-        $('#latitud').val(latLng.lat());
-        $('#longitud').val(latLng.lng());
-        map.panTo(latLng);
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdZb-Yl0gK_AOjcmjU4bCcRecyi-IlTe0&callback=initMap"
-    async defer></script>
-
-    <!--Login Fade
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-          <div class="modal-dialog">
-                <div class="loginmodal-container">
-                    <h1>Ingresa a tu cuenta</h1><br>
-                  <form action="ServletConsulta" method="get">
-                    <input type="text" name="usuario" placeholder="Usuario">
-                    <input type="password" name="pass" placeholder="Contraseña">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
-                  </form>
-                    
-                  <div class="login-help">
-                    <a href="registrar.jsp">Registrate</a>
-                  </div>
-                </div>
-            </div>
-    </div>-->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
