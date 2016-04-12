@@ -59,7 +59,7 @@ public class Barrio {
 	}
 	
 	public static Barrio[] consultarBarrios(){
-		Barrio[] barrios = new Barrio[47];
+		Barrio[] barrios = new Barrio[48];
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();

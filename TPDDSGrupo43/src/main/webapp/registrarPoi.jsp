@@ -1,4 +1,5 @@
-<%@page import="modelo.Usuario"%>
+<%@page import="vista.listObject"%>
+<%@page import="modelo.Barrio" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DDS - 2016 1er Cuatrimestre - Registrar Poi</title>
+    <title>DDS - 2016 1er Cuatrimestre - Prueba Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,18 +33,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
 
 </head>
 
@@ -51,21 +43,15 @@
 
     <!-- Header -->
     <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Registrar Poi</h1>
-            <h2>Selecciona un punto en el mapa</h2>            
+        <div class="text-center">
             <br>
-            <div id="map"></div>
-		    <script>
-		      var map;
-		      function initMap() {
-		        map = new google.maps.Map(document.getElementById('map'), {
-		          center: {lat: -34.397, lng: 150.644},
-		          zoom: 8
-		        });
-		      }
-		    </script>
-            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
+            <h2>Seleccione el punto a registrar:</h2>
+            <br>
+            <div id="outerdiv">
+            	<div id="map"></div>
+        	</div>
+        	<br>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Registrar POI</a>
         </div>
     </header>
 
@@ -75,16 +61,86 @@
                 <div class="loginmodal-container">
                     <h1>Registra tu POI</h1><br>
                   <form action="ServletRegistrarPoi" method="get">
-                    <input type="text" name="usuario" placeholder="Usuario">
-                    <input type="password" name="pass" placeholder="Contraseña">
-                    <input type="text" name="name" placeholder="Nombre">
-                    <input type="text" name="mail" placeholder="Email">
-                    <input type="text" name="fecnac" placeholder="Fecha Nacimiento (AAAAMMDD)">
+                    <input type="text" name="nombrePoi" placeholder="Nombre del Poi">
+                    <input type="text" name="latitud" id="latitud">
+                    <input type="text" name="longitud" id="longitud">
+                    <div class="styled-select">
+	                    <select>
+	                    <%
+						Barrio[] barrios = new listObject().getlistBarrio();
+						for(int i=0;i<48;i++) {
+						    out.write("<option value=" + barrios[i].getIdBarrio()+ ">" + barrios[i].getBarrioDescripcion()+"</option>");
+						}
+						%>
+	                    </select>
+	                </div>
                     <input type="submit" name="register" class="login loginmodal-submit" value="Registrar">
                   </form>
                 </div>
             </div>
     </div>
+    
+    <script>
+    var map;
+    var markers = [];
+    function initMap() {
+    	
+    	var myLatlng1 = new google.maps.LatLng(-34.607430, -58.432560);
+	     var mapOptions = {
+	         zoom: 12,
+	         center: myLatlng1,
+	         mapTypeId: google.maps.MapTypeId.ROADMAP
+	     };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        map.addListener('click', function(e) {
+          clearMarkers();
+          markers = [];
+          placeMarkerAndPanTo(e.latLng, map);
+        });
+      }
+      
+      function setMapOnAll(map) {
+    	  for (var i = 0; i < markers.length; i++) {
+    	    markers[i].setMap(map);
+    	  }
+    	}
+    
+      function clearMarkers() {
+    	  setMapOnAll(null);
+      }
+    
+      function placeMarkerAndPanTo(latLng, map) {
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+        markers.push(marker);
+        $('#latitud').val(latLng.lat());
+        $('#longitud').val(latLng.lng());
+        map.panTo(latLng);
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdZb-Yl0gK_AOjcmjU4bCcRecyi-IlTe0&callback=initMap"
+    async defer></script>
+
+    <!--Login Fade
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Ingresa a tu cuenta</h1><br>
+                  <form action="ServletConsulta" method="get">
+                    <input type="text" name="usuario" placeholder="Usuario">
+                    <input type="password" name="pass" placeholder="Contraseña">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
+                  </form>
+                    
+                  <div class="login-help">
+                    <a href="registrar.jsp">Registrate</a>
+                  </div>
+                </div>
+            </div>
+    </div>-->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -94,10 +150,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script>
-    $(document).ready(function() {
-    	$("#login-modal").modal("show");
-    });
-    
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -127,8 +179,7 @@
         });
     });
     </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdZb-Yl0gK_AOjcmjU4bCcRecyi-IlTe0&callback=initMap"
-    async defer></script>
+
 </body>
 
 </html>
