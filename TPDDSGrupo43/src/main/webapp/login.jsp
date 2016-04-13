@@ -1,4 +1,3 @@
-<%@page import="modelo.Usuario"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DDS - 2016 1er Cuatrimestre</title>
+    <title>DDS - 2016 1er Cuatrimestre - Prueba Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,37 +35,35 @@
 </head>
 
 <body>
-<%Usuario busuario=(Usuario)request.getAttribute("busuario"); %>
-
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
-            </li>
-            <li>
-                <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
-            </li>
-            <li>
-                <a href="agregarServicio.jsp" onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
-            </li>
-            <li>
-                <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
-            </li>
-        </ul>
-    </nav>
 
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Bienvenido <%= busuario.getNombre() %></h1>
-            <h3>Gestion de Pois y Servicios</h3>
-            
+            <h1>Diseño de Sistemas 2016</h1>
+            <h1>Grupo 43</h1>
+            <h3>Prueba Login</h3>
             <br>
+            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
         </div>
     </header>
+
+    <!--Login Fade-->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Ingresa a tu cuenta</h1><br>
+                  <form action="ServletConsulta" method="get">
+                    <input type="text" name="usuario" placeholder="Usuario">
+                    <input type="password" name="pass" placeholder="Contraseña">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
+                  </form>
+                    
+                  <div class="login-help">
+                    <a href="registrar.jsp">Registrate</a>
+                  </div>
+                </div>
+            </div>
+    </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
