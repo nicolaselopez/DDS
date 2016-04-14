@@ -27,14 +27,19 @@
 	  <version>3.1.0</version>
 	</dependency>
 	<dependency>
-	<groupId>org.jasypt</groupId>
-	<artifactId>jasypt</artifactId>
-	<version>1.9.2</version>
+		<groupId>org.jasypt</groupId>
+		<artifactId>jasypt</artifactId>
+		<version>1.9.2</version>
 	</dependency>
     <dependency>
-	<groupId>mysql</groupId>
-	<artifactId>mysql-connector-java</artifactId>
-	<version>5.1.38</version>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.38</version>
+	</dependency>
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20160212</version>
 	</dependency>
   </dependencies>
   <build>

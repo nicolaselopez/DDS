@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DDS - 2016 1er Cuatrimestre - Prueba Login</title>
+    <title>DDS - 2016 1er Cuatrimestre</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,9 +39,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Diseño de Sistemas 2016</h1>
-            <h1>Grupo 43</h1>
-            <h3>Prueba Login</h3>
+            <h1>Administracion de POIs</h1>
             <br>
             <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
         </div>

@@ -1,5 +1,7 @@
 <%@ page import="vista.listObject" %>
 <%@ page import="modelo.Poi" %>
+<%@ page import="java.util.*" %>
+<%@ page import="org.json.*" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +58,7 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Mapa de POIS</h1>
+            <br>
             <div id="outerdiv">
             	<div id="map"></div>
         	</div>
@@ -63,7 +66,6 @@
         	<a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-dark btn-lg">Calcular Cercania</a>
         </div>
     </header>
-    
     <!--Cercania Fade-->
     <div class="modal fade" id="cercania-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
@@ -77,14 +79,17 @@
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%
-						Poi[] pois = new listObject().getlistPoi();
+	                    Poi[] pois = new listObject().getlistPoi();
+	                    List<String> poiArrayList = new ArrayList<String>();
 	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
 	                    for(int i=0;i<100;i++) {
 	                    	if(pois[i].getIdPoi()== -1){
 	                    		break;	
 	                    	}
 	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
+	                    	poiArrayList.add(pois[i].getPoiDescripcion()+"/"+pois[i].getPoiLatitudGeo()+"/"+pois[i].getPoiLongitudGeo());
 						}
+	                    String json = (new JSONArray(poiArrayList)).toString();
 						%>
 	                    </select>
 	                </div>
@@ -92,8 +97,8 @@
                   </form>
                 </div>
             </div>
-    </div>
-     <script>
+    </div>    
+    <script>
     var map;
     var markers = [];
     function initMap() {
@@ -106,11 +111,50 @@
 	     };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var markerPos = new google.maps.Marker({
+            	icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+            	position: pos,
+            	animation: google.maps.Animation.DROP,
+            	title:"Usted se encuentra aquí.",
+            	map: map
+            });
+            map.setCenter(pos);
+            $('#latitud1').val(pos.lat);
+            $('#longitud1').val(pos.lng);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+        
         map.addListener('click', function(e) {
           clearMarkers();
           markers = [];
           placeMarkerAndPanTo(e.latLng, map);
         });
+        var arr=<%= json %>;
+        $.each( arr, function(i, text){ 
+            var datos = text.split('/',3);
+            var pos = {
+              lat: parseFloat(datos[1]),
+              lng: parseFloat(datos[2])
+            };
+            var markerPos = new google.maps.Marker({
+            	position: pos,
+            	title:datos[0],
+            	map: map
+            });
+        });
+        
       }
       
       function setMapOnAll(map) {
@@ -129,11 +173,12 @@
           map: map
         });
         markers.push(marker);
-        $('#latitud').val(latLng.lat());
-        $('#longitud').val(latLng.lng());
+        $('#latitud2').val(latLng.lat());
+        $('#longitud2').val(latLng.lng());
         map.panTo(latLng);
       }
     </script>
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdZb-Yl0gK_AOjcmjU4bCcRecyi-IlTe0&callback=initMap"
     async defer></script>
 
