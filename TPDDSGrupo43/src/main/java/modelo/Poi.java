@@ -332,18 +332,11 @@ public class Poi {
 				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
 			}
 			if(poi != null){
-				Servicio[] servicio = new Servicio[20];
-				rs=st.executeQuery("Select * from servicio where ServicioIdPoi=" + idPoi + ";");
-				int i = 0;
-				while(rs.next()){
-					servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
-					i++;
-				}
-				for(int k=i;k<20;k++){
-					servicio[k]=new Servicio();
-					servicio[k].setIdServicio(-1);
-				}
-				poi.setPoiServicio(servicio);
+				poi.setPoiBarrio(Barrio.consultarBarrio(poi.getPoiIdBarrio()));
+				poi.setPoiServicio(Servicio.consultarServicios(idPoi));
+			}
+			if(poi!=null && poi.getPoiIdTipoPoi()==4){
+				poi.setPoiRubro(Rubro.consultarRubro(poi.getPoiIdRubro()));
 			}
 		}catch(SQLException se){
 			se.printStackTrace();

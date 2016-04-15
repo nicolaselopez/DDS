@@ -75,5 +75,21 @@ public class Barrio {
 		}
 		return barrios;
 	}
+	
+	public static Barrio consultarBarrio(int idBarrio){
+		Barrio barrio = null;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from barrio where idBarrio=" + idBarrio + ";");
+			while(rs.next()){
+				barrio=new Barrio(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return barrio;
+	}
 
 }

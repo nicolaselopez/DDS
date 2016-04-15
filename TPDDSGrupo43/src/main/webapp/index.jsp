@@ -70,12 +70,16 @@
     <div class="modal fade" id="cercania-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Calculo de Cercania</h1><br>
+                    <h2>Calculo de Cercania</h2><br>
                     <form action="ServletCalcularCercania" method="get">
                     <input type="hidden" name="latitud1" id="latitud1" >
                     <input type="hidden" name="longitud1" id="longitud1">
-                    <input type="hidden" name="latitud2" id="latitud2">
-                    <input type="hidden" name="longitud2" id="longitud2">
+                    <input type="hidden" name="barrioPos" id="barrioPos" >
+                    <input type="hidden" name="idPoiMap" id="idPoiMap" value =0>
+                    <h1>Selecciona un Poi del mapa</h1>
+                    <input type="text" name="latitud2" id="latitud2" placeholder="Latitud Poi">
+                    <input type="text" name="longitud2" id="longitud2" placeholder="Longitud Poi">
+                    <h1>O eleji de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%
@@ -87,7 +91,7 @@
 	                    		break;	
 	                    	}
 	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
-	                    	poiArrayList.add(pois[i].getPoiDescripcion()+"/"+pois[i].getPoiLatitudGeo()+"/"+pois[i].getPoiLongitudGeo());
+	                    	poiArrayList.add(pois[i].getPoiDescripcion()+"/"+pois[i].getPoiLatitudGeo()+"/"+pois[i].getPoiLongitudGeo()+"/"+pois[i].getIdPoi());
 						}
 	                    String json = (new JSONArray(poiArrayList)).toString();
 						%>
@@ -102,7 +106,7 @@
     var map;
     var markers = [];
     function initMap() {
-    	
+    	geocoder = new google.maps.Geocoder();
     	var myLatlng1 = new google.maps.LatLng(-34.607430, -58.432560);
 	     var mapOptions = {
 	         zoom: 12,
@@ -143,7 +147,7 @@
         });
         var arr=<%= json %>;
         $.each( arr, function(i, text){ 
-            var datos = text.split('/',3);
+            var datos = text.split('/',4);
             var pos = {
               lat: parseFloat(datos[1]),
               lng: parseFloat(datos[2])
@@ -153,6 +157,11 @@
             	title:datos[0],
             	map: map
             });
+            markerPos.addListener('click',function(){
+            	$('#latitud2').val(parseFloat(datos[1]));
+                $('#longitud2').val(parseFloat(datos[2]));
+                $('#idPoiMap').val(parseInt(datos[3]));
+            });  
         });
         
       }
@@ -167,16 +176,6 @@
     	  setMapOnAll(null);
       }
     
-      function placeMarkerAndPanTo(latLng, map) {
-        var marker = new google.maps.Marker({
-          position: latLng,
-          map: map
-        });
-        markers.push(marker);
-        $('#latitud2').val(latLng.lat());
-        $('#longitud2').val(latLng.lng());
-        map.panTo(latLng);
-      }
     </script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdZb-Yl0gK_AOjcmjU4bCcRecyi-IlTe0&callback=initMap"

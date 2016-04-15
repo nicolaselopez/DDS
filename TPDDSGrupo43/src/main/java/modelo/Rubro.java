@@ -66,4 +66,21 @@ public class Rubro {
 		return rubros;
 	}
 	
+	public static Rubro consultarRubro(int idRubro){
+		Rubro rubro = null;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from rubro where idRubro =" + idRubro + ";");
+			while(rs.next()){
+				rubro = new Rubro(rs.getInt(1),rs.getString(2),rs.getInt(3));
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return rubro;
+	}
+	
+	
 }
