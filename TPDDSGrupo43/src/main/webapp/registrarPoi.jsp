@@ -42,6 +42,25 @@
 </head>
 
 <body>
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li>
+                <a href="home.jsp" onclick = $("#menu-close").click(); >Home</a>
+            </li>
+            <li>
+                <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
+            </li>
+            <li>
+                <a href="agregarServicio.jsp" onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
+            </li>
+            <li>
+                <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- Header -->
     <header id="top" class="header">

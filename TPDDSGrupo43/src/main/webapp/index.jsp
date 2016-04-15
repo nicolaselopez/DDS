@@ -71,10 +71,10 @@
           <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h2>Calculo de Cercania</h2><br>
-                    <form action="ServletCalcularCercania" method="get">
+                    <form action="ServletCalculoCercania" method="get">
                     <input type="hidden" name="latitud1" id="latitud1" >
                     <input type="hidden" name="longitud1" id="longitud1">
-                    <input type="hidden" name="barrioPos" id="barrioPos" >
+                    <input type="hidden" name="comunaPos" id="comunaPos" >
                     <input type="hidden" name="idPoiMap" id="idPoiMap" value =0>
                     <h1>Selecciona un Poi del mapa</h1>
                     <input type="text" name="latitud2" id="latitud2" placeholder="Latitud Poi">
@@ -105,6 +105,8 @@
     <script>
     var map;
     var markers = [];
+    var comuna;
+
     function initMap() {
     	geocoder = new google.maps.Geocoder();
     	var myLatlng1 = new google.maps.LatLng(-34.607430, -58.432560);
@@ -132,6 +134,7 @@
             map.setCenter(pos);
             $('#latitud1').val(pos.lat);
             $('#longitud1').val(pos.lng);
+            getReverseGeocodingData(pos.lat,pos.lng);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -175,7 +178,38 @@
       function clearMarkers() {
     	  setMapOnAll(null);
       }
-    
+      
+      function getAddress(results) {
+  	    if(results && results.length) {
+  	        for (var i=0; i<results.length; i++) {
+  	                for(var j=0; j<results[i].address_components.length;j++){
+  	                	if(results[i].address_components[j].long_name.indexOf('Comuna')!= -1){
+  	                		return results[i].address_components[j].long_name; 
+  	                	}
+  	                };
+  	            }
+  	        return results[0].formatted_address;
+  	    }
+  	    return '';
+  	  }
+      
+      function getReverseGeocodingData(lat, lng) {
+    	    var latlng = new google.maps.LatLng(lat, lng);
+    	    // This is making the Geocode request
+    	    var geocoder = new google.maps.Geocoder();
+    	    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+    	        if (status !== google.maps.GeocoderStatus.OK) {
+    	            alert(status);
+    	        }
+    	        // This is checking to see if the Geoeode Status is OK before proceeding
+    	        if (status == google.maps.GeocoderStatus.OK) {
+    	            comuna = getAddress(results);
+    	            $('#comunaPos').val(comuna);
+    	        }
+    	    });
+  	  }
+      
+      
     </script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdZb-Yl0gK_AOjcmjU4bCcRecyi-IlTe0&callback=initMap"

@@ -37,7 +37,19 @@
 
 <body>
 <%Usuario busuario=(Usuario)request.getAttribute("busuario"); %>
-
+ 	<!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li>
+                <a href="index.jsp" onclick = $("#menu-close").click(); >Mapa</a>
+            </li>
+            <li>
+                <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
+            </li>
+        </ul>
+    </nav>
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
