@@ -64,6 +64,8 @@
         	</div>
             <br>
         	<a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-dark btn-lg">Calcular Cercania</a>
+            <br>
+        	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-dark btn-lg">Calcular Disponibilidad</a>
         </div>
     </header>
     <!--Cercania Fade-->
@@ -101,7 +103,37 @@
                   </form>
                 </div>
             </div>
-    </div>    
+    </div>
+    
+    <!--Disponibilidad Fade-->
+    <div class="modal fade" id="disponibilidad-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h2>Calculo de Disponibilidad</h2><br>
+                    <form action="ServletCalculoDisponibilidad" method="get">
+                    <h1>Eleji de esta lista:</h1>
+                    <div class="styled-select">
+	                    <select id="poi" name="poi">
+	                    <%
+	                    Poi[] poisD = new listObject().getlistPoi();
+
+	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+	                    for(int i=0;i<100;i++) {
+	                    	if(poisD[i].getIdPoi()== -1){
+	                    		break;	
+	                    	}
+	                    	out.write("<option value=" + poisD[i].getIdPoi()+ ">" + poisD[i].getPoiDescripcion()+"</option>");
+						}
+						%>
+	                    </select>
+	                </div>
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Calcular">
+                  </form>
+                </div>
+            </div>
+    </div>
+    
+      
     <script>
     var map;
     var markers = [];
