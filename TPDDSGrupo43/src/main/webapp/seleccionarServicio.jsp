@@ -1,4 +1,7 @@
 <%@page import="modelo.Poi"%>
+<%@page import="modelo.Servicio"%>
+<%@ page import="vista.listObject" %>
+
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,19 +56,42 @@
             <li>
                 <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
-            <li>
-                <a href="contactos.jsp" onclick = $("#menu-close").click(); >Contactos</a>
-            </li>
         </ul>
     </nav>
-    
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Disponibilidad de <%=poi.getPoiDescripcion() %> es <%= OK %></h1>          
-            <br>
+
+        	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-dark btn-lg">Calcular Disponibilidad</a>
         </div>
     </header>
+     <!--Disponibilidad Fade-->
+    <div class="modal fade" id="disponibilidad-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h2>SeleccionarServicio</h2><br>
+                    <form action="ServletCalculoDisponibilidad2" method="get">
+                    <h1>Eleji de esta lista:</h1>
+                    <div class="styled-select">
+	                    <select id="poi" name="poi">
+	                    <%
+	                    Servicio[] servicioPoi = poi.getPoiServicio();
+
+	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+	                    for(int i=0;i<servicioPoi.length;i++) {
+	                    	if(servicioPoi[i].getIdServicio()== -1){
+	                    		break;	
+	                    	}
+	                    	out.write("<option value=" + servicioPoi[i].getServicioIdPoi()+ ">" + servicioPoi[i].getServicioDescripcion()+"</option>");
+						}
+						%>
+	                    </select>
+	                </div>
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Calcular">
+                  </form>
+                </div>
+            </div>
+    </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

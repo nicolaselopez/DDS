@@ -163,6 +163,23 @@ public class Servicio {
 		return servicio;
 	}
 	
+
+	public static Servicio buscarServicio(int idPoi){
+		Servicio poi=null;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from servicio where servicioIdPoi=" + idPoi + ";");
+			while(rs.next()){
+				poi=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return poi;
+	}
+	
 	public static Boolean registrarServicio(Servicio servicio){
 		Boolean OK = false;
 		try{
@@ -191,4 +208,115 @@ public class Servicio {
 		return dias;
 	}
 	
+	public boolean calcularDisponibilidad(int dayOfWeekHoy, String[] horaHoyParts) {
+		String[] diasServicioParts = this.getServicioDiaDisponible().split(";");
+		int i=0, diaDisponible;
+		boolean disponible = false;
+		
+		while(i<diasServicioParts.length)
+	    {	
+	    	diaDisponible = calcularDiaDisponible(diasServicioParts[i]);
+	    	
+	    	if(diaDisponible == dayOfWeekHoy)
+	    	{
+	    		int horaHoy = Integer.parseInt(horaHoyParts[0]);
+	    		int minHoy = Integer.parseInt(horaHoyParts[1]);
+	    		int servicioDesde1 = Integer.parseInt(this.getServicioHoraDesde1());
+	    		int servicioHasta1 = Integer.parseInt(this.getServicioHoraHasta1());
+	    		int servicioDesde2 = Integer.parseInt(this.getServicioHoraDesde2());
+	    		int servicioHasta2 = Integer.parseInt(this.getServicioHoraHasta2());
+	    		
+	    		if( horaEstaEntre(horaHoy, minHoy, servicioDesde1, servicioHasta1) || horaEstaEntre(horaHoy, minHoy, servicioDesde2, servicioHasta2) ) 
+	    		{
+	    			disponible = true;
+	    		}
+	    		
+				break;
+	    	}
+	    	
+	    	i++;
+	    }
+		
+		return disponible;
+		
+	}
+
+	private boolean horaEstaEntre( int horaHoy,  int minHoy, int horaDesde, int horaHasta) {
+		boolean disponible = false;
+		
+		if(horaHasta == 0)
+		{
+			horaHasta = 24;
+		}
+		
+		if( horaHoy>=horaDesde )
+		{
+			if( horaHoy==horaHasta && minHoy==0 )
+			{
+				disponible = true;
+			}
+			else
+			{
+				if(horaHoy<horaHasta)
+				{
+					disponible = true;
+				}
+			}
+		}
+		
+		return disponible;
+	}
+	
+	private int calcularDiaDisponible(String diaServicio) {
+		int nroDia = 0;
+		
+		if(diaServicio.equals("Dom"))
+		{
+			nroDia = 1;
+		}
+		else
+		{
+			if(diaServicio.equals("Lun"))
+			{
+				nroDia = 2;
+			}
+			else
+			{
+				if(diaServicio.equals("Mar"))
+				{
+					nroDia = 3;
+				}
+				else
+				{
+					if(diaServicio.equals("Mie"))
+					{
+						nroDia = 4;
+					}
+					else
+					{
+						if(diaServicio.equals("Jue"))
+						{
+							nroDia = 5;
+						}
+						else
+						{
+							if(diaServicio.equals("Vie"))
+							{
+								nroDia = 6;
+							}
+							else
+							{
+								if(diaServicio.equals("Sab"))
+								{
+									nroDia = 7;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return nroDia;
+	}
 }

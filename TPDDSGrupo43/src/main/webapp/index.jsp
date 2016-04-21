@@ -51,6 +51,10 @@
             <li>
                 <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
+            
+            <li>
+                <a href="contactos.jsp" onclick = $("#menu-close").click(); >Contactos</a>
+            </li>
         </ul>
     </nav>
 
@@ -81,6 +85,7 @@
                     <h1>Selecciona un Poi del mapa</h1>
                     <input type="text" name="latitud2" id="latitud2" placeholder="Latitud Poi">
                     <input type="text" name="longitud2" id="longitud2" placeholder="Longitud Poi">
+                    
                     <h1>O eleji de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="poi" name="poi">

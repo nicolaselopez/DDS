@@ -1,4 +1,5 @@
 <%@page import="modelo.Poi"%>
+<%@page import="modelo.Servicio"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +37,10 @@
 </head>
 
 <body>
-<%Poi poi=(Poi)request.getAttribute("poi");%>
+<%Servicio poi=(Servicio)request.getAttribute("poi");%>
 <% if(poi == null){
-	poi = new Poi();
-	poi.setPoiDescripcion("Error");};%>
+	poi = new Servicio();
+	poi.setServicioDescripcion("Error");};%>
 <%Boolean OK = (Boolean)request.getAttribute("OK"); %>
 
     <!-- Navigation -->
@@ -53,16 +54,13 @@
             <li>
                 <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
-            <li>
-                <a href="contactos.jsp" onclick = $("#menu-close").click(); >Contactos</a>
-            </li>
         </ul>
     </nav>
     
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Disponibilidad de <%=poi.getPoiDescripcion() %> es <%= OK %></h1>          
+            <h1>Disponibilidad de <%=poi.getServicioDescripcion() %> es <%= OK %></h1>
             <br>
         </div>
     </header>
