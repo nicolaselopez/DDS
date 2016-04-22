@@ -24,7 +24,7 @@ public class TestsBusquedaTags {
 		//ejecucion
 		Servicio[] servicios = Servicio.consultarServiciosTag(tagTrue);
 		//validacion
-	    Assert.assertTrue(servicios != null);
+	    Assert.assertTrue(servicios[0].getIdServicio() != -1);
 	}
 
 	@Test
@@ -34,7 +34,7 @@ public class TestsBusquedaTags {
 		//ejecucion
 		Servicio[] servicios = Servicio.consultarServiciosTag(tagFalse);
 		//validacion
-		Assert.assertTrue(servicios == null); 
+		Assert.assertTrue(servicios[0].getIdServicio() == -1); 
 	}
 	
 
