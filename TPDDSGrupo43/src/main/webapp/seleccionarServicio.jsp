@@ -76,12 +76,7 @@
 	                    <select id="serv" name="serv">
 	                    <%
 	                    Servicio[] servicioPoi = poi.getPoiServicio();
-
-<<<<<<< HEAD
 	                    out.write("<option value=\"0\">--Servicios--</option>");
-=======
-	                    out.write("<option value=\"0\">--Seleccionar Servicio--</option>");
->>>>>>> origin/master
 	                    for(int i=0;i<servicioPoi.length;i++) {
 	                    	if(servicioPoi[i].getIdServicio()== -1){
 	                    		break;	
