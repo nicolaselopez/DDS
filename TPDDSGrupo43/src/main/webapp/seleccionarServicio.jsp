@@ -77,12 +77,12 @@
 	                    <%
 	                    Servicio[] servicioPoi = poi.getPoiServicio();
 
-	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+	                    out.write("<option value=\"0\">--Seleccionar Servicio--</option>");
 	                    for(int i=0;i<servicioPoi.length;i++) {
 	                    	if(servicioPoi[i].getIdServicio()== -1){
 	                    		break;	
 	                    	}
-	                    	out.write("<option value=" + servicioPoi[i].getServicioIdPoi()+ ">" + servicioPoi[i].getServicioDescripcion()+"</option>");
+	                    	out.write("<option value=" + servicioPoi[i].getIdServicio()+ ">" + servicioPoi[i].getServicioDescripcion()+"</option>");
 						}
 						%>
 	                    </select>
