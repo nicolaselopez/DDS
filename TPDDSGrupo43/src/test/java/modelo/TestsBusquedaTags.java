@@ -8,36 +8,34 @@ import org.junit.Test;
 
 public class TestsBusquedaTags {
 	
-	private Servicio parada114;
-	private Servicio kioscoElTurco;
+	String tagTrue = "colectivo";
+	String tagFalse = "xassds";
 	
 	@Before
 	public void darContexto(){
 
-		parada114 = Servicio.buscarServicio(2);
-		kioscoElTurco = Servicio.buscarServicio(1);
+
 	}	
 	
-@Test
-public void TagColectivo(){
-	//precondiciones - contexto - escenario - fixture
-	
-	//ejecucion
-	Servicio[] servicios = Servicio.consultarServiciosTag("colectivo");
-	//validacion
-    Assert.assertTrue(servicios.toString().contains("1"));
-//	Assert.assertFalse(serviciosQueCumplenConTag.toString().contains("parada114")); 
-}
+	@Test
+	public void TagTrue(){
+		//precondiciones - contexto - escenario - fixture
+		//
+		//ejecucion
+		Servicio[] servicios = Servicio.consultarServiciosTag(tagTrue);
+		//validacion
+	    Assert.assertTrue(servicios != null);
+	}
 
-//@Test
-//public void TagKiosco(){
-//	//precondiciones - contexto - escenario - fixture
-//	
-//	//ejecucion
-//    boolean estaDisponible = kioscoElTurco.calcularDisponibilidad(martes,hora);
-//	//validacion
-//	Assert.assertFalse(estaDisponible); 
-//}
-//
+	@Test
+	public void TagFalse(){
+		//precondiciones - contexto - escenario - fixture
+		//
+		//ejecucion
+		Servicio[] servicios = Servicio.consultarServiciosTag(tagTrue);
+		//validacion
+		Assert.assertFalse(servicios == null); 
+	}
+	
 
 }
