@@ -104,7 +104,7 @@
                     <input type="text" name="horaDesde2" placeholder="Horario Desde Op2">
                     <input type="text" name="horaHasta2" placeholder="Horario Hasta Op2">
                     <input type="text" name="tags" placeholder="Tags separados por ';'">
-                    <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Poi">
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Servicio">
                   </form>
                 </div>
             </div>

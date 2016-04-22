@@ -59,7 +59,7 @@ public class ServletCalculoDisponibilidad extends HttpServlet {
 		    c.setTime(dateHoy);
 		    int dayOfWeekHoy = c.get(Calendar.DAY_OF_WEEK);
 		    
-			if( (tipoPoi==2) )//CGP o Banco
+			if( (tipoPoi==2 || tipoPoi==4) )//CGP o Local Comercial
 			{
 				request.setAttribute("poi", poi);
 				request.setAttribute("OK", OK);
@@ -91,13 +91,6 @@ public class ServletCalculoDisponibilidad extends HttpServlet {
 					{ 
 						OK = true;	
 					}
-					else
-					{
-						Servicio[] servicio = poi.getPoiServicio();
-						
-					    OK = servicio[0].calcularDisponibilidad(dayOfWeekHoy, horaHoyParts);
-					}
-					
 					request.setAttribute("poi", poi);
 					request.setAttribute("OK", OK);
 					request.getRequestDispatcher("resultadoDisponibilidad.jsp").forward(request, response);

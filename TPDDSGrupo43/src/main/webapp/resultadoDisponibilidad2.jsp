@@ -37,10 +37,10 @@
 </head>
 
 <body>
-<%Servicio poi=(Servicio)request.getAttribute("poi");%>
-<% if(poi == null){
-	poi = new Servicio();
-	poi.setServicioDescripcion("Error");};%>
+<%Servicio serv=(Servicio)request.getAttribute("serv");%>
+<% if(serv == null){
+	serv = new Servicio();
+	serv.setServicioDescripcion("Error");};%>
 <%Boolean OK = (Boolean)request.getAttribute("OK"); %>
 
     <!-- Navigation -->
@@ -60,7 +60,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Disponibilidad de <%=poi.getServicioDescripcion() %> es <%= OK %></h1>
+            <h1>Disponibilidad de <%=serv.getServicioDescripcion() %> es <%= OK %></h1>
             <br>
         </div>
     </header>

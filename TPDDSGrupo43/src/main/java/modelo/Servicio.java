@@ -164,20 +164,20 @@ public class Servicio {
 	}
 	
 
-	public static Servicio buscarServicio(int idPoi){
-		Servicio poi=null;
+	public static Servicio buscarServicio(int idServicio){
+		Servicio servicio=null;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery("Select * from servicio where servicioIdPoi=" + idPoi + ";");
+			ResultSet rs=st.executeQuery("Select * from servicio where IdServicio=" + idServicio + ";");
 			while(rs.next()){
-				poi=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
+				servicio=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
 			}
 		}catch(SQLException se){
 			se.printStackTrace();
 		}
-		return poi;
+		return servicio;
 	}
 	
 	public static Boolean registrarServicio(Servicio servicio){
@@ -318,5 +318,27 @@ public class Servicio {
 		}
 		
 		return nroDia;
+	}
+	public static Servicio[] consultarServiciosTag(String tag) {
+		// TODO Auto-generated method stub
+		Servicio[] servicio = new Servicio[20];
+		try{
+		Conexion c=new Conexion();
+		Connection con=c.getConexion();
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery("Select * from servicio where ServicioTags like '%" + tag + "%';");
+		int i = 0;
+		while(rs.next()){
+			servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
+			i++;
+		}
+		for(int k=i;k<20;k++){
+			servicio[k]=new Servicio();
+			servicio[k].setIdServicio(-1);
+		};
+		}catch(Exception se){
+			se.printStackTrace();
+		}
+		return servicio;
 	}
 }

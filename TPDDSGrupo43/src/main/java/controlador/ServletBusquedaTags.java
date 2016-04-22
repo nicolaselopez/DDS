@@ -22,14 +22,14 @@ import modelo.DistanceCalculator;
 /**
  * Servlet implementation class ServletCalculoDisponibilidad2
  */
-@WebServlet("/ServletCalculoDisponibilidad2")
-public class ServletCalculoDisponibilidad2 extends HttpServlet {
+@WebServlet("/ServletBusquedaTags")
+public class ServletBusquedaTags extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public ServletCalculoDisponibilidad2() {
+    public ServletBusquedaTags() {
         // TODO Auto-generated constructor stub
     }
 
@@ -37,39 +37,20 @@ public class ServletCalculoDisponibilidad2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idPoiMap=0;
-		int idServicio=Integer.parseInt(request.getParameter("serv"));
+		String tag=request.getParameter("tag");
 
 		try{
-			Servicio servicio = null;
 			Boolean OK = false;
-			
-			if(idServicio != 0){
-				servicio = Servicio.buscarServicio(idServicio);
-			}
-			
-			SimpleDateFormat horario = new SimpleDateFormat("HH:mm:ss");
-		    
-			Date dateHoy = new Date();
-			
-			String[] horaHoyParts = horario.format(dateHoy).split(":");
-			
-		    Calendar c = Calendar.getInstance();
-		    c.setTime(dateHoy);
-		    int dayOfWeekHoy = c.get(Calendar.DAY_OF_WEEK);
-			
-		    OK = servicio.calcularDisponibilidad(dayOfWeekHoy, horaHoyParts);
-		    
-			request.setAttribute("serv", servicio);
+			Servicio[] servicios = Servicio.consultarServiciosTag(tag);
+			request.setAttribute("serv", servicios);
 			request.setAttribute("OK", OK);
-			request.getRequestDispatcher("resultadoDisponibilidad2.jsp").forward(request, response);
-			
+			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
 		}
 		catch(Exception e)
 		{
-			request.setAttribute("serv", Servicio.buscarServicio(idServicio));
+			request.setAttribute("serv", null);
 			request.setAttribute("OK", false);
-			request.getRequestDispatcher("resultadoDisponibilidad2.jsp").forward(request, response);
+			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
 		
 		}
 	}

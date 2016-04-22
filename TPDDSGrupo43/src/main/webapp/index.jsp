@@ -51,10 +51,10 @@
             <li>
                 <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
-            
+           <!--  
             <li>
                 <a href="contactos.jsp" onclick = $("#menu-close").click(); >Contactos</a>
-            </li>
+            </li>  -->
         </ul>
     </nav>
 
@@ -70,6 +70,8 @@
         	<a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-dark btn-lg">Calcular Cercania</a>
             <br>
         	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-dark btn-lg">Calcular Disponibilidad</a>
+        	<br>
+        	<a href="#" data-toggle="modal" data-target="#tag-modal" class="btn btn-dark btn-lg">Buscar Servicio por Tags</a>
         </div>
     </header>
     <!--Cercania Fade-->
@@ -137,7 +139,20 @@
                 </div>
             </div>
     </div>
-    
+   
+    <!--Tags Fade-->
+    <div class="modal fade" id="tags-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h2>Busqueda por Tags</h2><br>
+                    <form action="ServletBusquedaTags" method="get">
+                    <h1>Escribi palabra clave</h1>
+					<input type="text" name="tag" id="tag" placeholder="Ej: mcdonalds">
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Buscar Servicios">
+                  </form>
+                </div>
+            </div>
+    </div>
       
     <script>
     var map;

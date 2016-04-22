@@ -69,20 +69,20 @@
     <div class="modal fade" id="disponibilidad-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h2>SeleccionarServicio</h2><br>
+                    <h2>Seleccionar Servicio</h2><br>
                     <form action="ServletCalculoDisponibilidad2" method="get">
                     <h1>Eleji de esta lista:</h1>
                     <div class="styled-select">
-	                    <select id="poi" name="poi">
+	                    <select id="serv" name="serv">
 	                    <%
 	                    Servicio[] servicioPoi = poi.getPoiServicio();
 
-	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+	                    out.write("<option value=\"0\">--Servicios--</option>");
 	                    for(int i=0;i<servicioPoi.length;i++) {
 	                    	if(servicioPoi[i].getIdServicio()== -1){
 	                    		break;	
 	                    	}
-	                    	out.write("<option value=" + servicioPoi[i].getServicioIdPoi()+ ">" + servicioPoi[i].getServicioDescripcion()+"</option>");
+	                    	out.write("<option value=" + servicioPoi[i].getIdServicio()+ ">" + servicioPoi[i].getServicioDescripcion()+"</option>");
 						}
 						%>
 	                    </select>
