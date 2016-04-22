@@ -32,9 +32,9 @@ public class TestsBusquedaTags {
 		//precondiciones - contexto - escenario - fixture
 		//
 		//ejecucion
-		Servicio[] servicios = Servicio.consultarServiciosTag(tagTrue);
+		Servicio[] servicios = Servicio.consultarServiciosTag(tagFalse);
 		//validacion
-		Assert.assertFalse(servicios == null); 
+		Assert.assertTrue(servicios == null); 
 	}
 	
 
