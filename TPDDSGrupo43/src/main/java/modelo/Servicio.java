@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.commons.lang3.StringUtils;
+
 import modelo.Poi;
 
 public class Servicio {
@@ -221,10 +224,10 @@ public class Servicio {
 	    	{
 	    		int horaHoy = Integer.parseInt(horaHoyParts[0]);
 	    		int minHoy = Integer.parseInt(horaHoyParts[1]);
-	    		int servicioDesde1 = Integer.parseInt(this.getServicioHoraDesde1());
-	    		int servicioHasta1 = Integer.parseInt(this.getServicioHoraHasta1());
-	    		int servicioDesde2 = Integer.parseInt(this.getServicioHoraDesde2());
-	    		int servicioHasta2 = Integer.parseInt(this.getServicioHoraHasta2());
+	    		int servicioDesde1 = StringUtils.isNotBlank(this.getServicioHoraDesde1()) ? Integer.parseInt(this.getServicioHoraDesde1()) : -1;
+	    		int servicioHasta1 = StringUtils.isNotBlank(this.getServicioHoraHasta1()) ? Integer.parseInt(this.getServicioHoraHasta1()) : -1;
+	    		int servicioDesde2 = StringUtils.isNotBlank(this.getServicioHoraDesde2()) ? Integer.parseInt(this.getServicioHoraDesde2()) : -1;
+	    		int servicioHasta2 = StringUtils.isNotBlank(this.getServicioHoraHasta2()) ? Integer.parseInt(this.getServicioHoraHasta2()) : -1;
 	    		
 	    		if( horaEstaEntre(horaHoy, minHoy, servicioDesde1, servicioHasta1) || horaEstaEntre(horaHoy, minHoy, servicioDesde2, servicioHasta2) ) 
 	    		{

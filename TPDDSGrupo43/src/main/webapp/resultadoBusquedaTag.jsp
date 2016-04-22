@@ -66,7 +66,8 @@
                    	if(serv[i].getIdServicio()== -1){
                    		break;	
                    	}
-                   	out.write("<h3>" + serv[i].getServicioDescripcion()+"</h3>");
+                   	Poi poi = Poi.buscarPoi(serv[i].getServicioIdPoi());
+                   	out.write("<h3>"+poi.getPoiDescripcion()+" - " + serv[i].getServicioDescripcion()+"</h3>");
 			  }
 			%>
             <br>
