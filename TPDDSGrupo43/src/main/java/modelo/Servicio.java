@@ -270,7 +270,7 @@ public class Servicio {
 		return disponible;
 	}
 	
-	private int calcularDiaDisponible(String diaServicio) {
+	public int calcularDiaDisponible(String diaServicio) {
 		int nroDia = 0;
 		
 		if(diaServicio.equals("Dom"))
