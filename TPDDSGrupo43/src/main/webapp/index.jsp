@@ -51,10 +51,13 @@
             <li>
                 <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
+<<<<<<< HEAD
            <!--  
             <li>
                 <a href="contactos.jsp" onclick = $("#menu-close").click(); >Contactos</a>
             </li>  -->
+=======
+>>>>>>> origin/master
         </ul>
     </nav>
 
