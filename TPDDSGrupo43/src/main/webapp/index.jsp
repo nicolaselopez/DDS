@@ -67,7 +67,7 @@
             <br>
         	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-dark btn-lg">Calcular Disponibilidad</a>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#tag-modal" class="btn btn-dark btn-lg">Buscar Servicio por Tags</a>
+        	<a href="#" data-toggle="modal" data-target="#tags-modal" class="btn btn-dark btn-lg">Buscar Servicio por Tags</a>
         </div>
     </header>
     <!--Cercania Fade-->
