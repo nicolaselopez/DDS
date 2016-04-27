@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import modelo.Barrio;
 import modelo.Rubro;
 import modelo.Servicio;
@@ -17,17 +16,8 @@ public class Poi {
 	private int PoiIdRubro;
 	private Rubro PoiRubro;
 	private Servicio[] PoiServicio;
-	private String PoiCalle;
-	private String PoiNumero;
-	private String PoiPiso;
-	private String PoiDepto;
-	private String PoiUnidad;
-	private String PoiCodPos;
-	private int PoiIdLocalidad;
-	private int PoiIdBarrio;
+	private Direccion PoiDireccion;
 	private Barrio PoiBarrio;
-	private int PoiIdProvincia;
-	private int PoiIdPais;
 	private String PoiLatitudGeo;
 	private String PoiLongitudGeo;
 	private String PoiFechaAlta;
@@ -74,6 +64,14 @@ public class Poi {
 		PoiRubro = poiRubro;
 	}
 
+	public Direccion getPoiDireccion() {
+		return PoiDireccion;
+	}
+
+	public void setPoiDireccion(Direccion poiDireccion) {
+		PoiDireccion = poiDireccion;
+	}
+
 	public Servicio[] getPoiServicio() {
 		return PoiServicio;
 	}
@@ -82,92 +80,12 @@ public class Poi {
 		PoiServicio = poiServicio;
 	}
 
-	public String getPoiCalle() {
-		return PoiCalle;
-	}
-
-	public void setPoiCalle(String poiCalle) {
-		PoiCalle = poiCalle;
-	}
-
-	public String getPoiNumero() {
-		return PoiNumero;
-	}
-
-	public void setPoiNumero(String poiNumero) {
-		PoiNumero = poiNumero;
-	}
-
-	public String getPoiPiso() {
-		return PoiPiso;
-	}
-
-	public void setPoiPiso(String poiPiso) {
-		PoiPiso = poiPiso;
-	}
-
-	public String getPoiDepto() {
-		return PoiDepto;
-	}
-
-	public void setPoiDepto(String poiDepto) {
-		PoiDepto = poiDepto;
-	}
-
-	public String getPoiUnidad() {
-		return PoiUnidad;
-	}
-
-	public void setPoiUnidad(String poiUnidad) {
-		PoiUnidad = poiUnidad;
-	}
-
-	public String getPoiCodPos() {
-		return PoiCodPos;
-	}
-
-	public void setPoiCodPos(String poiCodPos) {
-		PoiCodPos = poiCodPos;
-	}
-
-	public int getPoiIdLocalidad() {
-		return PoiIdLocalidad;
-	}
-
-	public void setPoiIdLocalidad(int poiIdLocalidad) {
-		PoiIdLocalidad = poiIdLocalidad;
-	}
-
-	public int getPoiIdBarrio() {
-		return PoiIdBarrio;
-	}
-
-	public void setPoiIdBarrio(int poiIdBarrio) {
-		PoiIdBarrio = poiIdBarrio;
-	}
-
 	public Barrio getPoiBarrio() {
 		return PoiBarrio;
 	}
 
 	public void setPoiBarrio(Barrio poiBarrio) {
 		PoiBarrio = poiBarrio;
-	}
-
-	public int getPoiIdProvincia() {
-		return PoiIdProvincia;
-	}
-
-	public void setPoiIdProvincia(int poiIdProvincia) {
-		PoiIdProvincia = poiIdProvincia;
-	}
-
-	public int getPoiIdPais() {
-		return PoiIdPais;
-	}
-
-	public void setPoiIdPais(int poiIdPais) {
-		PoiIdPais = poiIdPais;
 	}
 
 	public String getPoiLatitudGeo() {
@@ -213,9 +131,8 @@ public class Poi {
 	
 	
 	public Poi(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, Rubro poiRubro,
-			Servicio[] poiServicio, String poiCalle, String poiNumero, String poiPiso, String poiDepto,
-			String poiUnidad, String poiCodPos, int poiIdLocalidad, int poiIdBarrio, Barrio poiBarrio,
-			int poiIdProvincia, int poiIdPais, String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
+			Servicio[] poiServicio,Direccion poiDireccion, Barrio poiBarrio,
+			String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
 			String poiFechaModificacion, int poiActivo) {
 		super();
 		IdPoi = idPoi;
@@ -224,17 +141,8 @@ public class Poi {
 		PoiIdRubro = poiIdRubro;
 		PoiRubro = poiRubro;
 		PoiServicio = poiServicio;
-		PoiCalle = poiCalle;
-		PoiNumero = poiNumero;
-		PoiPiso = poiPiso;
-		PoiDepto = poiDepto;
-		PoiUnidad = poiUnidad;
-		PoiCodPos = poiCodPos;
-		PoiIdLocalidad = poiIdLocalidad;
-		PoiIdBarrio = poiIdBarrio;
+		PoiDireccion = poiDireccion;
 		PoiBarrio = poiBarrio;
-		PoiIdProvincia = poiIdProvincia;
-		PoiIdPais = poiIdPais;
 		PoiLatitudGeo = poiLatitudGeo;
 		PoiLongitudGeo = poiLongitudGeo;
 		PoiFechaAlta = poiFechaAlta;
@@ -244,23 +152,12 @@ public class Poi {
 	
 	
 
-	public Poi(int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, String poiCalle, String poiNumero,
-			String poiPiso, String poiDepto, String poiUnidad, String poiCodPos, int poiIdLocalidad, int poiIdBarrio,
-			int poiIdProvincia, int poiIdPais, String poiLatitudGeo, String poiLongitudGeo, int poiActivo) {
+	public Poi(int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, Direccion poiDireccion, String poiLatitudGeo, String poiLongitudGeo, int poiActivo) {
 		super();
 		PoiIdTipoPoi = poiIdTipoPoi;
 		PoiDescripcion = poiDescripcion;
 		PoiIdRubro = poiIdRubro;
-		PoiCalle = poiCalle;
-		PoiNumero = poiNumero;
-		PoiPiso = poiPiso;
-		PoiDepto = poiDepto;
-		PoiUnidad = poiUnidad;
-		PoiCodPos = poiCodPos;
-		PoiIdLocalidad = poiIdLocalidad;
-		PoiIdBarrio = poiIdBarrio;
-		PoiIdProvincia = poiIdProvincia;
-		PoiIdPais = poiIdPais;
+		PoiDireccion = poiDireccion;
 		PoiLatitudGeo = poiLatitudGeo;
 		PoiLongitudGeo = poiLongitudGeo;
 		PoiActivo = poiActivo;
@@ -273,25 +170,15 @@ public class Poi {
 	
 	
 
-	public Poi(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, String poiCalle, String poiNumero,
-			String poiPiso, String poiDepto, String poiUnidad, String poiCodPos, int poiIdLocalidad, int poiIdBarrio,
-			int poiIdProvincia, int poiIdPais, String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
+	public Poi(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, Direccion poiDireccion, 
+			String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
 			String poiFechaModificacion, int poiActivo) {
 		super();
 		IdPoi = idPoi;
 		PoiIdTipoPoi = poiIdTipoPoi;
 		PoiDescripcion = poiDescripcion;
 		PoiIdRubro = poiIdRubro;
-		PoiCalle = poiCalle;
-		PoiNumero = poiNumero;
-		PoiPiso = poiPiso;
-		PoiDepto = poiDepto;
-		PoiUnidad = poiUnidad;
-		PoiCodPos = poiCodPos;
-		PoiIdLocalidad = poiIdLocalidad;
-		PoiIdBarrio = poiIdBarrio;
-		PoiIdProvincia = poiIdProvincia;
-		PoiIdPais = poiIdPais;
+		PoiDireccion = poiDireccion;
 		PoiLatitudGeo = poiLatitudGeo;
 		PoiLongitudGeo = poiLongitudGeo;
 		PoiFechaAlta = poiFechaAlta;
@@ -308,7 +195,8 @@ public class Poi {
 			ResultSet rs=st.executeQuery("Select * from poi");
 			int i=0;
 			while(rs.next()){
-				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
 				i++;
 			}
 			for(int k=i;k<5000;k++){
@@ -329,10 +217,12 @@ public class Poi {
 			Statement st=con.createStatement();
 			ResultSet rs=st.executeQuery("Select * from poi where idPoi=" + idPoi + ";");
 			while(rs.next()){
-				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+
 			}
 			if(poi != null){
-				poi.setPoiBarrio(Barrio.consultarBarrio(poi.getPoiIdBarrio()));
+				poi.setPoiBarrio(Barrio.consultarBarrio(poi.getPoiDireccion().getPoiIdBarrio()));
 				poi.setPoiServicio(Servicio.consultarServicios(idPoi));
 			}
 			if(poi!=null && poi.getPoiIdTipoPoi()==4){
@@ -354,9 +244,9 @@ public class Poi {
 				"(PoiIdTipoPoi,PoiDescripcion,PoiIdRubro,PoiCalle,PoiNumero,PoiPiso,PoiDepto,PoiUnidad,"+
 				"PoiCodPos,PoiIdLocalidad,PoiIdBarrio,PoiIdProvincia,PoiIdPais,PoiLatitudGeo,PoiLongitudGeo,PoiActivo) "+
 				"VALUES "+
-				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiCalle()+"','"+poi.getPoiNumero()+"','"
-				+poi.getPoiPiso()+"','"+poi.getPoiDepto()+"','"+poi.getPoiUnidad()+"','"+poi.getPoiCodPos()+"',"+poi.getPoiIdLocalidad()+","
-				+poi.getPoiIdBarrio()+","+poi.getPoiIdProvincia()+","+poi.getPoiIdPais()+",'"+poi.getPoiLatitudGeo()+"','"
+				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiDireccion().getPoiCalle()+"','"+poi.getPoiDireccion().getPoiNumero()+"','"
+				+poi.getPoiDireccion().getPoiPiso()+"','"+poi.getPoiDireccion().getPoiDepto()+"','"+poi.getPoiDireccion().getPoiUnidad()+"','"+poi.getPoiDireccion().getPoiCodPos()+"',"+poi.getPoiDireccion().getPoiIdLocalidad()+","
+				+poi.getPoiDireccion().getPoiIdBarrio()+","+poi.getPoiDireccion().getPoiIdProvincia()+","+poi.getPoiDireccion().getPoiIdPais()+",'"+poi.getPoiLatitudGeo()+"','"
 				+poi.getPoiLongitudGeo()+"',"+poi.getPoiActivo()+");");
 			if(rs == 1){
 				OK = true;

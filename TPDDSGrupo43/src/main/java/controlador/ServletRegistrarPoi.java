@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Direccion;
 import modelo.Poi;
 
 /**
@@ -38,7 +39,8 @@ public class ServletRegistrarPoi extends HttpServlet {
 		String tipoPoi=request.getParameter("tipoPoi");
 		String barrio=request.getParameter("barrio");
 		String rubro=request.getParameter("rubro");
-		Poi poi= new Poi(Integer.parseInt(tipoPoi),descripcion,Integer.parseInt(rubro),calle,numero,piso,dpto,"0",codpos,1,Integer.parseInt(barrio),1,1,latitud,longitud,1);
+		Direccion poiDireccion = new Direccion (calle,numero,piso,dpto,"0",codpos,1,Integer.parseInt(barrio),1,1);
+		Poi poi= new Poi(Integer.parseInt(tipoPoi),descripcion,Integer.parseInt(rubro),poiDireccion,latitud,longitud,1);
 		
 		Boolean RegistroOK = Poi.registrarPoi(poi);
 		if(RegistroOK){
