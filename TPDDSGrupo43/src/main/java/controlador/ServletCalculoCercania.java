@@ -51,27 +51,9 @@ public class ServletCalculoCercania extends HttpServlet {
 				lngPoi=Double.parseDouble(request.getParameter("longitud2"));
 			}
 			double distancia = (distanceCalculator.distance(latPosicion, lngPosicion, latPoi, lngPoi, "K"))*10;
-			Boolean OK = false;
-			int tipoPoi = poi.getPoiIdTipoPoi();
-			if(tipoPoi==1){ //Colectivo
-				if(distancia <= 1){
-					OK = true;
-				}
-			}else if(tipoPoi==2){ //CGP
-				String comunaPosString=request.getParameter("comunaPos");
-				comunaPos=Integer.parseInt(comunaPosString.substring(7));
-				if(poi.getPoiBarrio().getBarrioIdComuna()==comunaPos){
-					OK=true;
-				}
-			}else if(tipoPoi==3){ //Bancos
-				if(distancia <=5){
-					OK = true;
-				}
-			}else if(tipoPoi==4){ //Local Comercial
-				if(distancia <= poi.getPoiRubro().getRubroRadioCercania()){
-					OK = true;
-				}
-			}
+			String comunaPosString=request.getParameter("comunaPos");
+			comunaPos=Integer.parseInt(comunaPosString.substring(7));
+			Boolean OK = poi.calcularDistanciaPoi(poi, distancia, comunaPos);
 			request.setAttribute("poi", poi);
 			request.setAttribute("OK", OK);
 			request.getRequestDispatcher("resultadoCercania.jsp").forward(request, response);

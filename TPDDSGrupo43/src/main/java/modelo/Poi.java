@@ -10,19 +10,19 @@ import modelo.Servicio;
 
 public class Poi {
 	
-	private int IdPoi;
-	private int PoiIdTipoPoi;
-	private String PoiDescripcion;
-	private int PoiIdRubro;
-	private Rubro PoiRubro;
-	private Servicio[] PoiServicio;
-	private Direccion PoiDireccion;
-	private Barrio PoiBarrio;
-	private String PoiLatitudGeo;
-	private String PoiLongitudGeo;
-	private String PoiFechaAlta;
-	private String PoiFechaModificacion;
-	private int PoiActivo;
+	protected int IdPoi;
+	protected int PoiIdTipoPoi;
+	protected String PoiDescripcion;
+	protected int PoiIdRubro;
+	protected Rubro PoiRubro;
+	protected Servicio[] PoiServicio;
+	protected Direccion PoiDireccion;
+	protected Barrio PoiBarrio;
+	protected String PoiLatitudGeo;
+	protected String PoiLongitudGeo;
+	protected String PoiFechaAlta;
+	protected String PoiFechaModificacion;
+	protected int PoiActivo;
 	
 	public int getIdPoi() {
 		return IdPoi;
@@ -162,6 +162,20 @@ public class Poi {
 		PoiLongitudGeo = poiLongitudGeo;
 		PoiActivo = poiActivo;
 	}
+	
+	public Poi(Poi poi) {
+		super();
+		IdPoi = poi.getIdPoi();
+		PoiIdTipoPoi = poi.getPoiIdTipoPoi();
+		PoiDescripcion = poi.getPoiDescripcion();
+		PoiIdRubro = poi.getPoiIdRubro();
+		PoiDireccion = poi.getPoiDireccion();
+		PoiLatitudGeo = poi.getPoiLatitudGeo();
+		PoiLongitudGeo = poi.getPoiLongitudGeo();
+		PoiFechaAlta = poi.getPoiFechaAlta();
+		PoiFechaModificacion = poi.getPoiFechaModificacion();
+		PoiActivo = poi.getPoiActivo();
+	}
 
 	public Poi() {
 		super();
@@ -270,6 +284,26 @@ public class Poi {
 			se.printStackTrace();
 			OK=false;
 		}		
+		return OK;
+	}
+	
+	public Boolean calcularDistanciaPoi(Poi poi, double distancia, int comuna){
+		Boolean OK = false;
+		OK = calcularDistanciaTipoPoi(poi,distancia,comuna);
+		return OK;
+	}
+	
+	private static Boolean calcularDistanciaTipoPoi(Poi poi,double distancia, int comuna){
+		Boolean OK = false;
+		Poi PoiTipoPoi = new Poi();
+		switch(poi.getPoiIdTipoPoi()){
+		case 1: PoiTipoPoi = new Colectivo(poi);break;
+		case 2: PoiTipoPoi = new CGP(poi);break;
+		case 3: PoiTipoPoi = new Banco(poi);break;
+		case 4: PoiTipoPoi = new LocalComercial(poi);break;
+		default: OK=false;break;
+		}
+		OK = PoiTipoPoi.calcularDistanciaPoi(PoiTipoPoi, distancia, comuna);
 		return OK;
 	}
 
