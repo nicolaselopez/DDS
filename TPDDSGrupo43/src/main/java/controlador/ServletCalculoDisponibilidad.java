@@ -42,60 +42,14 @@ public class ServletCalculoDisponibilidad extends HttpServlet {
 
 		try{
 			Poi poi = null;
-			Boolean OK = false;
+			Boolean OK = true;
 			if(idPoi != 0){
 				poi = Poi.buscarPoi(idPoi);
 			}
 			
-			int tipoPoi = poi.getPoiIdTipoPoi();
-			
-			SimpleDateFormat horario = new SimpleDateFormat("HH:mm:ss");
-		    
-			Date dateHoy = new Date();
-			
-			String[] horaHoyParts = horario.format(dateHoy).split(":");
-			
-		    Calendar c = Calendar.getInstance();
-		    c.setTime(dateHoy);
-		    int dayOfWeekHoy = c.get(Calendar.DAY_OF_WEEK);
-		    
-			if( (tipoPoi==2 || tipoPoi==4) )//CGP o Local Comercial
-			{
-				request.setAttribute("poi", poi);
-				request.setAttribute("OK", OK);
-				request.getRequestDispatcher("seleccionarServicio.jsp").forward(request, response);
-			}
-			else 
-			{
-				if(tipoPoi==3)
-				{
-					if(Integer.parseInt(horaHoyParts[0])<10 || Integer.parseInt(horaHoyParts[0])>=15)
-					{
-						OK = false;
-						
-						request.setAttribute("poi", poi);
-						request.setAttribute("OK", OK);
-						request.getRequestDispatcher("resultadoDisponibilidad.jsp").forward(request, response);
-					}
-					else
-					{
-						request.setAttribute("poi", poi);
-						request.setAttribute("OK", OK);
-						request.getRequestDispatcher("seleccionarServicio.jsp").forward(request, response);
-					}
-				}
-				
-				else
-				{
-					if(tipoPoi==1) //Colectivo
-					{ 
-						OK = true;	
-					}
-					request.setAttribute("poi", poi);
-					request.setAttribute("OK", OK);
-					request.getRequestDispatcher("resultadoDisponibilidad.jsp").forward(request, response);
-				}
-			}
+			request.setAttribute("poi", poi);
+			request.setAttribute("OK", OK);
+			poi.calcularDisponibilidadPoi(poi, request, response);
 		}
 		catch(Exception e)
 		{

@@ -1,5 +1,11 @@
 package modelo;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class LocalComercial extends Poi {
 
 	public LocalComercial(Poi poi) {
@@ -27,5 +33,10 @@ public class LocalComercial extends Poi {
 		}
 		return OK;
 	}
+	public Boolean calcularDisponibilidadPoi(Poi poi, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
+		request.getRequestDispatcher("seleccionarServicio.jsp").forward(request, response);
+		
+		return true;
+	}
 }

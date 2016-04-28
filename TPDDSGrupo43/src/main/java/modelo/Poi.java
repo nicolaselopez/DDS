@@ -1,9 +1,15 @@
 package modelo;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import modelo.Barrio;
 import modelo.Rubro;
 import modelo.Servicio;
@@ -306,4 +312,22 @@ public class Poi {
 		return OK;
 	}
 
+	public Boolean calcularDisponibilidadPoi(Poi poi, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		Boolean OK = false;
+		OK = calcularDisponibilidadTipoPoi(poi, request, response);
+		return OK;
+	}
+	
+	private Boolean calcularDisponibilidadTipoPoi(Poi poi, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		Boolean OK = false;
+		
+		switch(poi.getPoiIdTipoPoi()){
+		case 1:poi = new Colectivo(poi); OK = ((Colectivo)poi).calcularDisponibilidadPoi(poi, request, response);break;
+		case 2:poi = new CGP(poi); OK = ((CGP)poi).calcularDisponibilidadPoi(poi, request, response);break;
+		case 3:poi = new Banco(poi); OK = ((Banco)poi).calcularDisponibilidadPoi(poi, request, response);break;
+		case 4:poi = new LocalComercial(poi); OK= ((LocalComercial)poi).calcularDisponibilidadPoi(poi, request, response);break;
+		default: OK=false;break;
+		}
+		return OK;
+	}
 }
