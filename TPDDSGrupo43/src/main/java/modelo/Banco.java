@@ -16,8 +16,10 @@ public class Banco extends Poi {
 		PoiActivo = poi.getPoiActivo();
 	}
 	
-	public Boolean calcularDistanciaPoi(Poi poi, double distancia, int comuna){
+	public Boolean calcularDistanciaPoi(Poi poi,LatLng latLngPos,LatLng latLngPoi, int comuna){
 		Boolean OK = false;
+		DistanceCalculator distanceCalculator = new DistanceCalculator();
+		double distancia = distanceCalculator.distance(latLngPos,latLngPoi);
 		if(distancia <=5){
 			OK = true;
 		}

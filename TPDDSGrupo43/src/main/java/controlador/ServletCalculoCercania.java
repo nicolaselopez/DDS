@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Poi;
 import modelo.Usuario;
 import modelo.Barrio;
-import modelo.DistanceCalculator;
+import modelo.LatLng;
 
 /**
  * Servlet implementation class ServletCalculoCercania
@@ -32,28 +32,26 @@ public class ServletCalculoCercania extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Double latPosicion=Double.parseDouble(request.getParameter("latitud1"));
 		Double lngPosicion=Double.parseDouble(request.getParameter("longitud1"));
+		LatLng latLngPos = LatLng.newLatLng(Double.parseDouble(request.getParameter("latitud1")), Double.parseDouble(request.getParameter("longitud1")));
 		Double latPoi=null;
 		Double lngPoi=null;
+		LatLng latLngPoi = null;
 		int idPoi=Integer.parseInt(request.getParameter("poi"));
-		DistanceCalculator distanceCalculator = new DistanceCalculator();
 		int idPoiMap=0;
 		int comunaPos=0;
 		try{
 			Poi poi = null;
 			if(idPoi != 0){
 				poi = Poi.buscarPoi(idPoi);
-				latPoi = Double.parseDouble(poi.getPoiLatitudGeo());
-				lngPoi = Double.parseDouble(poi.getPoiLongitudGeo());
+				latLngPoi = LatLng.newLatLng(Double.parseDouble(poi.getPoiLatitudGeo()),Double.parseDouble(poi.getPoiLongitudGeo()));
 			}else if(Integer.parseInt(request.getParameter("idPoiMap"))!=0){
 				idPoiMap = Integer.parseInt(request.getParameter("idPoiMap"));
 				poi = Poi.buscarPoi(idPoiMap);
-				latPoi=Double.parseDouble(request.getParameter("latitud2"));
-				lngPoi=Double.parseDouble(request.getParameter("longitud2"));
+				latLngPoi = LatLng.newLatLng(Double.parseDouble(poi.getPoiLatitudGeo()),Double.parseDouble(poi.getPoiLongitudGeo()));
 			}
-			double distancia = (distanceCalculator.distance(latPosicion, lngPosicion, latPoi, lngPoi, "K"))*10;
 			String comunaPosString=request.getParameter("comunaPos");
 			comunaPos=Integer.parseInt(comunaPosString.substring(7));
-			Boolean OK = poi.calcularDistanciaPoi(poi, distancia, comunaPos);
+			Boolean OK = poi.calcularDistanciaPoi(poi,latLngPos,latLngPoi , comunaPos);
 			request.setAttribute("poi", poi);
 			request.setAttribute("OK", OK);
 			request.getRequestDispatcher("resultadoCercania.jsp").forward(request, response);

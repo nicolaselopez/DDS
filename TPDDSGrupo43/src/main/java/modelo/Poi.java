@@ -287,13 +287,13 @@ public class Poi {
 		return OK;
 	}
 	
-	public Boolean calcularDistanciaPoi(Poi poi, double distancia, int comuna){
+	public Boolean calcularDistanciaPoi(Poi poi, LatLng latLngPos,LatLng latLngPoi, int comuna){
 		Boolean OK = false;
-		OK = calcularDistanciaTipoPoi(poi,distancia,comuna);
+		OK = calcularDistanciaTipoPoi(poi,latLngPos,latLngPoi,comuna);
 		return OK;
 	}
 	
-	private static Boolean calcularDistanciaTipoPoi(Poi poi,double distancia, int comuna){
+	private static Boolean calcularDistanciaTipoPoi(Poi poi,LatLng latLngPos,LatLng latLngPoi, int comuna){
 		Boolean OK = false;
 		Poi PoiTipoPoi = new Poi();
 		switch(poi.getPoiIdTipoPoi()){
@@ -303,7 +303,7 @@ public class Poi {
 		case 4: PoiTipoPoi = new LocalComercial(poi);break;
 		default: OK=false;break;
 		}
-		OK = PoiTipoPoi.calcularDistanciaPoi(PoiTipoPoi, distancia, comuna);
+		OK = PoiTipoPoi.calcularDistanciaPoi(PoiTipoPoi,latLngPos,latLngPoi, comuna);
 		return OK;
 	}
 

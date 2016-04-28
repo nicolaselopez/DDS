@@ -5,16 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modelo.DistanceCalculator;
+import modelo.LatLng;
 
 public class TestsCalculoDistancia {
 	
 	private Poi bancoNacion;
 	private String latPosicionS;
 	private String lonPosicionS;
-	private Double latitudPosicion;
-	private Double longitudPosicion;
-	private Double latitudPoi;
-	private Double longitudPoi;
 	
 	@Before
 	public void darContexto(){
@@ -35,11 +32,9 @@ public void distanciaABancoNacion0(){
 	lonPosicionS = "-58.50617649033666";
 	DistanceCalculator distanceCalculator = new DistanceCalculator();
 	//ejecucion
-	latitudPosicion = Double.parseDouble(latPosicionS);
-    longitudPosicion = Double.parseDouble(lonPosicionS);
-    latitudPoi = Double.parseDouble(bancoNacion.getPoiLatitudGeo());
-    longitudPoi = Double.parseDouble(bancoNacion.getPoiLongitudGeo());
-	double distancia = (distanceCalculator.distance(latitudPosicion, longitudPosicion, latitudPoi, longitudPoi, "K"))*10;
+	LatLng latLngPos = LatLng.newLatLng(Double.parseDouble(latPosicionS),Double.parseDouble(lonPosicionS));
+    LatLng latLngPoi = LatLng.newLatLng(Double.parseDouble(bancoNacion.getPoiLatitudGeo()),Double.parseDouble(bancoNacion.getPoiLongitudGeo()));
+	double distancia = distanceCalculator.distance(latLngPos,latLngPoi);
 	//validacion
 	Assert.assertEquals(0,distancia,0.01); // El tercer campo es el margen de error permitido
 		
@@ -52,11 +47,9 @@ public void distanciaABancoNacion20Aprox(){
 	lonPosicionS = "-58.52261340033666";
 	DistanceCalculator distanceCalculator = new DistanceCalculator();
 	//ejecucion
-	latitudPosicion = Double.parseDouble(latPosicionS);
-    longitudPosicion = Double.parseDouble(lonPosicionS);
-    latitudPoi = Double.parseDouble(bancoNacion.getPoiLatitudGeo());
-    longitudPoi = Double.parseDouble(bancoNacion.getPoiLongitudGeo());   
-	double distancia = (distanceCalculator.distance(latitudPosicion, longitudPosicion, latitudPoi, longitudPoi, "K"))*10;
+	LatLng latLngPos = LatLng.newLatLng(Double.parseDouble(latPosicionS),Double.parseDouble(lonPosicionS));
+    LatLng latLngPoi = LatLng.newLatLng(Double.parseDouble(bancoNacion.getPoiLatitudGeo()),Double.parseDouble(bancoNacion.getPoiLongitudGeo()));
+	double distancia = distanceCalculator.distance(latLngPos,latLngPoi);
 	//validacion
 	Assert.assertEquals(20,distancia,0.15); 
 		
