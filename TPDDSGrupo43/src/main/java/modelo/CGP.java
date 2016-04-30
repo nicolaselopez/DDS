@@ -8,6 +8,9 @@ public class CGP extends Poi {
 		PoiIdTipoPoi = poi.getPoiIdTipoPoi();
 		PoiDescripcion = poi.getPoiDescripcion();
 		PoiIdRubro = poi.getPoiIdRubro();
+		PoiRubro = poi.getPoiRubro();
+		PoiBarrio = poi.getPoiBarrio();
+		PoiServicio = poi.getPoiServicio();
 		PoiDireccion = poi.getPoiDireccion();
 		PoiLatitudGeo = poi.getPoiLatitudGeo();
 		PoiLongitudGeo = poi.getPoiLongitudGeo();

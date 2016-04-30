@@ -30,11 +30,7 @@ public class ServletCalculoCercania extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Double latPosicion=Double.parseDouble(request.getParameter("latitud1"));
-		Double lngPosicion=Double.parseDouble(request.getParameter("longitud1"));
 		LatLng latLngPos = LatLng.newLatLng(Double.parseDouble(request.getParameter("latitud1")), Double.parseDouble(request.getParameter("longitud1")));
-		Double latPoi=null;
-		Double lngPoi=null;
 		LatLng latLngPoi = null;
 		int idPoi=Integer.parseInt(request.getParameter("poi"));
 		int idPoiMap=0;
@@ -47,7 +43,7 @@ public class ServletCalculoCercania extends HttpServlet {
 			}else if(Integer.parseInt(request.getParameter("idPoiMap"))!=0){
 				idPoiMap = Integer.parseInt(request.getParameter("idPoiMap"));
 				poi = Poi.buscarPoi(idPoiMap);
-				latLngPoi = LatLng.newLatLng(Double.parseDouble(poi.getPoiLatitudGeo()),Double.parseDouble(poi.getPoiLongitudGeo()));
+				latLngPoi = LatLng.newLatLng(Double.parseDouble(request.getParameter("latitud2")),Double.parseDouble(request.getParameter("longitud2")));
 			}
 			String comunaPosString=request.getParameter("comunaPos");
 			comunaPos=Integer.parseInt(comunaPosString.substring(7));

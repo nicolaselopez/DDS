@@ -7,18 +7,23 @@ public class DistanceCalculator
 
 	private static double tamanoCuadra = 100; // distancia en metros
 	
-	public static double distance(LatLng latLangPos, LatLng latLangPoi) {
-		double theta = latLangPos.getLng() - latLangPoi.getLng();
-		double dist = Math.sin(deg2rad(latLangPos.getLat())) * Math.sin(deg2rad(latLangPoi.getLat())) + Math.cos(deg2rad(latLangPos.getLat())) * Math.cos(deg2rad(latLangPoi.getLat())) * Math.cos(deg2rad(theta));
-		dist = Math.acos(dist);
-		dist = rad2deg(dist);
-		dist = dist * 60 * 1.1515;
-		dist = dist * 1.609344;
-		dist = (dist * 1000)/tamanoCuadra;
-		return (dist);
+	private static double radioTierra = 6371000; //metros
+	
+	public static double distance(LatLng latLngPos, LatLng latLngPoi) {
+		double dLat = Math.toRadians(latLngPos.getLat()-latLngPoi.getLat());
+	    double dLng = Math.toRadians(latLngPos.getLng()-latLngPoi.getLng());
+	    double latitud = Math.sin(dLat/2) * Math.sin(dLat/2);    
+	    double longitud = Math.sin(dLng/2) * Math.sin(dLng/2);
+	    double cLat = 2 * Math.atan2(Math.sqrt(latitud), Math.sqrt(1-latitud));
+	    double cLng = 2 * Math.atan2(Math.sqrt(longitud), Math.sqrt(1-longitud));
+	    double distanciaLatitud = (radioTierra * cLat);
+	    double distanciaLongitud = (radioTierra * cLng);
+	    double dist =(distanciaLatitud + distanciaLongitud)/tamanoCuadra;
+	    return dist;
 	}
 
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 	/*::	This function converts decimal degrees to radians			:*/
 	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 	private static double deg2rad(double deg) {
