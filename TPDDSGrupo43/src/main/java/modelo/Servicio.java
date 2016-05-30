@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import modelo.Poi;
 
@@ -344,4 +346,22 @@ public class Servicio {
 		}
 		return servicio;
 	}
+	
+	public static Servicio[] crearServiciosBancoXDefecto(JSONObject serviciosObject){
+		Servicio[] servicio = null;
+		try{
+			JSONArray temp = serviciosObject.getJSONArray("servicios");
+			int length = temp.length();
+			servicio = new Servicio[length];
+			if (length > 0) {
+				for(int k=0; k<length;k++){
+					servicio[k] = new Servicio(0, temp.getString(k), "Lun;Mar;Mie;Jue;Vie;null;null;","9", "15", "", "",temp.getString(k), 1);
+				}
+			}
+		return servicio;	
+		}catch(Exception e){
+			return servicio;
+		}
+	}
+	
 }
