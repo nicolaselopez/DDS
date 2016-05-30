@@ -13,7 +13,7 @@ import modelo.Servicio;
 /**
  * Servlet implementation class ServletRegistrarServicio
  */
-@WebServlet("/ServletRegistrarServicio")
+@WebServlet("/ServletBorrarServicio")
 public class ServletBorrarServicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
