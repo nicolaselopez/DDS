@@ -184,7 +184,20 @@ public class Servicio {
 		}
 		return servicio;
 	}
-	
+//-------------------------	
+	public static Boolean borrarServicio(String descripcion, String poi){
+		Boolean OK =false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			st.executeQuery("UPDATE servicio SET ServicioActivo = 0 where ServicioDescripcion = " + descripcion + "AND ServicioIdPoi = " + poi + ";");
+		}catch(SQLException se){
+		se.printStackTrace();
+		}
+		return OK;
+	}
+//-------------------------	
 	public static Boolean registrarServicio(Servicio servicio){
 		Boolean OK = false;
 		try{
