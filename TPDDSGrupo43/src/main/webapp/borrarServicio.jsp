@@ -75,7 +75,7 @@
           <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Borra tu Servicio</h1><br>
-                  <form action="ServletRegistrarServicio" method="get">
+                  <form action="ServletBorrarServicio" method="get">
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%

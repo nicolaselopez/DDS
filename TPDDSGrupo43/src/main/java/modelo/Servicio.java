@@ -191,9 +191,13 @@ public class Servicio {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			st.executeQuery("UPDATE servicio SET ServicioActivo = 0 where ServicioDescripcion = " + descripcion + "AND ServicioIdPoi = " + poi + ";");
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where ServicioDescripcion like '%" + descripcion + "%' AND ServicioIdPoi = " + poi + ";");
+		if(rs==1){
+			OK=true;
+		}
 		}catch(SQLException se){
-		se.printStackTrace();
+			se.printStackTrace();
+			OK=false;
 		}
 		return OK;
 	}
