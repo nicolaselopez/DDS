@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Poi;
 import modelo.Servicio;
 
+
 @WebServlet("/ServletBorrarPoi")
 public class ServletBorrarPoi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +28,8 @@ public class ServletBorrarPoi extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String descripcion=request.getParameter("poi");
 		Boolean RegistroOK = Poi.borrarPoi(descripcion);
-		if(RegistroOK){
+		Boolean RegistroOK2 = Servicio.borrarServicioPoi(descripcion);
+		if(RegistroOK && RegistroOK2){
 			request.getRequestDispatcher("borrarPoi.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);
