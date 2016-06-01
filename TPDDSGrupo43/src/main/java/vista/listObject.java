@@ -32,6 +32,12 @@ public class listObject{
 		return pois;
 	}
 	
+	public Poi[] getlistPoiActivo(int estado){
+		Poi[] pois;
+		pois = Poi.consultarPoisporEstado(estado);
+		return pois;
+	}
+	
 	public Servicio[] getlistServicios(Poi poi){
 		Servicio[] serviciosPoi;
 		serviciosPoi = poi.getPoiServicio();

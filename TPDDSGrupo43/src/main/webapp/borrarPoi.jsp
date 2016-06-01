@@ -86,7 +86,7 @@
                    <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%
-						Poi[] pois = new listObject().getlistPoi();
+						Poi[] pois = new listObject().getlistPoiActivo(1);
 	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
 	                    for(int i=0;i<100;i++) {
 	                    	if(pois[i].getIdPoi()== -1){

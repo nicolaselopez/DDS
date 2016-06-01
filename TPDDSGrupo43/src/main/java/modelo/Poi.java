@@ -247,6 +247,29 @@ public class Poi {
 		return pois;
 	}
 	
+	public static Poi[] consultarPoisporEstado(int estado){
+		Poi[] pois = new Poi[5000];
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi where PoiActivo =" + estado + ";");
+			int i=0;
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+				i++;
+			}
+			for(int k=i;k<5000;k++){
+				pois[k]=new Poi();
+				pois[k].setIdPoi(-1);
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return pois;
+	}
+	
 	public static Poi buscarPoi(int idPoi){
 		Poi poi=null;
 		Boolean externo = false;
@@ -365,6 +388,23 @@ public class Poi {
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
 			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo = 0 where idPoi like '%" + idPoi + "%';");
+		if(rs==1){
+			OK=true;
+		}
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}
+		return OK;
+	}
+	
+	public static Boolean recuperarPoi(String idPoi){
+		Boolean OK =false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo = 1 where idPoi like '%" + idPoi + "%';");
 		if(rs==1){
 			OK=true;
 		}
