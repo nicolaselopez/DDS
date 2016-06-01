@@ -37,9 +37,9 @@ public class listObject{
 		serviciosPoi = poi.getPoiServicio();
 		return serviciosPoi;
 	}
-	public Servicio[] getlistServicios(int idPoi){
+	public Servicio[] getlistServicios(int idPoi ,Boolean bool){
 		Servicio[] serviciosPoi;
-		serviciosPoi = Servicio.consultarServicios(idPoi);
+		serviciosPoi = Servicio.consultarServicios(idPoi, bool);
 		return serviciosPoi;
 	}
 }

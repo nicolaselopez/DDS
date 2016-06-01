@@ -1,6 +1,5 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
-<%@page import="modelo.Servicio" %>
 
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -57,6 +56,12 @@
                 <a href="agregarServicio.jsp" onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
             </li>
             <li>
+                <a href="borrarPoi.jsp" onclick = $("#menu-close").click(); >Borrar Poi</a>
+            </li>
+        	<li>
+                <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
+            </li>     
+            <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
         </ul>
@@ -66,9 +71,9 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Baja de Servicios por POI:</h2>
+            <h2>Baja de POI:</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Borrar Servicio</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Borrar Poi</a>
         </div>
     </header>
 
@@ -76,10 +81,9 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Borra tu Servicio</h1><br>
-                  <form action="ServletBorrarServicio" method="get">
+                    <h1>Borra tu Poi</h1><br>
+                  <form action="ServletBorrarPoi" method="get">
                    <div class="styled-select">
-	                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">       </script>
 	                    <select id="poi" name="poi">
 	                    <%
 						Poi[] pois = new listObject().getlistPoi();
@@ -92,9 +96,6 @@
 						}
 						%>
 	                    </select>
-					<select id="servicio" name="servicio">
-					    <option value="">-- seleccionar servicio -- </option>
-					</select>
 	                </div>
 	                <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Servicio">
                   </form>
@@ -141,21 +142,7 @@
     
     
     </script>
-	<script>
-	$(document).ready(function() {
 
-	    $("#poi").change(function() {
-	        Poi val = $(this).val();
-	        Servicio[] servicios = new listObject().getlistServicios(val, true);
-	        for(int i=0;i<100;i++) {
-            	if(servicios[i].getIdServicio()== -1){
-            		break;	
-            	}
-                $("#servicio").html("<option value=" + servicios[i].getIdServicio()+ ">" + servicios[i].getServicioDescripcion()+"</option>");
-	        }
-	   	    });
-	});
-	</script>
 </body>
 
 </html>
