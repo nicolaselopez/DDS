@@ -110,6 +110,12 @@ public class Direccion {
 		PoiIdPais = poiIdPais;
 	}
 	
+	public Direccion(String poiCalle, String poiUnidad) {
+		super();
+		PoiCalle = poiCalle;
+		PoiUnidad = poiUnidad;
+	}
+	
 	
 
 	public Direccion() {
@@ -120,6 +126,18 @@ public class Direccion {
 	public static Direccion parametrizarDireccion(ResultSet rs){
 		try{
 			Direccion direccion = new Direccion(rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13),rs.getInt(14));
+			return direccion;
+		}catch(Exception e){
+			Direccion direccion = new Direccion();
+			return direccion;
+		}
+		
+	}
+	
+	public static Direccion parametrizarDireccionBancoExterno(ResultSet rs){
+		try{
+			Direccion direccion = new Direccion(rs.getString(4), rs.getString(5));
+			direccion.setPoiIdBarrio(1);
 			return direccion;
 		}catch(Exception e){
 			Direccion direccion = new Direccion();
