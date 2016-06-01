@@ -1,5 +1,7 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
+<%@page import="modelo.Servicio" %>
+
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +78,8 @@
                 <div class="loginmodal-container">
                     <h1>Borra tu Servicio</h1><br>
                   <form action="ServletBorrarServicio" method="get">
-                    <div class="styled-select">
+                   <div class="styled-select">
+	                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">       </script>
 	                    <select id="poi" name="poi">
 	                    <%
 						Poi[] pois = new listObject().getlistPoi();
@@ -89,16 +92,17 @@
 						}
 						%>
 	                    </select>
+					<select id="servicio" name="servicio">
+					    <option value="">-- seleccionar servicio -- </option>
+					</select>
 	                </div>
-	                <input type="text" name="nombreServicio" placeholder="Nombre del Servicio">
-                    <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Servicio">
+	                <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Servicio">
                   </form>
                 </div>
             </div>
     </div>
 
-
-    <!-- jQuery -->
+	<!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -134,8 +138,24 @@
             }
         });
     });
+    
+    
     </script>
+	<script>
+	$(document).ready(function() {
 
+	    $("#poi").change(function() {
+	        Poi val = $(this).val();
+	        Servicio[] servicios = new listObject().getlistServicios(val);
+	        for(int i=0;i<100;i++) {
+            	if(servicios[i].getIdServicio()== -1){
+            		break;	
+            	}
+                $("#servicio").html("<option value=" + servicios[i].getIdServicio()+ ">" + servicios[i].getServicioDescripcion()+"</option>");
+	        }
+	   	    });
+	});
+	</script>
 </body>
 
 </html>
