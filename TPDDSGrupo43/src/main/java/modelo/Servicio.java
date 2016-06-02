@@ -146,7 +146,7 @@ public class Servicio {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static Servicio[] consultarServicios(int idPoi,Boolean externo){
+	public static Servicio[] consultarServicios(int idPoi,Boolean externo, Boolean activo){
 		Servicio[] servicio = new Servicio[20];
 		try{
 		Conexion c=new Conexion();
@@ -156,7 +156,11 @@ public class Servicio {
 		if(externo){
 			rs=st.executeQuery("Select * from servicioexterno where ServicioExternoIdPoi=" + idPoi + ";");
 		}else{
-			rs=st.executeQuery("Select * from servicio where ServicioIdPoi=" + idPoi + ";");
+			if(activo){
+				rs=st.executeQuery("Select * from servicio where ServicioIdPoi=" + idPoi + " and ServicioActivo = 1;");
+			}else{
+				rs=st.executeQuery("Select * from servicio where ServicioIdPoi=" + idPoi + " and ServicioActivo = 0;");
+			}
 		}
 		int i = 0;
 		while(rs.next()){
@@ -190,13 +194,13 @@ public class Servicio {
 		return servicio;
 	}
 //-------------------------	
-	public static Boolean borrarServicio(String descripcion, String poi){
+	public static Boolean borrarServicio(int servicio, int poi){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where ServicioDescripcion like '%" + descripcion + "%' AND ServicioIdPoi = " + poi + ";");
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where idServicio =" + servicio + " AND ServicioIdPoi = " + poi + ";");
 		if(rs==1){
 			OK=true;
 		}
@@ -206,13 +210,13 @@ public class Servicio {
 		}
 		return OK;
 	}
-	public static Boolean recuperarServicio(String descripcion, String poi){
+	public static Boolean recuperarServicio(int servicio, int poi){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where ServicioDescripcion like '%" + descripcion + "%' AND ServicioIdPoi = " + poi + ";");
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where idServicio=" + servicio + " AND ServicioIdPoi = " + poi + ";");
 		if(rs==1){
 			OK=true;
 		}

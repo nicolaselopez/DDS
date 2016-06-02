@@ -94,18 +94,24 @@
    						 <div class="styled-select">
  	                    <select id="poi" name="poi">
  	                    <%
- 						Poi[] pois = new listObject().getlistPoiActivo(1);
+ 						Poi[] pois = new listObject().getlistPoiConServicio(true,false);
  	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
  	                    for(int i=0;i<100;i++) {
  	                    	if(pois[i].getIdPoi()== -1){
  	                    		break;	
  	                    	}
- 	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
- 						}
+ 	               			if(pois[i].getPoiServicio()!= null){
+ 	 	                    	for(int k=0;k<pois[i].getPoiServicio().length;k++){
+ 	 	                    		if(pois[i].getPoiServicio()[k].getIdServicio() == -1){
+ 	 	                    			break;
+ 	 	                    		}
+ 	 	                    		out.write("<option value=" + pois[i].getIdPoi()+ "_" + pois[i].getPoiServicio()[k].getIdServicio() +">" + pois[i].getPoiDescripcion() +" - " + pois[i].getPoiServicio()[k].getServicioDescripcion() + "</option>");
+ 	 	                    	}
+ 	               			}
+ 	                    }
  						%>
  	                    </select>
- 	                </div>
- 	                <input type="text" name="nombreServicio" placeholder="Nombre del Servicio">                
+ 	                </div>                
  	                <input type="submit" name="register" class="login loginmodal-submit" value="Recuperar Servicio">
                   </form>
                 </div>

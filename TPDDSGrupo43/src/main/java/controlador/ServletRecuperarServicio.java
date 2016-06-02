@@ -2,6 +2,8 @@ package controlador;
 
 
 import java.io.IOException;
+import java.util.StringTokenizer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,9 +30,15 @@ public class ServletRecuperarServicio extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String descripcion=request.getParameter("nombreServicio");
-		String poi=request.getParameter("poi");	
-		Boolean RegistroOK = Servicio.recuperarServicio(descripcion, poi);
+		Boolean RegistroOK;
+		if(Integer.parseInt(request.getParameter("poi").substring(0, 1)) == 0){
+			RegistroOK = false;
+		}else{
+			StringTokenizer poiservicio= new StringTokenizer(request.getParameter("poi"),"_");
+			int poi = Integer.parseInt(poiservicio.nextToken());
+			int servicio = Integer.parseInt(poiservicio.nextToken());
+			RegistroOK = Servicio.recuperarServicio(servicio, poi);			
+		}
 		if(RegistroOK){
 			request.getRequestDispatcher("recuperarServicio.jsp").forward(request, response);
 		}else{
