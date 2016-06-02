@@ -32,6 +32,12 @@ public class listObject{
 		return pois;
 	}
 	
+	public Poi[] getlistPoiConServicio(Boolean poiActivo,Boolean servicioActivo){
+		Poi[] pois;
+		pois = Poi.consultarPoisServicio(poiActivo,servicioActivo);
+		return pois;
+	}
+	
 	public Poi[] getlistPoiActivo(int estado){
 		Poi[] pois;
 		pois = Poi.consultarPoisporEstado(estado);
@@ -43,9 +49,9 @@ public class listObject{
 		serviciosPoi = poi.getPoiServicio();
 		return serviciosPoi;
 	}
-	public Servicio[] getlistServicios(int idPoi ,Boolean bool){
+	public Servicio[] getlistServicios(int idPoi ,Boolean externo,Boolean servicioActivo){
 		Servicio[] serviciosPoi;
-		serviciosPoi = Servicio.consultarServicios(idPoi, bool);
+		serviciosPoi = Servicio.consultarServicios(idPoi, externo, servicioActivo);
 		return serviciosPoi;
 	}
 }

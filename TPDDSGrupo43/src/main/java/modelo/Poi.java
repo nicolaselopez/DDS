@@ -247,6 +247,36 @@ public class Poi {
 		return pois;
 	}
 	
+	public static Poi[] consultarPoisServicio(Boolean poiActivo, Boolean servicioActivo){
+		Poi[] pois = new Poi[5000];
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs;
+			if(poiActivo){
+				rs=st.executeQuery("Select * from poi where PoiActivo = 1");
+			}else{
+				rs=st.executeQuery("Select * from poi");
+			}
+			int i=0;
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+				pois[i].setPoiServicio(Servicio.consultarServicios(pois[i].getIdPoi(),false,servicioActivo));
+				i++;
+			}
+			
+			for(int k=i;k<5000;k++){
+				pois[k]=new Poi();
+				pois[k].setIdPoi(-1);
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return pois;
+	}
+	
 	public static Poi[] consultarPoisporEstado(int estado){
 		Poi[] pois = new Poi[5000];
 		try{
@@ -293,7 +323,7 @@ public class Poi {
 			}
 			if(poi != null){
 				poi.setPoiBarrio(Barrio.consultarBarrio(poi.getPoiDireccion().getPoiIdBarrio()));
-				poi.setPoiServicio(Servicio.consultarServicios(idPoi,externo));
+				poi.setPoiServicio(Servicio.consultarServicios(idPoi,externo,true));
 			}
 			if(poi!=null && poi.getPoiIdTipoPoi()==4){
 				poi.setPoiRubro(Rubro.consultarRubro(poi.getPoiIdRubro()));
