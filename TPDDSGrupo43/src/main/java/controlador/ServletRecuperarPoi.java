@@ -26,9 +26,9 @@ public class ServletRecuperarPoi extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String descripcion=request.getParameter("poi");
-		Boolean RegistroOK = Poi.editarEstadoPoi(descripcion,"1");
-		Boolean RegistroOK2 = Servicio.recuperarServicioPoi(descripcion);
+		int idPoi=Integer.parseInt(request.getParameter("poi"));
+		Boolean RegistroOK = Poi.editarEstadoPoi(idPoi,1);
+		Boolean RegistroOK2 = Servicio.recuperarServicioPoi(idPoi);
 		if(RegistroOK && RegistroOK2){
 			request.getRequestDispatcher("recuperarPoi.jsp").forward(request, response);
 		}else{
