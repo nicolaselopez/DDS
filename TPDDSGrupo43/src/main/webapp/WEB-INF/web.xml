@@ -9,4 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <listener>
+    <listener-class>ActualizarWS</listener-class>
+  </listener>
 </web-app>
