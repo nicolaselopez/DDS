@@ -229,14 +229,14 @@ public class Servicio {
 	
 	
 	
-	public static Boolean borrarServicioPoi(String poi){
+	public static Boolean borrarServicioPoi(int poi){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
 			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where  ServicioIdPoi = " + poi + ";");
-		if(rs==1){
+		if(rs>=1){
 			OK=true;
 		}
 		}catch(SQLException se){
@@ -245,14 +245,14 @@ public class Servicio {
 		}
 		return OK;
 	}
-	public static Boolean recuperarServicioPoi(String poi){
+	public static Boolean recuperarServicioPoi(int poi){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
 			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where  ServicioIdPoi = " + poi + ";");
-		if(rs==1){
+		if(rs>=1){
 			OK=true;
 		}
 		}catch(SQLException se){

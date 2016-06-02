@@ -411,13 +411,13 @@ public class Poi {
 		return OK;
 	}
 //--------------------------	
-	public static Boolean editarEstadoPoi(String idPoi , String estado){
+	public static Boolean editarEstadoPoi(int idPoi , int estado){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo =" + estado + "where idPoi like " + idPoi + ";");
+			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo =" + estado + " where IdPoi = " + idPoi + ";");
 		if(rs==1){
 			OK=true;
 		}

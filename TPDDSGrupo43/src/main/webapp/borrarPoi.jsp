@@ -105,7 +105,7 @@
 						%>
 	                    </select>
 	                </div>
-	                <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Servicio">
+	                <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Poi">
                   </form>
                 </div>
             </div>
