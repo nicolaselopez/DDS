@@ -52,6 +52,9 @@
                 <a href="agregarServicio.jsp" onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
             </li>
             <li>
+                <a href="editarPoi.jsp" onclick = $("#menu-close").click(); >Editar Poi</a>
+            </li>
+            <li>
                 <a href="borrarPoi.jsp" onclick = $("#menu-close").click(); >Borrar Poi</a>
             </li>
         	<li>
