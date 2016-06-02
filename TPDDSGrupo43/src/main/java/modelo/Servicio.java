@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -286,6 +287,26 @@ public class Servicio {
 		}		
 		return OK;
 	}
+	
+//---------------------------
+	
+	public boolean esFechaHabil(LocalDate fecha) {
+		String fechaS = fecha.toString();
+		boolean OK =false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs = st.executeQuery("Select * from diasnohabiles where Fecha = '" + fechaS + "';");
+			OK= !rs.next(); // Poner !
+			
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}
+		return OK;
+	}
+//---------------------------
 	public static String generarDias(String dLun, String dMar, String dMie, String dJue, String dVie, String dSab,
 			String dDom) {
 		String dias = dLun+";"+dMar+";"+dMie+";"+dJue+";"+dVie+";"+dSab+";"+dDom+";";
@@ -296,12 +317,12 @@ public class Servicio {
 		String[] diasServicioParts = this.getServicioDiaDisponible().split(";");
 		int i=0, diaDisponible;
 		boolean disponible = false;
-		
+		LocalDate fechaHoy = LocalDate.now();
 		while(i<diasServicioParts.length)
 	    {	
 	    	diaDisponible = calcularDiaDisponible(diasServicioParts[i]);
 	    	
-	    	if(diaDisponible == dayOfWeekHoy)
+	    	if((diaDisponible == dayOfWeekHoy) && this.esFechaHabil(fechaHoy))
 	    	{
 	    		int horaHoy = Integer.parseInt(horaHoyParts[0]);
 	    		int minHoy = Integer.parseInt(horaHoyParts[1]);
