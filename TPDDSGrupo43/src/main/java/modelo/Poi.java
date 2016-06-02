@@ -381,13 +381,13 @@ public class Poi {
 		return OK;
 	}
 //--------------------------	
-	public static Boolean borrarPoi(String idPoi){
+	public static Boolean editarPoi(String idPoi , String estado){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo = 0 where idPoi like '%" + idPoi + "%';");
+			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo =" + estado + "where idPoi like " + idPoi + ";");
 		if(rs==1){
 			OK=true;
 		}
