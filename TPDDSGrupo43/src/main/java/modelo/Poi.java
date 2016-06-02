@@ -334,6 +334,30 @@ public class Poi {
 		return poi;
 	}
 
+	public static Boolean editarPoi(String idPoi,Poi poi){
+		Boolean OK = false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			Integer rs=st.executeUpdate("UPDATE poi SET "+
+				"(PoiIdTipoPoi,PoiDescripcion,PoiIdRubro,PoiCalle,PoiNumero,PoiPiso,PoiDepto,PoiUnidad,"+
+				"PoiCodPos,PoiIdLocalidad,PoiIdBarrio,PoiIdProvincia,PoiIdPais,PoiLatitudGeo,PoiLongitudGeo,PoiActivo) "+
+				" = "+
+				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiDireccion().getPoiCalle()+"','"+poi.getPoiDireccion().getPoiNumero()+"','"
+				+poi.getPoiDireccion().getPoiPiso()+"','"+poi.getPoiDireccion().getPoiDepto()+"','"+poi.getPoiDireccion().getPoiUnidad()+"','"+poi.getPoiDireccion().getPoiCodPos()+"',"+poi.getPoiDireccion().getPoiIdLocalidad()+","
+				+poi.getPoiDireccion().getPoiIdBarrio()+","+poi.getPoiDireccion().getPoiIdProvincia()+","+poi.getPoiDireccion().getPoiIdPais()+",'"+poi.getPoiLatitudGeo()+"','"
+				+poi.getPoiLongitudGeo()+"',"+poi.getPoiActivo()+") where idPoi = " + idPoi + ";");
+			if(rs == 1){
+				OK = true;
+			}			
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}		
+		return OK;
+	}
+	
 	public static Boolean registrarPoi(Poi poi){
 		Boolean OK = false;
 		try{
