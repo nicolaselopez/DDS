@@ -340,14 +340,18 @@ public class Poi {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
+			
 			Integer rs=st.executeUpdate("UPDATE poi SET "+
-				"(PoiIdTipoPoi,PoiDescripcion,PoiIdRubro,PoiCalle,PoiNumero,PoiPiso,PoiDepto,PoiUnidad,"+
-				"PoiCodPos,PoiIdLocalidad,PoiIdBarrio,PoiIdProvincia,PoiIdPais,PoiLatitudGeo,PoiLongitudGeo,PoiActivo) "+
-				" = "+
-				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiDireccion().getPoiCalle()+"','"+poi.getPoiDireccion().getPoiNumero()+"','"
-				+poi.getPoiDireccion().getPoiPiso()+"','"+poi.getPoiDireccion().getPoiDepto()+"','"+poi.getPoiDireccion().getPoiUnidad()+"','"+poi.getPoiDireccion().getPoiCodPos()+"',"+poi.getPoiDireccion().getPoiIdLocalidad()+","
-				+poi.getPoiDireccion().getPoiIdBarrio()+","+poi.getPoiDireccion().getPoiIdProvincia()+","+poi.getPoiDireccion().getPoiIdPais()+",'"+poi.getPoiLatitudGeo()+"','"
-				+poi.getPoiLongitudGeo()+"',"+poi.getPoiActivo()+") where idPoi = " + idPoi + ";");
+				"(PoiIdTipoPoi = "+poi.getPoiIdTipoPoi()+" , PoiDescripcion = '"+poi.getPoiDescripcion()+
+				"' , PoiIdRubro = "+poi.getPoiIdRubro()+" , PoiCalle = '"+poi.getPoiDireccion().getPoiCalle()+
+				"' , PoiNumero = '"+poi.getPoiDireccion().getPoiNumero()+"' , PoiPiso = '" + poi.getPoiDireccion().getPoiPiso()+
+				"' , PoiDepto = '"+poi.getPoiDireccion().getPoiDepto()+"' , PoiUnidad = '"+poi.getPoiDireccion().getPoiUnidad()+
+				"' , PoiCodPos = '"+poi.getPoiDireccion().getPoiCodPos()+"' , PoiIdLocalidad = "+poi.getPoiDireccion().getPoiIdLocalidad()+
+				"  , PoiIdBarrio = "	+poi.getPoiDireccion().getPoiIdBarrio()+" , PoiIdProvincia = "+poi.getPoiDireccion().getPoiIdProvincia()+
+				"  , PoiIdPais = "+poi.getPoiDireccion().getPoiIdPais()+" , PoiLatitudGeo = '"+poi.getPoiLatitudGeo()+
+				"' , PoiLongitudGeo = '"+poi.getPoiLongitudGeo()+"' , PoiActivo = "+poi.getPoiActivo()+
+				") where IdPoi = " + idPoi + " ;");
+			
 			if(rs == 1){
 				OK = true;
 			}			
@@ -371,7 +375,7 @@ public class Poi {
 				"("+poi.getPoiIdTipoPoi()+",'"+poi.getPoiDescripcion()+"',"+poi.getPoiIdRubro()+",'"+poi.getPoiDireccion().getPoiCalle()+"','"+poi.getPoiDireccion().getPoiNumero()+"','"
 				+poi.getPoiDireccion().getPoiPiso()+"','"+poi.getPoiDireccion().getPoiDepto()+"','"+poi.getPoiDireccion().getPoiUnidad()+"','"+poi.getPoiDireccion().getPoiCodPos()+"',"+poi.getPoiDireccion().getPoiIdLocalidad()+","
 				+poi.getPoiDireccion().getPoiIdBarrio()+","+poi.getPoiDireccion().getPoiIdProvincia()+","+poi.getPoiDireccion().getPoiIdPais()+",'"+poi.getPoiLatitudGeo()+"','"
-				+poi.getPoiLongitudGeo()+"',"+poi.getPoiActivo()+");");
+				+poi.getPoiLongitudGeo()+"',"+poi.getPoiActivo()+") ; ");
 			if(rs == 1){
 				OK = true;
 			}

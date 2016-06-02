@@ -79,7 +79,7 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Baja de POI:</h2>
+            <h2>Editar POIs:</h2>
         	<br>
         	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Editar Poi</a>
         </div>
@@ -112,6 +112,9 @@
                     <input type="text" name="numero" placeholder="Numero">
                     <input type="text" name="piso" placeholder="Piso">
                     <input type="text" name="dpto" placeholder="Depto">
+                    <input type="text" name="tipoPoi" placeholder="Tipo Poi">
+                    <input type="text" name="barrio" placeholder="barrio">
+                    <input type="text" name="rubro" placeholder="rubro">
                     <input type="text" name="codpos" placeholder="Codigo Postal">
 	                <input type="submit" name="register" class="login loginmodal-submit" value="Editar Servicio">
                   </form>

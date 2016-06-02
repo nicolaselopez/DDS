@@ -45,11 +45,9 @@ public class ServletEditarPoi extends HttpServlet {
 		
 		Boolean RegistroOK = Poi.editarPoi(idPoi, poi);
 		if(RegistroOK){
-			request.setAttribute("poi", poi);
 			request.getRequestDispatcher("agregarServicio.jsp").forward(request, response);
 		}else{
-			request.setAttribute("poi", poi);
-			request.getRequestDispatcher("loginFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 
