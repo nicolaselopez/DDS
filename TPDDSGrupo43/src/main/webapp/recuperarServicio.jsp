@@ -1,5 +1,7 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
+<%@page import="modelo.Servicio" %>
+
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +50,7 @@
             <li>
                 <a href="home.jsp" onclick = $("#menu-close").click(); >Home</a>
             </li>
-            <li>
+           <li>
                 <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
             </li>
             <li>
@@ -59,7 +61,8 @@
             </li>
         	<li>
                 <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Recuperar Poi</a>
-            </li>   	
+            </li>
+        	        	
         	<li>
                 <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
             </li>      
@@ -76,9 +79,9 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Alta de Servicios por POI:</h2>
+            <h2>Recuperar Servicios por POI:</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Registrar Servicio</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Recuperar Servicio</a>
         </div>
     </header>
 
@@ -86,44 +89,30 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Registra tu Servicio</h1><br>
-                  <form action="ServletRegistrarServicio" method="get">
-                    <div class="styled-select">
-	                    <select id="poi" name="poi">
-	                    <%
-						Poi[] pois = new listObject().getlistPoi();
-	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
-	                    for(int i=0;i<100;i++) {
-	                    	if(pois[i].getIdPoi()== -1){
-	                    		break;	
-	                    	}
-	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
-						}
-						%>
-	                    </select>
-	                </div>
-	                <input type="text" name="nombreServicio" placeholder="Nombre del Servicio">
-                    <h3>Dias Disponible</h3>
-                    <input type="checkbox" id="dLun" name="dLun" value="Lun">Lunes
-                    <input type="checkbox" id="dMar" name="dMar" value="Mar">Martes
-                    <input type="checkbox" id="dMie" name="dMie" value="Mie">Miercoles
-                    <input type="checkbox" id="dJue" name="dJue" value="Jue">Jueves<br>
-                    <input type="checkbox" id="dVie" name="dVie" value="Vie">Viernes
-                    <input type="checkbox" id="dSab" name="dSab" value="Sab">Sabado
-                    <input type="checkbox" id="dDom" name="dDom" value="Dom">Domingo<br>
-                    <input type="text" name="horaDesde1" placeholder="Horario Desde Op1">
-                    <input type="text" name="horaHasta1" placeholder="Horario Hasta Op1">
-                    <input type="text" name="horaDesde2" placeholder="Horario Desde Op2">
-                    <input type="text" name="horaHasta2" placeholder="Horario Hasta Op2">
-                    <input type="text" name="tags" placeholder="Tags separados por ';'">
-                    <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Servicio">
+                    <h1>Recupera tu Servicio</h1><br>
+                  <form action="ServletRecuperarServicio" method="get">
+   						 <div class="styled-select">
+ 	                    <select id="poi" name="poi">
+ 	                    <%
+ 						Poi[] pois = new listObject().getlistPoiActivo(1);
+ 	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+ 	                    for(int i=0;i<100;i++) {
+ 	                    	if(pois[i].getIdPoi()== -1){
+ 	                    		break;	
+ 	                    	}
+ 	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
+ 						}
+ 						%>
+ 	                    </select>
+ 	                </div>
+ 	                <input type="text" name="nombreServicio" placeholder="Nombre del Servicio">                
+ 	                <input type="submit" name="register" class="login loginmodal-submit" value="Recuperar Servicio">
                   </form>
                 </div>
             </div>
     </div>
 
-
-    <!-- jQuery -->
+	<!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -159,8 +148,8 @@
             }
         });
     });
+    
     </script>
-
 </body>
 
 </html>

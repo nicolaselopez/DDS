@@ -50,12 +50,26 @@
             <li>
                 <a href="home.jsp" onclick = $("#menu-close").click(); >Home</a>
             </li>
+            
             <li>
                 <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
             </li>
             <li>
                 <a href="agregarServicio.jsp" onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
             </li>
+            <li>
+                <a href="borrarPoi.jsp" onclick = $("#menu-close").click(); >Borrar Poi</a>
+            </li>
+        	<li>
+                <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Recuperar Poi</a>
+            </li>
+        	        	
+        	<li>
+                <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
+            </li>      
+            <li>
+                <a href="recuperarServicio.jsp" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
+            </li>      
             <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
@@ -78,25 +92,22 @@
                 <div class="loginmodal-container">
                     <h1>Borra tu Servicio</h1><br>
                   <form action="ServletBorrarServicio" method="get">
-                   <div class="styled-select">
-	                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">       </script>
-	                    <select id="poi" name="poi">
-	                    <%
-						Poi[] pois = new listObject().getlistPoi();
-	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
-	                    for(int i=0;i<100;i++) {
-	                    	if(pois[i].getIdPoi()== -1){
-	                    		break;	
-	                    	}
-	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
-						}
-						%>
-	                    </select>
-					<select id="servicio" name="servicio">
-					    <option value="">-- seleccionar servicio -- </option>
-					</select>
-	                </div>
-	                <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Servicio">
+   						 <div class="styled-select">
+ 	                    <select id="poi" name="poi">
+ 	                    <%
+ 						Poi[] pois = new listObject().getlistPoi();
+ 	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+ 	                    for(int i=0;i<100;i++) {
+ 	                    	if(pois[i].getIdPoi()== -1){
+ 	                    		break;	
+ 	                    	}
+ 	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
+ 						}
+ 						%>
+ 	                    </select>
+ 	                </div>
+ 	                <input type="text" name="nombreServicio" placeholder="Nombre del Servicio">                
+ 	                <input type="submit" name="register" class="login loginmodal-submit" value="Borrar Servicio">
                   </form>
                 </div>
             </div>
@@ -139,23 +150,7 @@
         });
     });
     
-    
     </script>
-	<script>
-	$(document).ready(function() {
-
-	    $("#poi").change(function() {
-	        Poi val = $(this).val();
-	        Servicio[] servicios = new listObject().getlistServicios(val, true);
-	        for(int i=0;i<100;i++) {
-            	if(servicios[i].getIdServicio()== -1){
-            		break;	
-            	}
-                $("#servicio").html("<option value=" + servicios[i].getIdServicio()+ ">" + servicios[i].getServicioDescripcion()+"</option>");
-	        }
-	   	    });
-	});
-	</script>
 </body>
 
 </html>

@@ -7,18 +7,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Poi;
+
 import modelo.Servicio;
 
-
-@WebServlet("/ServletRecuperarPoi")
-public class ServletRecuperarPoi extends HttpServlet {
+/**
+ * Servlet implementation class ServletRegistrarServicio
+ */
+@WebServlet("/ServletRecuperarServicio")
+public class ServletRecuperarServicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public ServletRecuperarPoi() {
+    public ServletRecuperarServicio() {
         // TODO Auto-generated constructor stub
     }
 
@@ -26,11 +28,11 @@ public class ServletRecuperarPoi extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String descripcion=request.getParameter("poi");
-		Boolean RegistroOK = Poi.recuperarPoi(descripcion);
-		Boolean RegistroOK2 = Servicio.recuperarServicioPoi(descripcion);
-		if(RegistroOK && RegistroOK2){
-			request.getRequestDispatcher("recuperarPoi.jsp").forward(request, response);
+		String descripcion=request.getParameter("nombreServicio");
+		String poi=request.getParameter("poi");	
+		Boolean RegistroOK = Servicio.recuperarServicio(descripcion, poi);
+		if(RegistroOK){
+			request.getRequestDispatcher("recuperarServicio.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}

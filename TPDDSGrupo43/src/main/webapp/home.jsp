@@ -62,6 +62,9 @@
                 <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
             </li>      
             <li>
+                <a href="recuperarServicio.jsp" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
+            </li>      
+            <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
         </ul>

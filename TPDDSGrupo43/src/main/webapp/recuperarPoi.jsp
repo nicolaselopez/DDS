@@ -1,5 +1,6 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
+<%@page import="modelo.Servicio" %>
 
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -49,6 +50,7 @@
             <li>
                 <a href="home.jsp" onclick = $("#menu-close").click(); >Home</a>
             </li>
+            
             <li>
                 <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
             </li>
@@ -58,12 +60,16 @@
             <li>
                 <a href="borrarPoi.jsp" onclick = $("#menu-close").click(); >Borrar Poi</a>
             </li>
-            <li>
-                <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Reuperar Poi</a>
+        	<li>
+                <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Recuperar Poi</a>
             </li>
+        	        	
         	<li>
                 <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
-            </li>     
+            </li>      
+            <li>
+                <a href="recuperarServicio.jsp" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
+            </li>      
             <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>

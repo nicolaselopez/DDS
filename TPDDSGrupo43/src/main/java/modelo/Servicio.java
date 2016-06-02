@@ -206,6 +206,25 @@ public class Servicio {
 		}
 		return OK;
 	}
+	public static Boolean recuperarServicio(String descripcion, String poi){
+		Boolean OK =false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where ServicioDescripcion like '%" + descripcion + "%' AND ServicioIdPoi = " + poi + ";");
+		if(rs==1){
+			OK=true;
+		}
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}
+		return OK;
+	}
+	
+	
+	
 	public static Boolean borrarServicioPoi(String poi){
 		Boolean OK =false;
 		try{
@@ -213,6 +232,22 @@ public class Servicio {
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
 			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where  ServicioIdPoi = " + poi + ";");
+		if(rs==1){
+			OK=true;
+		}
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}
+		return OK;
+	}
+	public static Boolean recuperarServicioPoi(String poi){
+		Boolean OK =false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where  ServicioIdPoi = " + poi + ";");
 		if(rs==1){
 			OK=true;
 		}
