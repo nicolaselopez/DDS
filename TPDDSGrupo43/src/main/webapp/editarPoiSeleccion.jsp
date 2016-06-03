@@ -1,8 +1,5 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
-<%@page import="modelo.Barrio" %>
-<%@page import="modelo.Rubro" %>
-<%@page import="modelo.TipoPoi" %>
 
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -44,7 +41,6 @@
 </head>
 
 <body>
-<%Poi poi=(Poi)request.getAttribute("poiElegido");%>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
@@ -65,7 +61,7 @@
             </li>
         	<li>
                 <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Recuperar Poi</a>
-            </li>
+            </li>  	
         	<li>
                 <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
             </li>      
@@ -84,7 +80,7 @@
             <br>
             <h1>Editar POIS</h1>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Editar POI Seleccionado</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Click Aqui</a>
         </div>
     </header>
 
@@ -92,76 +88,23 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Edite los datos de su POI</h1><br>
-                  <form action="ServletEditarPoi" method="get">
+                    <h1>Seleccione el POI a editar:</h1><br>
+                  <form action="ServletEditarPoiSeleccion" method="get">
                    <div class="styled-select">
-	                <input type="hidden" name="poi" value = <%= poi.getIdPoi() %>>
-	                <input type="text" name="nombrePoi" value ="<%=poi.getPoiDescripcion()%>">
-                    <input type="text" name="latitud" value = <%= poi.getPoiLatitudGeo() %>>
-                    <input type="text" name="longitud" value = <%= poi.getPoiLongitudGeo() %>>
-                    <input type="text" name="calle" value ="<%=poi.getPoiDireccion().getPoiCalle()%>">
-                    <input type="text" name="numero" value = <%= poi.getPoiDireccion().getPoiNumero() %>>
-                    <input type="text" name="piso" value ="<%=poi.getPoiDireccion().getPoiPiso()%>">
-                    <input type="text" name="dpto" value ="<%=poi.getPoiDireccion().getPoiDepto()%>">
-                    <input type="text" name="codpos" value = <%= poi.getPoiDireccion().getPoiCodPos() %>>
-                    <div class="styled-select">
-	                    <select id="tipoPoi" name="tipoPoi">
+	                    <select id="poi" name="poi">
 	                    <%
-						TipoPoi[] tipoPoi = new listObject().getlistTipoPoi();
-	                    for(int k=0;k<tipoPoi.length;k++){
-	                    	if(tipoPoi[k].getIdTipoPoi() == poi.getPoiIdTipoPoi()){
-	                    		out.write("<option value=" + poi.getPoiIdTipoPoi() + ">"+tipoPoi[k].getTipoPoiDescripcion()+"</option>");
+						Poi[] pois = new listObject().getlistPoiActivo(1);
+	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+	                    for(int i=0;i<100;i++) {
+	                    	if(pois[i].getIdPoi()== -1){
+	                    		break;	
 	                    	}
-	                    }
-						for(int i=0;i<tipoPoi.length;i++) {
-							if(tipoPoi[i].getIdTipoPoi() != poi.getPoiIdTipoPoi()){
-						    out.write("<option value=" + tipoPoi[i].getIdTipoPoi()+ ">" + tipoPoi[i].getTipoPoiDescripcion()+"</option>");
-							}
+	                    	out.write("<option value=" + pois[i].getIdPoi()+ ">" + pois[i].getPoiDescripcion()+"</option>");
 						}
 						%>
 	                    </select>
 	                </div>
-                     <div class="styled-select">
-	                    <select id="barrio" name="barrio">
-	                    <%
-						Barrio[] barrios = new listObject().getlistBarrio();
-	                    out.write("<option value="+ poi.getPoiBarrio().getIdBarrio() +">"+poi.getPoiBarrio().getBarrioDescripcion()+"</option>");
-						for(int i=0;i<barrios.length;i++) {
-							if(barrios[i].getIdBarrio()!=poi.getPoiBarrio().getIdBarrio()){
-						    out.write("<option value=" + barrios[i].getIdBarrio()+ ">" + barrios[i].getBarrioDescripcion()+"</option>");
-							}
-						}
-						%>
-	                    </select>
-	                </div>
-	                <div class="styled-select">
-	                    <select id="rubro" name="rubro">
-	                    <%
-						Rubro[] rubros = new listObject().getlistRubro();
-	                    if(poi.getPoiRubro() != null){
-	                    	out.write("<option value="+ poi.getPoiRubro().getIdRubro() +">"+poi.getPoiRubro().getRubroDescripcion()+"</option>");                    
-		                    for(int i=0;i<100;i++) {
-		                    	if(rubros[i].getIdRubro()== -1){
-		                    		break;	
-		                    	}
-		                    	if(rubros[i].getIdRubro() != poi.getPoiRubro().getIdRubro()){
-		                    		out.write("<option value=" + rubros[i].getIdRubro()+ ">" + rubros[i].getRubroDescripcion()+"</option>");
-		                    	}
-							}
-	                    }else{
-	                    	out.write("<option value=\"0\">Rubro (Si corresponde)</option>");
-	                    	for(int i=0;i<100;i++) {
-		                    	if(rubros[i].getIdRubro()== -1){
-		                    		break;	
-		                    	}
-		                    	out.write("<option value=" + rubros[i].getIdRubro()+ ">" + rubros[i].getRubroDescripcion()+"</option>");
-							}
-	                    }
-						%>
-	                    </select>
-	                </div>
-	               </div>
-	               <input type="submit" name="register" class="login loginmodal-submit" value="Editar Servicio">
+	                <input type="submit" name="register" class="login loginmodal-submit" value="Editar Servicio">
                   </form>
                 </div>
             </div>
@@ -175,9 +118,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script>
-    $(document).ready(function() {
-    	$("#login-modal").modal("show");
-    });
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();

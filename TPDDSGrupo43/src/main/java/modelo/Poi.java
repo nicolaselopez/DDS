@@ -334,7 +334,7 @@ public class Poi {
 		return poi;
 	}
 
-	public static Boolean editarPoi(String idPoi,Poi poi){
+	public static Boolean editarPoi(Poi poi){
 		Boolean OK = false;
 		try{
 			Conexion c=new Conexion();
@@ -342,7 +342,7 @@ public class Poi {
 			Statement st=con.createStatement();
 			
 			Integer rs=st.executeUpdate("UPDATE poi SET "+
-				"(PoiIdTipoPoi = "+poi.getPoiIdTipoPoi()+" , PoiDescripcion = '"+poi.getPoiDescripcion()+
+				"PoiIdTipoPoi = "+poi.getPoiIdTipoPoi()+" , PoiDescripcion = '"+poi.getPoiDescripcion()+
 				"' , PoiIdRubro = "+poi.getPoiIdRubro()+" , PoiCalle = '"+poi.getPoiDireccion().getPoiCalle()+
 				"' , PoiNumero = '"+poi.getPoiDireccion().getPoiNumero()+"' , PoiPiso = '" + poi.getPoiDireccion().getPoiPiso()+
 				"' , PoiDepto = '"+poi.getPoiDireccion().getPoiDepto()+"' , PoiUnidad = '"+poi.getPoiDireccion().getPoiUnidad()+
@@ -350,7 +350,7 @@ public class Poi {
 				"  , PoiIdBarrio = "	+poi.getPoiDireccion().getPoiIdBarrio()+" , PoiIdProvincia = "+poi.getPoiDireccion().getPoiIdProvincia()+
 				"  , PoiIdPais = "+poi.getPoiDireccion().getPoiIdPais()+" , PoiLatitudGeo = '"+poi.getPoiLatitudGeo()+
 				"' , PoiLongitudGeo = '"+poi.getPoiLongitudGeo()+"' , PoiActivo = "+poi.getPoiActivo()+
-				") where IdPoi = " + idPoi + " ;");
+				" where IdPoi = " + poi.getIdPoi() + " ;");
 			
 			if(rs == 1){
 				OK = true;

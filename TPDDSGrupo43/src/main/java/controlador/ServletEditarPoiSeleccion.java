@@ -13,14 +13,14 @@ import modelo.Poi;
 /**
  * Servlet implementation class ServletRegistrarPoi
  */
-@WebServlet("/ServletEditarPoi")
-public class ServletEditarPoi extends HttpServlet {
+@WebServlet("/ServletEditarPoiSeleccion")
+public class ServletEditarPoiSeleccion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public ServletEditarPoi() {
+    public ServletEditarPoiSeleccion() {
         // TODO Auto-generated constructor stub
     }
 
@@ -28,26 +28,13 @@ public class ServletEditarPoi extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idPoi=request.getParameter("poi");
-		String descripcion=request.getParameter("nombrePoi");
-		String latitud=request.getParameter("latitud");
-		String longitud=request.getParameter("longitud");
-		String calle=request.getParameter("calle");
-		String numero=request.getParameter("numero");
-		String piso=request.getParameter("piso");
-		String dpto=request.getParameter("dpto");
-		String codpos=request.getParameter("codpos");
-		String tipoPoi=request.getParameter("tipoPoi");
-		String barrio=request.getParameter("barrio");
-		String rubro=request.getParameter("rubro");
-		Direccion poiDireccion = new Direccion (calle,numero,piso,dpto,"0",codpos,1,Integer.parseInt(barrio),1,1);
-		Poi poi= new Poi(Integer.parseInt(idPoi),Integer.parseInt(tipoPoi),descripcion,Integer.parseInt(rubro),poiDireccion,latitud,longitud,1);
-		Boolean RegistroOK = Poi.editarPoi(poi);
-		if(RegistroOK){
+		int idPoi=Integer.parseInt(request.getParameter("poi"));
+		if(idPoi==0){
 			request.getRequestDispatcher("editarPoiSeleccion.jsp").forward(request, response);
-		}else{
-			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
+		Poi poi= Poi.buscarPoi(idPoi);
+		request.setAttribute("poiElegido", poi);
+		request.getRequestDispatcher("editarPoi.jsp").forward(request, response);
 	}
 
 	/**
