@@ -49,12 +49,9 @@ public class ServletEditarServicio extends HttpServlet {
 		String horaDesde2=request.getParameter("horaDesde2");
 		String horaHasta2=request.getParameter("horaHasta2");
 		String tags=request.getParameter("tags");
+		Servicio servicio= new Servicio(Integer.parseInt(idServicio),poi.getIdPoi(),descripcion,diaDisponible,horaDesde1,horaHasta1,horaDesde2,horaHasta2,tags,1);
 		
-		Servicio servicio= new Servicio(1,"barney","Lun;Mar;Mie;Jue;Vie;Sab;Dom;","8","","10","1","parada;colectivo;25;boca",1);
-		
-		//Servicio servicio= new Servicio(Integer.parseInt(idPoi),descripcion,diaDisponible,horaDesde1,horaHasta1,horaDesde2,horaHasta2,tags,1);
-		
-		RegistroOK = Servicio.editarServicio(servicio, poi);
+		RegistroOK = Servicio.editarServicio(servicio);
 
 		if(RegistroOK){
 			request.getRequestDispatcher("editarPoiSeleccion.jsp").forward(request, response);

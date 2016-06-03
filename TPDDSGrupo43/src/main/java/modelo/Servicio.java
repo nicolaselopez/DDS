@@ -126,8 +126,21 @@ public class Servicio {
 		ServicioActivo = servicioActivo;
 	}
 	
-	
-	
+	public Servicio(int idServicio, int servicioIdPoi, String servicioDescripcion, String servicioDiaDisponible,
+			String servicioHoraDesde1, String servicioHoraHasta1, String servicioHoraDesde2, String servicioHoraHasta2,
+			String servicioTags, int servicioActivo) {
+		super();
+		IdServicio = idServicio;
+		ServicioIdPoi = servicioIdPoi;
+		ServicioDescripcion = servicioDescripcion;
+		ServicioDiaDisponible = servicioDiaDisponible;
+		ServicioHoraDesde1 = servicioHoraDesde1;
+		ServicioHoraHasta1 = servicioHoraHasta1;
+		ServicioHoraDesde2 = servicioHoraDesde2;
+		ServicioHoraHasta2 = servicioHoraHasta2;
+		ServicioTags = servicioTags;
+		ServicioActivo = servicioActivo;
+	}
 	public Servicio(int servicioIdPoi, String servicioDescripcion, String servicioDiaDisponible,
 			String servicioHoraDesde1, String servicioHoraHasta1, String servicioHoraDesde2, String servicioHoraHasta2,
 			String servicioTags, int servicioActivo) {
@@ -213,7 +226,7 @@ public class Servicio {
 	}
 	
 
-	public static Boolean editarServicio(Servicio servicio, Poi poi){
+	public static Boolean editarServicio(Servicio servicio){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
@@ -221,15 +234,14 @@ public class Servicio {
 			Statement st=con.createStatement();
 			
 			Integer rs = st.executeUpdate("UPDATE servicio SET " +
-											"ServicioIdPoi = " + poi.getIdPoi() +
-											"ServicioIdTipoPoi = " + poi.getPoiIdTipoPoi() +
-											"ServicioDescripcion = '" + servicio.getServicioDescripcion() + "'" +
-											"ServicioDiaDisponible = '"+ servicio.getServicioDiaDisponible() + "'" +
-											"ServicioHoraDesde1 = " + servicio.getServicioHoraDesde1() +
-											"ServicioHoraDesde2 = "+ servicio.getServicioHoraDesde2() +
-											"ServicioHoraHasta1 = " + servicio.getServicioHoraHasta1() +
-											"ServicioHoraHasta2 = " + servicio.getServicioHoraHasta2() +
-											"ServicioTags = "+ servicio.getServicioTags());
+											"ServicioDescripcion = '" + servicio.getServicioDescripcion() + "', " +
+											"ServicioDiaDisponible = '"+ servicio.getServicioDiaDisponible() + "', " +
+											"ServicioHoraDesde1 = '" + servicio.getServicioHoraDesde1() +"', " +
+											"ServicioHoraDesde2 = '"+ servicio.getServicioHoraDesde2() +"', " +
+											"ServicioHoraHasta1 = '" + servicio.getServicioHoraHasta1() +"', " +
+											"ServicioHoraHasta2 = '" + servicio.getServicioHoraHasta2() +"', " +
+											"ServicioTags = '"+ servicio.getServicioTags() +"' " +
+											"WHERE ServicioIdPoi = " + servicio.getServicioIdPoi() +" and IdServicio = " + servicio.getIdServicio() + ";");
 		if(rs==1){
 			OK=true;
 		}

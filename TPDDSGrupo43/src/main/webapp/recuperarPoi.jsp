@@ -48,7 +48,7 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="home.jsp" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
                 <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
@@ -62,7 +62,9 @@
             <li>
                 <a href="borrarPoi.jsp" onclick = $("#menu-close").click(); >Borrar Poi</a>
             </li>
-        	        	
+        	<li>
+                <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Recuperar Poi</a>
+            </li>       	
             <li>
                 <a href="editarServicioSeleccion.jsp" onclick = $("#menu-close").click(); >Editar Servicio</a>
             </li>
@@ -71,7 +73,10 @@
             </li>      
             <li>
                 <a href="recuperarServicio.jsp" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
-            </li>        
+            </li>    
+            <li>
+                <a href="actualizarInfoExterna.jsp" onclick = $("#menu-close").click(); >Actualizar Info Externa</a>
+            </li>  
             <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
