@@ -37,7 +37,7 @@ public class ServletBorrarServicio extends HttpServlet {
 			StringTokenizer poiservicio= new StringTokenizer(request.getParameter("poi"),"_");
 			int poi = Integer.parseInt(poiservicio.nextToken());
 			int servicio = Integer.parseInt(poiservicio.nextToken());
-			RegistroOK = Servicio.editarServicio(servicio, poi, 1);
+			RegistroOK = Servicio.editarServicio(servicio, poi, 0);
 		}
 		if(RegistroOK){
 			request.getRequestDispatcher("borrarServicio.jsp").forward(request, response);
