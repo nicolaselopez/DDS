@@ -195,29 +195,13 @@ public class Servicio {
 		return servicio;
 	}
 //-------------------------	
-	public static Boolean borrarServicio(int servicio, int poi){
+	public static Boolean editarServicio(int servicio, int poi , int estado){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where idServicio =" + servicio + " AND ServicioIdPoi = " + poi + ";");
-		if(rs==1){
-			OK=true;
-		}
-		}catch(SQLException se){
-			se.printStackTrace();
-			OK=false;
-		}
-		return OK;
-	}
-	public static Boolean recuperarServicio(int servicio, int poi){
-		Boolean OK =false;
-		try{
-			Conexion c=new Conexion();
-			Connection con=c.getConexion();
-			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where idServicio=" + servicio + " AND ServicioIdPoi = " + poi + ";");
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = " +estado+ " where idServicio =" + servicio + " AND ServicioIdPoi = " + poi + ";");
 		if(rs==1){
 			OK=true;
 		}
@@ -229,14 +213,13 @@ public class Servicio {
 	}
 	
 	
-	
-	public static Boolean borrarServicioPoi(int poi){
+	public static Boolean editarServicioPoi(int poi, int estado){
 		Boolean OK =false;
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 0 where  ServicioIdPoi = " + poi + ";");
+			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = "+ estado +" where  ServicioIdPoi = " + poi + ";");
 		if(rs>=1){
 			OK=true;
 		}
@@ -246,23 +229,6 @@ public class Servicio {
 		}
 		return OK;
 	}
-	public static Boolean recuperarServicioPoi(int poi){
-		Boolean OK =false;
-		try{
-			Conexion c=new Conexion();
-			Connection con=c.getConexion();
-			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE servicio SET ServicioActivo = 1 where  ServicioIdPoi = " + poi + ";");
-		if(rs>=1){
-			OK=true;
-		}
-		}catch(SQLException se){
-			se.printStackTrace();
-			OK=false;
-		}
-		return OK;
-	}
-	
 	
 //-------------------------	
 	public static Boolean registrarServicio(Servicio servicio){

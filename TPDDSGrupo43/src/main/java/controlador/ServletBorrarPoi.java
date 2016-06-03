@@ -28,7 +28,7 @@ public class ServletBorrarPoi extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer idPoi=Integer.parseInt(request.getParameter("poi"));
 		Boolean RegistroOK = Poi.editarEstadoPoi(idPoi,0);
-		Boolean RegistroOK2 = Servicio.borrarServicioPoi(idPoi);
+		Boolean RegistroOK2 = Servicio.editarServicioPoi(idPoi, 0);
 		if(RegistroOK && RegistroOK2){
 			request.getRequestDispatcher("borrarPoi.jsp").forward(request, response);
 		}else{

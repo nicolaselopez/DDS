@@ -37,7 +37,7 @@ public class ServletRecuperarServicio extends HttpServlet {
 			StringTokenizer poiservicio= new StringTokenizer(request.getParameter("poi"),"_");
 			int poi = Integer.parseInt(poiservicio.nextToken());
 			int servicio = Integer.parseInt(poiservicio.nextToken());
-			RegistroOK = Servicio.recuperarServicio(servicio, poi);			
+			RegistroOK = Servicio.editarServicio(servicio, poi, 1);			
 		}
 		if(RegistroOK){
 			request.getRequestDispatcher("recuperarServicio.jsp").forward(request, response);
