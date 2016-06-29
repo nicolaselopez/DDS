@@ -296,20 +296,10 @@ public class Servicio {
 //---------------------------
 	
 	public boolean esFechaHabil(LocalDate fecha) {
-		String fechaS = fecha.toString();
-		boolean OK =false;
-		try{
-			Conexion c=new Conexion();
-			Connection con=c.getConexion();
-			Statement st=con.createStatement();
-			ResultSet rs = st.executeQuery("Select * from diasnohabiles where Fecha = '" + fechaS + "';");
-			OK= !rs.next(); // Poner !
-			
-		}catch(SQLException se){
-			se.printStackTrace();
-			OK=false;
-		}
-		return OK;
+		ExcepcionesPoi excepciones = new ExcepcionesPoi();
+		
+		return excepciones.validarExcepcion(this.getServicioIdPoi(), fecha);
+		
 	}
 //---------------------------
 	public static String generarDias(String dLun, String dMar, String dMie, String dJue, String dVie, String dSab,

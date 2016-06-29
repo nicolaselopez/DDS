@@ -12,12 +12,16 @@ public class TestsDisponibilidadServicio {
 	
 	private Servicio paradaColectivo;
 	private Servicio kioscoElTurco;
+	private Servicio carrefour;
 	
 	@Before
 	public void darContexto(){
 
 		paradaColectivo = Servicio.buscarServicio(2);
 		kioscoElTurco = Servicio.buscarServicio(1);
+		carrefour = Servicio.buscarServicio(3);
+		kioscoElTurco.setServicioIdPoi(1);
+		carrefour.setServicioIdPoi(3);
 	}	
 	
 @Test
@@ -56,14 +60,27 @@ public void KioscoDomingoAlas1722NoDisponible(){
 }
 
 @Test
-public void Kiosco20160709NoDisponible(){
+public void Kiosco20160709NoDisponibleFeriado(){
 	//precondiciones - contexto - escenario - fixture
 	String[] hora = {"10", "00", "00"};
 	int sabado = kioscoElTurco.calcularDiaDisponible("Sab");
 	
 	//ejecucion
-	boolean noEsFeriado = kioscoElTurco.esFechaHabil(LocalDate.of(2016, 07, 9));
+	boolean noEsFeriado = kioscoElTurco.esFechaHabil(LocalDate.of(2016, 01, 01));
     boolean estaDisponible = kioscoElTurco.calcularDisponibilidad(sabado,hora);
+	//validacion
+	Assert.assertFalse(estaDisponible && noEsFeriado);
+}
+
+@Test
+public void Carrefour20160620NoDisponibleFeriado(){
+	//precondiciones - contexto - escenario - fixture
+	String[] hora = {"08", "05", "00"};
+	int lunes = carrefour.calcularDiaDisponible("Lun");
+	
+	//ejecucion
+	boolean noEsFeriado = carrefour.esFechaHabil(LocalDate.of(2016, 06, 20));
+    boolean estaDisponible = carrefour.calcularDisponibilidad(lunes,hora);
 	//validacion
 	Assert.assertFalse(estaDisponible && noEsFeriado);
 }
