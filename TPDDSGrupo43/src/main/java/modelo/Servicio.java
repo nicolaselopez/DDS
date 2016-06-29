@@ -432,6 +432,11 @@ public class Servicio {
 			servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
 			i++;
 		}
+		rs=st.executeQuery("Select * from servicioexterno where ServicioExternoTags like '%" + tag + "%';");
+		while(rs.next()){
+			servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
+			i++;
+		}
 		for(int k=i;k<20;k++){
 			servicio[k]=new Servicio();
 			servicio[k].setIdServicio(-1);

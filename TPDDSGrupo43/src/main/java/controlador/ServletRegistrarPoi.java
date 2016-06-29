@@ -45,7 +45,7 @@ public class ServletRegistrarPoi extends HttpServlet {
 		Boolean RegistroOK = Poi.registrarPoi(poi);
 		if(RegistroOK){
 			request.setAttribute("poi", poi);
-			request.getRequestDispatcher("editarPoi.jsp").forward(request, response);
+			request.getRequestDispatcher("agregarServicio.jsp").forward(request, response);
 		}else{
 			request.setAttribute("poi", poi);
 			request.getRequestDispatcher("loginFailed.jsp").forward(request, response);
