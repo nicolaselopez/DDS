@@ -37,7 +37,7 @@ public class RegistroConsulta {
 	public void setRegConFechaConsulta(String regConFechaConsulta) {
 		RegConFechaConsulta = regConFechaConsulta;
 	}
-	public int getRegConTipoConsulta() {
+	public String getRegConTipoConsulta() {
 		return RegConTipoConsulta;
 	}
 	public void setRegConTipoConsulta(String regConTipoConsulta) {
