@@ -12,6 +12,7 @@ public class RegistroConsulta {
 	private String RegConTipoConsulta;
 	private String RegConDetalle;
 	private String RegConFechaConsulta;
+	private float RegConDuracion;
 	
 	public int getIdRegistroConsulta() {
 		return IdRegistroConsulta;
@@ -48,17 +49,23 @@ public class RegistroConsulta {
 	}
 	public void setRegConDetalle(String regConDetalle) {
 		RegConDetalle = regConDetalle;
+	}	
+	public float getRegConDuracion() {
+		return RegConDuracion;
+	}
+	public void setRegConDuracion(float regConDuracion) {
+		RegConDuracion = regConDuracion;
 	}
 	
-	public RegistroConsulta(int idRegistroConsulta, int regConIdUsuario, int regConIdPoi, String regConTipoConsulta,
-			String regConDetalle, String regConFechaConsulta) {
+
+	public RegistroConsulta(int regConIdUsuario, int regConIdPoi, String regConTipoConsulta, String regConDetalle,
+			float regConDuracion) {
 		super();
-		IdRegistroConsulta = idRegistroConsulta;
 		RegConIdUsuario = regConIdUsuario;
 		RegConIdPoi = regConIdPoi;
 		RegConTipoConsulta = regConTipoConsulta;
 		RegConDetalle = regConDetalle;
-		RegConFechaConsulta = regConFechaConsulta;
+		RegConDuracion = regConDuracion;
 	}
 	public RegistroConsulta() {
 		super();
@@ -71,8 +78,8 @@ public class RegistroConsulta {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("INSERT INTO registroconsulta(RegConIdUsuario,RegConIdPoi,RegConTipoConsulta,RegConDetalle) VALUES("
-					+consulta.RegConIdUsuario+","+consulta.RegConIdPoi+",'"+consulta.RegConTipoConsulta+"','"+consulta.RegConDetalle+"');");
+			Integer rs = st.executeUpdate("INSERT INTO registroconsulta(RegConIdUsuario,RegConIdPoi,RegConTipoConsulta,RegConDetalle,RegConDuracion) VALUES("
+					+consulta.RegConIdUsuario+","+consulta.RegConIdPoi+",'"+consulta.RegConTipoConsulta+"','"+consulta.RegConDetalle+"',"+consulta.RegConDuracion+");");
 		if(rs == 1){
 			OK=true;
 		}
