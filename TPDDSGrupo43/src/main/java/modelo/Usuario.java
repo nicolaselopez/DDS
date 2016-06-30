@@ -13,6 +13,8 @@ public class Usuario {
 	private String correo;
 	private String usuario;
 	private String clave;
+	private int rol;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -43,6 +45,14 @@ public class Usuario {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
+	//-----------------------------------------------
+	public void setRol (int rol){
+		this.rol = rol;
+	}
+	public int getRol(){
+		return rol;
+	}
+	//------------------------------------------------
 	public Usuario(String nombre, String edad,
 			String correo, String usuario, String clave) {
 		super();
@@ -73,7 +83,7 @@ public class Usuario {
 		}
 		return busuario;
 	}
-	
+	// Get rol?
 	public static Boolean registrarUsuario(Usuario usuario){
 		Boolean OK = false;
 		BasicPasswordEncryptor encriptador = new BasicPasswordEncryptor();
@@ -82,8 +92,8 @@ public class Usuario {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs=st.executeUpdate("INSERT INTO usuarios (usuario, password, email, nombre, fechanac,activo) VALUES "
-					+ "('"+usuario.getUsuario()+"','"+usuario.getClave()+"','"+usuario.getCorreo()+"','"+usuario.getNombre()+"',"+usuario.getEdad()+",1);");
+			Integer rs=st.executeUpdate("INSERT INTO usuarios (usuario, password, email, nombre, fechanac,activo,rol) VALUES "
+					+ "('"+usuario.getUsuario()+"','"+usuario.getClave()+"','"+usuario.getCorreo()+"','"+usuario.getNombre()+"',"+usuario.getEdad()+",1,"+usuario.getRol()+");");
 			if(rs == 1){
 				OK = true;
 			}
