@@ -290,6 +290,12 @@ public class Poi {
 				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
 				i++;
 			}
+			rs=st.executeQuery("Select * from bancoexterno");
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccionBancoExterno(rs);
+				pois[i]=new Poi(rs.getInt(1),rs.getInt(2),rs.getString(3),3,poiDireccion,rs.getString(6),rs.getString(7),rs.getInt(10));
+				i++;
+			}
 			for(int k=i;k<5000;k++){
 				pois[k]=new Poi();
 				pois[k].setIdPoi(-1);
@@ -314,7 +320,7 @@ public class Poi {
 
 			}
 			if(poi == null){
-				rs=st.executeQuery("Select * from bancoexterno where idPoiExterno="+ idPoi + ";");
+				rs=st.executeQuery("Select * from bancoexterno where IdPoiExterno="+ idPoi + ";");
 				while(rs.next()){
 					Direccion poiDireccion = Direccion.parametrizarDireccionBancoExterno(rs);
 					poi=new Poi(rs.getInt(1),rs.getInt(2),rs.getString(3),3,poiDireccion,rs.getString(6),rs.getString(7),rs.getInt(10));
