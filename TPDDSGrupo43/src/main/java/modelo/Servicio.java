@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -13,6 +14,8 @@ import org.json.JSONObject;
 import modelo.Poi;
 
 public class Servicio {
+	
+	private static final Logger log= Logger.getLogger( Servicio.class.getName() );
 	
 	private int IdServicio;
 	private int ServicioIdPoi;
@@ -181,6 +184,15 @@ public class Servicio {
 		while(rs.next()){
 			servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
 			i++;
+		}if(servicio[i] == null){
+			Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+			for(int j=0;j<cgpExterno.length;j++){
+				if(cgpExterno[j].getIdPoi() == idPoi){
+					servicio = cgpExterno[j].getPoiServicio();
+					i++;	
+				}	
+			}
+			
 		}
 		for(int k=i;k<20;k++){
 			servicio[k]=new Servicio();
@@ -202,6 +214,24 @@ public class Servicio {
 			ResultSet rs=st.executeQuery("Select * from servicio where IdServicio=" + idServicio + ";");
 			while(rs.next()){
 				servicio=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
+			}
+			if(servicio == null){
+				rs=st.executeQuery("Select * from servicioexterno where IdServicioExterno=" + idServicio + ";");
+				while(rs.next()){
+					servicio=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
+				}
+			}
+			
+			if(servicio == null){
+				Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+				for(int j=0;j<cgpExterno.length;j++){
+					for(int t=0;t<cgpExterno[j].getPoiServicio().length;t++){
+						log.info(cgpExterno[j].getPoiServicio()[t].getIdServicio() + " contra " + idServicio);
+						if(cgpExterno[j].getPoiServicio()[t].getIdServicio() == idServicio){
+							servicio = cgpExterno[j].getPoiServicio()[t];	
+						}	
+					}
+				}
 			}
 		}catch(SQLException se){
 			se.printStackTrace();
@@ -420,6 +450,59 @@ public class Servicio {
 		
 		return nroDia;
 	}
+	
+	public static String diaPorNumero(int diaServicio) {
+		String nroDia = "";
+		
+		if(diaServicio == 1)
+		{
+			nroDia = "Dom";
+		}
+		else
+		{
+			if(diaServicio == 2)
+			{
+				nroDia = "Lun";
+			}
+			else
+			{
+				if(diaServicio == 3)
+				{
+					nroDia = "Mar";
+				}
+				else
+				{
+					if(diaServicio == 4)
+					{
+						nroDia = "Mie";
+					}
+					else
+					{
+						if(diaServicio == 5)
+						{
+							nroDia = "Jue";
+						}
+						else
+						{
+							if(diaServicio == 6)
+							{
+								nroDia = "Vie";
+							}
+							else
+							{
+								if(diaServicio == 7)
+								{
+									nroDia = "Sab";
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return nroDia;
+	}
 	//--------------------------------------------------------30/06-MM-
 	private static long tiempoInicio;
 	private static long tiempoBusqueda;
@@ -465,6 +548,16 @@ public class Servicio {
 			servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
 			i++;
 		}
+		Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+		for(int j=0;j<cgpExterno.length;j++){
+			for(int t=0;t<cgpExterno[j].getPoiServicio().length;t++){
+				if(cgpExterno[j].getPoiServicio()[t].getServicioDescripcion().contains(tag)){
+					log.info("entreee");
+					servicio[i] = cgpExterno[j].getPoiServicio()[t];
+					i++;	
+				}	
+			}
+		}
 		for(int k=i;k<20;k++){
 			servicio[k]=new Servicio();
 			servicio[k].setIdServicio(-1);
@@ -500,4 +593,46 @@ public class Servicio {
 		}
 	}
 	
+	public static Servicio[] crearServiciosCGP(JSONObject serviciosObject){
+		Servicio[] servicio = null;
+		try{
+			JSONArray temp = serviciosObject.getJSONArray("servicios");
+			int length = temp.length();
+			servicio = new Servicio[length];
+			if (length > 0) {
+				for(int k=0; k<length;k++){
+					JSONObject servicioObjeto = (JSONObject) temp.get(k);
+					servicio[k] = new Servicio(0, servicioObjeto.getString("nombre"), buscarDias(servicioObjeto),buscarHoraDesde(servicioObjeto), buscarHoraHasta(servicioObjeto), "", "",servicioObjeto.getString("nombre"), 1);
+				}
+			}
+		return servicio;	
+		}catch(Exception e){
+			e.printStackTrace();
+			return servicio;
+		}
+	}
+	
+	private static String buscarDias(JSONObject servicio){
+		String dias = "";
+		JSONArray arrayHorario = servicio.getJSONArray("horarios");
+		JSONObject horario = (JSONObject) arrayHorario.get(0);
+		dias = diaPorNumero(horario.getInt("diaSemana")+1);
+		return dias;
+	}
+	
+	private static String buscarHoraDesde(JSONObject servicio){
+		String hora = "";
+		JSONArray arrayHorario = servicio.getJSONArray("horarios");
+		JSONObject horario = (JSONObject) arrayHorario.get(0);
+		hora = Integer.toString(horario.getInt("horaDesde"));
+		return hora;
+	}
+	
+	private static String buscarHoraHasta(JSONObject servicio){
+		String hora = "";
+		JSONArray arrayHorario = servicio.getJSONArray("horarios");
+		JSONObject horario = (JSONObject) arrayHorario.get(0);
+		hora = Integer.toString(horario.getInt("horaHasta"));
+		return hora;
+	}
 }

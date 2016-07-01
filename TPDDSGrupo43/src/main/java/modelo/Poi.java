@@ -237,6 +237,11 @@ public class Poi {
 				pois[i]=new Poi(rs.getInt(1),rs.getInt(2),rs.getString(3),3,poiDireccion,rs.getString(6),rs.getString(7),rs.getInt(10));
 				i++;
 			}
+			Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+			for(int j=0;j<cgpExterno.length;j++){
+				pois[i] = cgpExterno[j];
+				i++;
+			}
 			for(int k=i;k<5000;k++){
 				pois[k]=new Poi();
 				pois[k].setIdPoi(-1);
@@ -266,7 +271,11 @@ public class Poi {
 				pois[i].setPoiServicio(Servicio.consultarServicios(pois[i].getIdPoi(),false,servicioActivo));
 				i++;
 			}
-			
+			Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+			for(int j=0;j<cgpExterno.length;j++){
+				pois[i] = cgpExterno[j];
+				i++;
+			}
 			for(int k=i;k<5000;k++){
 				pois[k]=new Poi();
 				pois[k].setIdPoi(-1);
@@ -294,6 +303,11 @@ public class Poi {
 			while(rs.next()){
 				Direccion poiDireccion = Direccion.parametrizarDireccionBancoExterno(rs);
 				pois[i]=new Poi(rs.getInt(1),rs.getInt(2),rs.getString(3),3,poiDireccion,rs.getString(6),rs.getString(7),rs.getInt(10));
+				i++;
+			}
+			Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+			for(int j=0;j<cgpExterno.length;j++){
+				pois[i] = cgpExterno[j];
 				i++;
 			}
 			for(int k=i;k<5000;k++){
@@ -326,13 +340,19 @@ public class Poi {
 					poi=new Poi(rs.getInt(1),rs.getInt(2),rs.getString(3),3,poiDireccion,rs.getString(6),rs.getString(7),rs.getInt(10));
 					externo = true;
 				}
-			}
-			if(poi != null){
+			}if(poi != null){
 				poi.setPoiBarrio(Barrio.consultarBarrio(poi.getPoiDireccion().getPoiIdBarrio()));
 				poi.setPoiServicio(Servicio.consultarServicios(idPoi,externo,true));
 			}
 			if(poi!=null && poi.getPoiIdTipoPoi()==4){
 				poi.setPoiRubro(Rubro.consultarRubro(poi.getPoiIdRubro()));
+			}if(poi == null){
+				Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+				for(int j=0;j<cgpExterno.length;j++){
+					if(cgpExterno[j].getIdPoi() == idPoi){
+						poi = cgpExterno[j];
+					}
+				}
 			}
 		}catch(SQLException se){
 			se.printStackTrace();

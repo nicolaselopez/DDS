@@ -91,5 +91,21 @@ public class Barrio {
 		}
 		return barrio;
 	}
+	
+	public static int buscarIdBarrioXComuna(int comuna){
+		int barrio = -1;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select IdBarrio from barrio where BarrioIdComuna=" + comuna + " LIMIT 1;");
+			while(rs.next()){
+				barrio=rs.getInt(1);
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return barrio;
+	}
 
 }

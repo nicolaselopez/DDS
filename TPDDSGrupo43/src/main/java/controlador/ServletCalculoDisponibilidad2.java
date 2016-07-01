@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import modelo.Poi;
 import modelo.Servicio;
 import modelo.Usuario;
 import modelo.Barrio;
+import modelo.CGPAdapter;
 import modelo.DistanceCalculator;
 
 /**
@@ -24,6 +26,9 @@ import modelo.DistanceCalculator;
  */
 @WebServlet("/ServletCalculoDisponibilidad2")
 public class ServletCalculoDisponibilidad2 extends HttpServlet {
+	
+	private static final Logger log= Logger.getLogger( ServletCalculoDisponibilidad2.class.getName() );
+	
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -46,6 +51,10 @@ public class ServletCalculoDisponibilidad2 extends HttpServlet {
 			
 			if(idServicio != 0){
 				servicio = Servicio.buscarServicio(idServicio);
+				if(servicio != null){
+					log.info(servicio.getServicioDescripcion());
+				}
+				
 			}
 			
 			SimpleDateFormat horario = new SimpleDateFormat("HH:mm:ss");

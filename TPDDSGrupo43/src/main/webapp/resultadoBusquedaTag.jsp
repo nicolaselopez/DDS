@@ -40,6 +40,7 @@
 <%Servicio[] serv=(Servicio[])request.getAttribute("serv");%>
 <% if(serv == null){
 	serv = new Servicio[1];
+	serv[0] = new Servicio();
 	serv[0].setServicioDescripcion("Error");
 	serv[0].setIdServicio(-1);};%>
 <%Boolean OK = (Boolean)request.getAttribute("OK"); %>

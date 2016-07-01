@@ -25,6 +25,28 @@ public class CGP extends Poi {
 		PoiActivo = poi.getPoiActivo();
 	}
 	
+	public CGP(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, Rubro poiRubro, Barrio poiBarrio,
+			Servicio[] poiServicio, Direccion poiDireccion, String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
+			String poiFechaModificacion, int poiActivo) {
+
+		super();
+		IdPoi = idPoi;
+		PoiIdTipoPoi = poiIdTipoPoi;
+		PoiDescripcion = poiDescripcion;
+		PoiIdRubro = poiIdRubro;
+		PoiRubro = poiRubro;
+		PoiBarrio = poiBarrio;
+		PoiServicio = poiServicio;
+		PoiDireccion = poiDireccion;
+		PoiLatitudGeo = poiLatitudGeo;
+		PoiLongitudGeo = poiLongitudGeo;
+		PoiFechaAlta = poiFechaAlta;
+		PoiFechaModificacion = poiFechaModificacion;
+		PoiActivo = poiActivo;
+		
+	}
+
+	
 	public Boolean calcularDistanciaPoi(Poi poi,LatLng latLngPos,LatLng latLngPoi, int comuna){
 		Boolean OK = false;
 		if(poi.getPoiBarrio().getBarrioIdComuna()==comuna){
