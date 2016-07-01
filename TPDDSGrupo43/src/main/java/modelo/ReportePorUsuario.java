@@ -19,7 +19,7 @@ public class ReportePorUsuario implements GenerarReporte{
 			
 			int i = 0;
 			while(rs.next()){
-				list[i]=new ContextReporte(new ReportePorFecha() ,rs.getInt(1), String.valueOf(rs.getInt(2)), rs.getInt(3));
+				list[i]=new ContextReporte(new ReportePorFecha() ,rs.getInt(1), rs.getDate(2).toString(), rs.getInt(3));
 				
 				i++;
 			}

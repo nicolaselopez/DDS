@@ -15,6 +15,7 @@ import modelo.GenerarReporte;
 import modelo.RegistroConsulta;
 import modelo.ReportePorFecha;
 import modelo.ReportePorTerminalTotal;
+import modelo.ReportePorUsuario;
 
 @WebServlet("/ServletReporteSeleccion")
 public class ServletReporteSeleccion extends HttpServlet {
@@ -58,7 +59,7 @@ public class ServletReporteSeleccion extends HttpServlet {
 			}
 			else
 			{
-				consulta = new ContextReporte(new ReportePorTerminalTotal(),1, now.toString(), 0);
+				consulta = new ContextReporte(new ReportePorUsuario(),1, now.toString(), 0);
 				RegistroOK = true;
 			}
 		}
