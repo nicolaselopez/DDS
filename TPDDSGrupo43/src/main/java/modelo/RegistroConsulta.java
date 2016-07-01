@@ -1,5 +1,7 @@
 package modelo;
-
+import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -115,9 +117,9 @@ public class RegistroConsulta {
 //--------------------------------------------------------30/06-MM-
 // rs no se esta usando (Revisar)
 // Generar Informe de busquedas agrupadas por fecha
-	public RegistroConsulta[] generarInformeBusquedasPorFecha(){
+	public static void generarInformeBusquedasPorFecha(){
 			// TODO Auto-generated method stub
-			RegistroConsulta[] consultas = new RegistroConsulta[20];
+			RegistroConsulta[] list = new RegistroConsulta[20];
 			try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
@@ -126,11 +128,11 @@ public class RegistroConsulta {
 			}catch(Exception se){
 				se.printStackTrace();
 			}
-			return consultas;
-			
+		
+	    	
 	}
 	
-	public RegistroConsulta[] generarInformeBusquedasPorTerminalTotales(){
+	public static void generarInformeBusquedasPorTerminalTotales(){
 		// TODO Auto-generated method stub
 		RegistroConsulta[] consultas = new RegistroConsulta[20];
 		try{
@@ -141,10 +143,10 @@ public class RegistroConsulta {
 		}catch(Exception se){
 			se.printStackTrace();
 		}
-		return consultas;
+		//return consultas;
 	}
 		
-	public RegistroConsulta[] generarInformeBusquedasPorTerminalParciales(){
+	public static void generarInformeBusquedasPorTerminalParciales(){
 			// TODO Auto-generated method stub
 			RegistroConsulta[] consultas = new RegistroConsulta[20];
 			try{
@@ -155,7 +157,7 @@ public class RegistroConsulta {
 			}catch(Exception se){
 				se.printStackTrace();
 			}
-			return consultas;
+		//	return consultas;
 		
 }
 }

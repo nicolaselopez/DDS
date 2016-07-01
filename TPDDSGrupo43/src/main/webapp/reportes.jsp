@@ -1,4 +1,5 @@
-<%@page import="modelo.Usuario"%>
+<%@page import="vista.listObject"%>
+<%@page import="modelo.Poi" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,17 +34,19 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
 </head>
 
 <body>
-
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="home.jsp" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
                 <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
@@ -83,11 +86,13 @@
 
     <!-- Header -->
     <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Gestion de Pois y Servicios</h1>
+        <div class="text-center">
             <br>
+            <h2>Reporte Creado</h2>
+        	<br>
         </div>
     </header>
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
