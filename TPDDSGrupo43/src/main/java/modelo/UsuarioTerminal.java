@@ -3,6 +3,8 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UsuarioTerminal extends Usuario {
 	
@@ -28,13 +30,19 @@ public class UsuarioTerminal extends Usuario {
 		return OK;
 	}
 	//--------------------------------------------------------30/06-MM-
-	public void realizarBusqueda(String frase){
-		Servicio servicio = new Servicio();
-		servicio.consultarServiciosTag(frase);
-		RegistroConsulta consulta = new RegistroConsulta(this.getIdUsuario(),servicio.getServicioIdPoi(),"Búsqueda por tag","Detalle",servicio.getTiempoBusqueda());
-		consulta.registrarConsulta(consulta); // Esta de más?
-		int cantidadResultados = servicio.consultarServiciosTag(frase).length;
-		consulta.setResultadoConsulta(frase, cantidadResultados, servicio.getTiempoBusqueda());
+	public static Servicio[] realizarBusqueda(String frase)
+	{
+		Servicio[] servicios = Servicio.consultarServiciosTag(frase);
+		
+		Date dNow = new Date( );
+	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
+	    
+		RegistroConsulta consulta = new RegistroConsulta(1,1,"Búsqueda por tag","Detalle",1,ft.toString());
+	
+		
+		RegistroConsulta.registrarConsulta(consulta);
+		
+		return servicios;
 	}
 	//--------------------------------------------------------30/06-MM-
 	

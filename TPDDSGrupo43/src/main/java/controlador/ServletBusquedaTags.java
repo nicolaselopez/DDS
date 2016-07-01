@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Poi;
 import modelo.Servicio;
 import modelo.Usuario;
+import modelo.UsuarioTerminal;
 import modelo.Barrio;
 import modelo.DistanceCalculator;
 
@@ -38,10 +39,26 @@ public class ServletBusquedaTags extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String tag=request.getParameter("tag");
-
+/*
 		try{
 			Boolean OK = false;
 			Servicio[] servicios = Servicio.consultarServiciosTag(tag);
+			request.setAttribute("serv", servicios);
+			request.setAttribute("OK", OK);
+			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
+		}
+		catch(Exception e)
+		{
+			request.setAttribute("serv", null);
+			request.setAttribute("OK", false);
+			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
+		
+		}
+		*/
+		try{
+			Boolean OK = false;
+			Servicio[] servicios = UsuarioTerminal.realizarBusqueda(tag);
+			
 			request.setAttribute("serv", servicios);
 			request.setAttribute("OK", OK);
 			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);

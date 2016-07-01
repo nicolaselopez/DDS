@@ -1,5 +1,6 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
+<%@page import="modelo.ContextReporte"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +41,13 @@
 </head>
 
 <body>
+<%ContextReporte[] serv = (ContextReporte[])request.getAttribute("serv"); %>
+<% if(serv == null){
+	serv = new ContextReporte[1];
+	serv[0].setFecha("Error");
+	serv[0].setId(-1);};%>
+<%Boolean OK = (Boolean)request.getAttribute("OK"); %>
+
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
@@ -89,6 +97,15 @@
         <div class="text-center">
             <br>
             <h2>Reporte Creado</h2>
+            <% 
+            int j =0;
+            
+            while(serv[j].getId()!=-1)
+            {
+            	out.write("<h3>"+serv[j].getFecha()+" - " + serv[j].getTotal()+"</h3>");
+            	j++;
+            }
+			%>
         	<br>
         </div>
     </header>
