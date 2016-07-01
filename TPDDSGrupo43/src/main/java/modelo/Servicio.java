@@ -106,6 +106,7 @@ public class Servicio {
 	public void setServicioActivo(int servicioActivo) {
 		ServicioActivo = servicioActivo;
 	}
+	
 	public Servicio(int idServicio, int servicioIdPoi, int servicioIdTipoPoi, String servicioDescripcion,
 			String servicioDiaDisponible, String servicioHoraDesde1, String servicioHoraHasta1,
 			String servicioHoraDesde2, String servicioHoraHasta2, String servicioTags, String servicioFechaAlta,
@@ -419,15 +420,42 @@ public class Servicio {
 		
 		return nroDia;
 	}
-	public static Servicio[] consultarServiciosTag(String tag) {
+	//--------------------------------------------------------30/06-MM-
+	private long tiempoInicio;
+	private long tiempoBusqueda;
+	private long tiempoMaximo;
+	
+	public void setTiempoInicio(long tiempo){
+		tiempoInicio = tiempo;
+	}
+	public long getTiempoInicio(){
+		return tiempoInicio;
+	}
+	public void setTiempoBusqueda(long tiempo){
+		tiempoBusqueda = tiempo;
+	}
+	public long getTiempoBusqueda(){
+		return tiempoBusqueda;
+	}
+	public void setTiempoMaximo(long tiempo){
+		tiempoMaximo = tiempo;
+	}
+	public long getTiempoMaximo(){
+		return tiempoMaximo;
+	}
+	//--------------------------------------------------------30/06-MM-
+	
+	public Servicio[] consultarServiciosTag(String tag) {
 		// TODO Auto-generated method stub
 		Servicio[] servicio = new Servicio[20];
+		this.setTiempoInicio(System.currentTimeMillis());
 		try{
 		Conexion c=new Conexion();
 		Connection con=c.getConexion();
 		Statement st=con.createStatement();
 		ResultSet rs=st.executeQuery("Select * from servicio where ServicioTags like '%" + tag + "%';");
 		int i = 0;
+
 		while(rs.next()){
 			servicio[i]=new Servicio(rs.getInt(1), rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13));
 			i++;
@@ -444,7 +472,15 @@ public class Servicio {
 		}catch(Exception se){
 			se.printStackTrace();
 		}
+		//--------------------------------------------------------30/06-MM-
+		long tiempoTranscurrido = System.currentTimeMillis() - tiempoInicio;
+		this.setTiempoBusqueda(tiempoTranscurrido);  
+		if (tiempoBusqueda > tiempoMaximo){
+			// Mandar Mail a Admin
+		//--------------------------------------------------------30/06-MM-
+		}
 		return servicio;
+			
 	}
 	
 	public static Servicio[] crearServiciosBancoXDefecto(JSONObject serviciosObject){

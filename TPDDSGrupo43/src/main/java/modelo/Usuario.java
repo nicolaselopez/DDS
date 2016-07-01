@@ -13,6 +13,7 @@ public class Usuario {
 	private String correo;
 	private String usuario;
 	private String clave;
+	private int idUsuario;
 	private int rol;
 	
 	public String getNombre() {
@@ -51,6 +52,12 @@ public class Usuario {
 	}
 	public int getRol(){
 		return rol;
+	}
+	public void setIdUsuario(int idUsuario){
+		this.idUsuario = idUsuario;
+	}
+	public int getIdUsuario(){
+		return idUsuario;
 	}
 	//------------------------------------------------
 	public Usuario(String nombre, String edad,

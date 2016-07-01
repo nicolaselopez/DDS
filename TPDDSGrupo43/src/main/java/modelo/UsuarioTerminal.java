@@ -6,7 +6,8 @@ import java.sql.Statement;
 
 public class UsuarioTerminal extends Usuario {
 	
-	// Desactivar Terminal (era public static)
+	
+	// Desactivar Terminal (era public static, afecta?)
 	public  Boolean DesactivarTerminal(){
 		Boolean OK = false;
 		try{
@@ -26,5 +27,15 @@ public class UsuarioTerminal extends Usuario {
 		}		
 		return OK;
 	}
+	//--------------------------------------------------------30/06-MM-
+	public void realizarBusqueda(String frase){
+		Servicio servicio = new Servicio();
+		servicio.consultarServiciosTag(frase);
+		RegistroConsulta consulta = new RegistroConsulta(this.getIdUsuario(),servicio.getServicioIdPoi(),"Búsqueda por tag","Detalle",servicio.getTiempoBusqueda());
+		consulta.registrarConsulta(consulta); // Esta de más?
+		int cantidadResultados = servicio.consultarServiciosTag(frase).length;
+		consulta.setResultadoConsulta(frase, cantidadResultados, servicio.getTiempoBusqueda());
+	}
+	//--------------------------------------------------------30/06-MM-
 	
 }
