@@ -421,17 +421,17 @@ public class Servicio {
 		return nroDia;
 	}
 	//--------------------------------------------------------30/06-MM-
-	private long tiempoInicio;
-	private long tiempoBusqueda;
-	private long tiempoMaximo;
+	private static long tiempoInicio;
+	private static long tiempoBusqueda;
+	private static long tiempoMaximo;
 	
-	public void setTiempoInicio(long tiempo){
+	public static void setTiempoInicio(long tiempo){
 		tiempoInicio = tiempo;
 	}
 	public long getTiempoInicio(){
 		return tiempoInicio;
 	}
-	public void setTiempoBusqueda(long tiempo){
+	public static void setTiempoBusqueda(long tiempo){
 		tiempoBusqueda = tiempo;
 	}
 	public long getTiempoBusqueda(){
@@ -445,10 +445,10 @@ public class Servicio {
 	}
 	//--------------------------------------------------------30/06-MM-
 	
-	public Servicio[] consultarServiciosTag(String tag) {
+	public static Servicio[] consultarServiciosTag(String tag) {
 		// TODO Auto-generated method stub
 		Servicio[] servicio = new Servicio[20];
-		this.setTiempoInicio(System.currentTimeMillis());
+		Servicio.setTiempoInicio(System.currentTimeMillis());
 		try{
 		Conexion c=new Conexion();
 		Connection con=c.getConexion();
@@ -474,7 +474,7 @@ public class Servicio {
 		}
 		//--------------------------------------------------------30/06-MM-
 		long tiempoTranscurrido = System.currentTimeMillis() - tiempoInicio;
-		this.setTiempoBusqueda(tiempoTranscurrido);  
+		Servicio.setTiempoBusqueda(tiempoTranscurrido);  
 		if (tiempoBusqueda > tiempoMaximo){
 			// Mandar Mail a Admin
 		//--------------------------------------------------------30/06-MM-
