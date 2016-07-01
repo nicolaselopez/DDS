@@ -63,7 +63,7 @@ public class ServletReporteSeleccion extends HttpServlet {
 			}
 		}
 
-		ContextReporte[] reportes = consulta.ejecutar();
+		ContextReporte[] reportes = consulta.ejecutar(1);
 		
 		if (RegistroOK) {
 			request.setAttribute("serv", reportes);

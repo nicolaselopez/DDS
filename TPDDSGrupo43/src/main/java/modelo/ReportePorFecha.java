@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class ReportePorFecha implements GenerarReporte
 {
 	@Override
-	public ContextReporte[] generarInformeBusqueda() {
+	public ContextReporte[] generarInformeBusqueda(int idUsuario) {
 		// TODO Auto-generated method stub
 		ContextReporte[] list = new ContextReporte[20];
 		try {

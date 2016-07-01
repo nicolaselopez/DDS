@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class ReportePorUsuario implements GenerarReporte{
 
 	@Override
-	public ContextReporte[] generarInformeBusqueda() 
+	public ContextReporte[] generarInformeBusqueda(int idUsuario) 
 	{
 		ContextReporte[] list = new ContextReporte[20];
 		try {
@@ -15,7 +15,7 @@ public class ReportePorUsuario implements GenerarReporte{
 			Connection con = c.getConexion();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(
-					"SELECT IdRegistroConsulta, RegConIdUsuario, count(*) FROM dds.registroconsulta group by RegConIdUsuario,RegConFechaConsulta;");
+					"Select IdRegistroConsulta, RegConFechaConsulta, count(*) from registroconsulta where RegConIdUsuario = "+idUsuario+" group by RegConFechaConsulta;");
 			
 			int i = 0;
 			while(rs.next()){

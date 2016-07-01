@@ -41,8 +41,8 @@ public class ContextReporte
 		super();
 	}
 
-	public ContextReporte[] ejecutar()
+	public ContextReporte[] ejecutar(int idUsuario)
 	{
-		return reporte.generarInformeBusqueda();
+		return reporte.generarInformeBusqueda(idUsuario);
 	}
 }
