@@ -570,8 +570,18 @@ public class Servicio {
 		Servicio.setTiempoBusqueda(tiempoTranscurrido);  
 		if (tiempoBusqueda > tiempoMaximo){
 			// Mandar Mail a Admin
+			String destinatarios = Mail.destinatarioAdministrador();
+			Mail.enviar("Estimados Administradores:\n\nSe ha generado una consulta que ha superado el tiempo maximo de: " + tiempoMaximo + "\n\nPor favor dar el soporte correspondiente.", destinatarios);
 		//--------------------------------------------------------30/06-MM-
 		}
+		int cantidad = 0;
+		for(int i = 0; i<servicio.length; i++){
+			if(servicio[i].getIdServicio() != -1){
+				cantidad++;
+			}
+		};
+		RegistroConsulta registro = new RegistroConsulta(1, 0, "1", tag,cantidad,tiempoBusqueda, LocalDate.now().toString());
+		RegistroConsulta.registrarConsulta(registro);
 		return servicio;
 			
 	}

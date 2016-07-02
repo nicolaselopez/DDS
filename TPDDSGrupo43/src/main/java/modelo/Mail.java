@@ -1,4 +1,7 @@
 package modelo;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -47,5 +50,24 @@ public class Mail {
 		}
 		
 		return true;
+	}
+
+	public static String destinatarioAdministrador() {
+		// TODO Auto-generated method stub
+		String destinatarios = "";
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs;
+			rs=st.executeQuery("Select email from usuarios where rol=1;");
+			while(rs.next()){
+				destinatarios = destinatarios + rs.getString(1) + ",";
+			}
+		}catch(Exception se){
+			se.printStackTrace();
+		}
+		
+		return destinatarios;
 	}
 }

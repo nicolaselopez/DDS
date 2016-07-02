@@ -15,7 +15,7 @@ public class ReportePorUsuario implements GenerarReporte{
 			Connection con = c.getConexion();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(
-					"Select IdRegistroConsulta, RegConFechaConsulta, count(*) from registroconsulta where RegConIdUsuario = "+idUsuario+" group by RegConFechaConsulta;");
+					"Select IdRegistroConsulta, RegConFechaConsulta, SUM(RegConCantidad) from registroconsulta where RegConIdUsuario = "+idUsuario+" group by RegConFechaConsulta;");
 			
 			int i = 0;
 			while(rs.next()){

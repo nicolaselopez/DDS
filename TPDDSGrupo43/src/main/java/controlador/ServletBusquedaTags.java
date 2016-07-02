@@ -39,7 +39,7 @@ public class ServletBusquedaTags extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String tag=request.getParameter("tag");
-/*
+
 		try{
 			Boolean OK = false;
 			Servicio[] servicios = Servicio.consultarServiciosTag(tag);
@@ -54,7 +54,7 @@ public class ServletBusquedaTags extends HttpServlet {
 			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
 		
 		}
-		*/
+/*		
 		try{
 			Boolean OK = false;
 			Servicio[] servicios = UsuarioTerminal.realizarBusqueda(tag);
@@ -69,7 +69,7 @@ public class ServletBusquedaTags extends HttpServlet {
 			request.setAttribute("OK", false);
 			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
 		
-		}
+		}*/
 	}
 
 	/**

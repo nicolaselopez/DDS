@@ -102,8 +102,8 @@
 	                    <select id="tipo" name="tipo">
 	              
 	                    <option value="PorFecha" >Por Fecha</option>
-	                    <option value="PorTerminal">Por Terminal</option>
-	                    <option value="PorUsuario">Por Usuario</option>
+	                    <option value="PorTerminal">Por Usuario</option>
+	                    <option value="PorUsuario">Por Terminal Total</option>
  					
 	                    </select>
 	                </div>

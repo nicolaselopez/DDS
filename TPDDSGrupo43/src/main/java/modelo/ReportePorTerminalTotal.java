@@ -16,7 +16,7 @@ public class ReportePorTerminalTotal implements GenerarReporte {
 			Connection con = c.getConexion();
 			Statement st = con.createStatement();
 			ResultSet rs = st
-					.executeQuery("SELECT IdRegistroConsulta, RegConIdUsuario, count(*) FROM dds.registroconsulta group by RegConIdUsuario;");
+					.executeQuery("SELECT IdRegistroConsulta, RegConIdUsuario, SUM(RegConCantidad) FROM dds.registroconsulta group by RegConIdUsuario;");
 			int i = 0;
 			while(rs.next()){
 				list[i]=new ContextReporte(new ReportePorFecha() ,rs.getInt(1) ,String.valueOf(rs.getInt(2)) , rs.getInt(3));

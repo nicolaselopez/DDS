@@ -84,7 +84,7 @@
                     <input type="text" name="latitud2" id="latitud2" placeholder="Latitud Poi">
                     <input type="text" name="longitud2" id="longitud2" placeholder="Longitud Poi">
                     
-                    <h1>O eleji de esta lista:</h1>
+                    <h1>O elegi de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%
@@ -114,7 +114,7 @@
                 <div class="loginmodal-container">
                     <h2>Calculo de Disponibilidad</h2><br>
                     <form action="ServletCalculoDisponibilidad" method="get">
-                    <h1>Eleji de esta lista:</h1>
+                    <h1>Elegi de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%

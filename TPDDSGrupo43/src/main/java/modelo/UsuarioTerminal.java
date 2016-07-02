@@ -30,7 +30,7 @@ public class UsuarioTerminal extends Usuario {
 		return OK;
 	}
 	//--------------------------------------------------------30/06-MM-
-	public static Servicio[] realizarBusqueda(String frase)
+	/*public static Servicio[] realizarBusqueda(String frase)
 	{
 		Servicio[] servicios = Servicio.consultarServiciosTag(frase);
 		
@@ -44,6 +44,6 @@ public class UsuarioTerminal extends Usuario {
 		
 		return servicios;
 	}
-	//--------------------------------------------------------30/06-MM-
+	//--------------------------------------------------------30/06-MM-*/
 	
 }

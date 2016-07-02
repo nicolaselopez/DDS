@@ -16,8 +16,9 @@ public class RegistroConsulta {
 	private int RegConIdPoi;
 	private String RegConTipoConsulta;
 	private String RegConDetalle;
+	private int RegConCantidad;
 	private String RegConFechaConsulta;
-	private float RegConDuracion;
+	private long RegConDuracion;
 	private RegistroConsulta RegCriterioReporte;
 
 	public int getIdRegistroConsulta() {
@@ -68,11 +69,11 @@ public class RegistroConsulta {
 		RegConDetalle = regConDetalle;
 	}
 
-	public float getRegConDuracion() {
+	public long getRegConDuracion() {
 		return RegConDuracion;
 	}
 
-	public void setRegConDuracion(float regConDuracion) {
+	public void setRegConDuracion(long regConDuracion) {
 		RegConDuracion = regConDuracion;
 	}
 
@@ -83,6 +84,24 @@ public class RegistroConsulta {
 	public void setRegCriterio(RegistroConsulta regConDuracion) {
 		RegCriterioReporte = regConDuracion;
 	}
+	
+	public int getRegConCantidad() {
+		return RegConCantidad;
+	}
+
+	public void setRegConCantidad(int regConCantidad) {
+		RegConCantidad = regConCantidad;
+	}
+
+	public RegistroConsulta getRegCriterioReporte() {
+		return RegCriterioReporte;
+	}
+
+	public void setRegCriterioReporte(RegistroConsulta regCriterioReporte) {
+		RegCriterioReporte = regCriterioReporte;
+	}
+
+
 
 	// --------------------------------------------------------------------------------
 	private int CantidadResultados;
@@ -103,13 +122,14 @@ public class RegistroConsulta {
 	}
 
 	// --------------------------------------------------------------------------------
-	public RegistroConsulta(int regConIdUsuario, int regConIdPoi, String regConTipoConsulta, String regConDetalle,
-			float regConDuracion, String fecha) {
+	public RegistroConsulta(int regConIdUsuario, int regConIdPoi, String regConTipoConsulta, String regConDetalle, int regConCantidad,
+			long regConDuracion, String fecha) {
 		super();
 		RegConIdUsuario = regConIdUsuario;
 		RegConIdPoi = regConIdPoi;
 		RegConTipoConsulta = regConTipoConsulta;
 		RegConDetalle = regConDetalle;
+		RegConCantidad = regConCantidad;
 		RegConDuracion = regConDuracion;
 		RegConFechaConsulta = fecha;
 	}
@@ -126,9 +146,9 @@ public class RegistroConsulta {
 			Connection con = c.getConexion();
 			Statement st = con.createStatement();
 			Integer rs = st.executeUpdate(
-					"INSERT INTO registroconsulta(RegConIdUsuario,RegConIdPoi,RegConTipoConsulta,RegConDetalle,RegConDuracion,RegConFechaConsulta) VALUES("
-							+ consulta.RegConIdUsuario + "," + consulta.RegConIdPoi + ",'" + consulta.RegConTipoConsulta
-							+ "','" + consulta.RegConDetalle + "'," + consulta.RegConDuracion + ", CURDATE());");
+					"INSERT INTO registroconsulta(RegConIdUsuario,RegConIdPoi,RegConTipoConsulta,RegConDetalle,RegConCantidad,RegConDuracion,RegConFechaConsulta) VALUES("
+							+ consulta.getRegConIdUsuario() + "," + consulta.getRegConIdPoi() + ",'" + consulta.getRegConTipoConsulta()
+							+ "','" + consulta.getRegConDetalle() + "'," + consulta.getRegConCantidad() + ",'"  + Long.toString(consulta.getRegConDuracion()) + "', '" + consulta.getRegConFechaConsulta()+ "');");
 			if (rs == 1) {
 				OK = true;
 			}
