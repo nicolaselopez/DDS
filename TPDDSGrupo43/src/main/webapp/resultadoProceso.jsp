@@ -1,4 +1,4 @@
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Poi"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,58 +36,24 @@
 </head>
 
 <body>
-
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="index.jsp" onclick = $("#menu-close").click(); >Mapa</a>
             </li>
             <li>
-                <a href="registrarPoi.jsp" onclick = $("#menu-close").click(); >Registrar Poi</a>
-            </li>
-            <li>
-                <a href="agregarServicio.jsp" onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
-            </li>
-            <li>
-                <a href="editarPoiSeleccion.jsp" onclick = $("#menu-close").click(); >Editar Poi</a>
-            </li>
-            <li>
-                <a href="borrarPoi.jsp" onclick = $("#menu-close").click(); >Borrar Poi</a>
-            </li>
-        	<li>
-                <a href="recuperarPoi.jsp" onclick = $("#menu-close").click(); >Recuperar Poi</a>
-            </li>       	
-            <li>
-                <a href="editarServicioSeleccion.jsp" onclick = $("#menu-close").click(); >Editar Servicio</a>
-            </li>
-        	<li>
-                <a href="borrarServicio.jsp" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
-            </li>      
-            <li>
-                <a href="recuperarServicio.jsp" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
-            </li>    
-            <li>
-                <a href="actualizarInfoExterna.jsp" onclick = $("#menu-close").click(); >Actualizar Info Externa</a>
-            </li>  
-            <li>
-                <a href="reporteSeleccion.jsp" onclick = $("#menu-close").click(); >Generar Reportes</a>
-            </li> 
-            <li>
-                <a href="proceso.jsp" onclick = $("#menu-close").click(); >Procesos</a>
-            </li>
-            <li>
-                <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
+                <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
         </ul>
     </nav>
-
+    
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Gestion de Pois y Servicios</h1>
+            <h1>Procesando</h1>          
             <br>
         </div>
     </header>
