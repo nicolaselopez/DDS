@@ -9,7 +9,7 @@ public class Proceso1 extends ProcesoStr {
 	public void procesar() {
 		
 		String nombreFantasia = "Kiosco El Turco";
-		String tags = "kiosco1;turco1;atencion1;caramelos1;cerveza";
+		String tags = "kiosco1;turco1;atencion1;caramelos1;cerveza2";
 		
 		try{
 			Conexion c=new Conexion();
@@ -17,9 +17,9 @@ public class Proceso1 extends ProcesoStr {
 			Statement st=con.createStatement();
 			
 			ResultSet rs;
-			rs=st.executeQuery("select IdPoi from poi where PoiDescripcion='"+nombreFantasia+"';");
+			rs=st.executeQuery("select * from poi where PoiDescripcion= '"+nombreFantasia+"';");
 
-			Integer ru=st.executeUpdate("update servicio SET ServicioTags='" +tags+"' where ServicioIdPoi="+rs+";");
+			Integer ru=st.executeUpdate("update servicio SET ServicioTags='" +tags+"' where ServicioIdPoi=1;");
 			
 			if(ru == 1){
 			}

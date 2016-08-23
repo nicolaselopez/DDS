@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Servicio;
+import modelo.Proceso1;
+import modelo.ProcesoContext;
 import modelo.ProcesoStr;
 
 /**
@@ -39,10 +44,22 @@ public class ServletProceso extends HttpServlet  {
 		ProcesoStr.generarProcesos(dLun);
 
 		Boolean RegistroOK = false;
+		ArrayList<String> procesos = ProcesoStr.getProcesos();
+		ProcesoContext context;
 		
-		if(!ProcesoStr.getProcesos().isEmpty())
+		for(int i=0; i<procesos.size();i++)
 		{
 			RegistroOK = true;
+			if(procesos.get(i).equals("dLun"))
+			{
+				context = new ProcesoContext(new Proceso1());
+			}
+			else
+			{
+				context = new ProcesoContext(new Proceso1());
+			}
+			
+			context.executeStrategy();
 		}
 		
 		if(RegistroOK){

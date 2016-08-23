@@ -1,10 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class ProcesoStr {
-	private static List<String> procesos;
+	private static ArrayList<String> procesos;
 	
 	public void procesar() {
 	}
@@ -16,7 +15,7 @@ public abstract class ProcesoStr {
 		procesos.add(dLun);
 	}
 	
-	public static List<String> getProcesos()
+	public static ArrayList<String> getProcesos()
 	{
 		return procesos;
 	}
