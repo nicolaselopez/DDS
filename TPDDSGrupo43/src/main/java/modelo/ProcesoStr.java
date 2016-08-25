@@ -20,4 +20,9 @@ public abstract class ProcesoStr {
 		return procesos;
 	}
 
+	protected void grabarProceso(String mensaje) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
