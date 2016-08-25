@@ -1,5 +1,8 @@
 package modelo;
 
+import java.sql.Connection;
+import java.util.Date;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public abstract class ProcesoStr {
@@ -20,9 +23,23 @@ public abstract class ProcesoStr {
 		return procesos;
 	}
 
-	protected void grabarProceso(String mensaje) {
+	protected void grabarProceso(int proceso, String estado, String mensaje, Date inicio, Date fin) {
 		// TODO Auto-generated method stub
-		
+		Boolean OK = false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			Integer rs=st.executeUpdate("INSERT INTO logprocesos "+
+				"(procesoid,inicio,fin,estado,mensaje) "+
+				"VALUES "+
+				"("+proceso+",'"+inicio.toString()+"','"+fin.toString()+"','"+estado+"','"+mensaje+"') ; ");
+			if(rs == 1){
+				OK = true;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 }
