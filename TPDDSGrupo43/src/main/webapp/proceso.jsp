@@ -99,10 +99,10 @@
                   <form action="ServletProceso" method="get">
                    
                      <div class="styled-select">
-	                    <select id="poi" name="poi">
+	                    <select id="proceso" name="proceso">
 	                    <%
 						String[] procesos = new listObject().getlistProcesos();
-	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
+	                    out.write("<option value=\"0\">--Seleccionar Proceso--</option>");
 	                    for(int i=0;i<procesos.length;i++) {
 	                    	
 	                    	out.write("<option value=" + procesos[i]+ ">" + procesos[i]+"</option>");

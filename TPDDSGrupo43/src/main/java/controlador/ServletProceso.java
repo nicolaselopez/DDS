@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Servicio;
 import modelo.Proceso1;
+import modelo.Proceso2;
 import modelo.ProcesoContext;
 import modelo.ProcesoStr;
 
@@ -25,25 +26,25 @@ public class ServletProceso extends HttpServlet  {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String dLun=request.getParameter("poi");
+		String select=request.getParameter("proceso");
 		
 		Boolean RegistroOK = true;
 
-		ProcesoContext context;
+		ProcesoContext context = null;
 		
-		if(dLun.equals("Proceso4"))
+		if(select.equals("Proceso4"))
 		{
 			RegistroOK = false;
 		}
 		else
 		{
-			if(dLun.equals("Proceso1"))
+			if(select.equals("Proceso1"))
 			{
 				context = new ProcesoContext(new Proceso1());
 			}
-			else
+			else if(select.equals("Proceso2"))
 			{
-				context = new ProcesoContext(new Proceso1());
+				context = new ProcesoContext(new Proceso2());
 			}
 			context.executeStrategy();
 		}

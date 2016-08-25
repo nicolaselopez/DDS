@@ -1,16 +1,8 @@
 package modelo;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.Date;
-import java.util.StringTokenizer;
+
 
 public class Proceso2 extends ProcesoStr {
 
