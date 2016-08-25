@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringTokenizer;
 
@@ -34,6 +35,8 @@ public class Proceso1 extends ProcesoStr {
 			input = new FileReader(fileIn);
 			BufferedReader brProd = new BufferedReader(input);
 
+			int id = 1;
+			
 			while (brProd.ready()) {
 				StringTokenizer tokens = new StringTokenizer(brProd.readLine(), DELIM, true); // Toma a la ";" como un token mas
 
@@ -42,8 +45,17 @@ public class Proceso1 extends ProcesoStr {
 				String tags = tokens.nextToken(); // Aca estan los tags
 
 				tags = tags.replaceAll(" ", ";");
-
-	        	output.write(nombreFantasia+" "+tags+" \n");
+			
+				if(consultarServicios(nombreFantasia,tags,id))
+				{
+					output.write("Anduvo!!!");
+				}
+				else
+				{
+					output.write("No Anduvo :(");
+				}
+				id++;
+	        	
 			}
 
 			brProd.close();
@@ -63,24 +75,27 @@ public class Proceso1 extends ProcesoStr {
 
 	}
 	
-	public void guardarRelacion(String a, String b, Writer output) throws IOException
-	{
-		try
-		{
-        	output.write(a+" "+b);
-        	output.write("\n");
-		}
-		catch(Exception ioe)
-		{
-			System.out.println("No se encontro el archivo");
-		}
-		finally
-		{
-			if (output != null)
-			{
-				output.close();
-			}
+	public static boolean consultarServicios(String nombre, String tags, int id){
 
+		boolean OK = false;
+		ResultSet rs;
+		Integer ru;
+		
+		try{
+		Conexion c=new Conexion();
+		Connection con=c.getConexion();
+		Statement st=con.createStatement();
+		
+		rs=st.executeQuery("Select * from poi where PoiDescripcion=" + nombre + ";");
+		
+		ru = st.executeUpdate("update servicio SET ServicioTags='"+tags+"' where ServicioIdPoi="+id+";");
+
+		OK=true;
+
+		}catch(Exception se){
+			se.printStackTrace();
 		}
+		
+		return OK;
 	}
 }
