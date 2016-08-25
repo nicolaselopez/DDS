@@ -96,19 +96,12 @@
           <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Seleccione un Proceso</h1>
-                  <form action="ServletProceso" method="get">
+                  <form action="ServletProceso4" method="get">
                    
                      <div class="styled-select">
-	                    <select id="poi" name="poi">
-	                    <%
-						String[] procesos = new listObject().getlistProcesos();
-	                    out.write("<option value=\"0\">--Seleccionar POI--</option>");
-	                    for(int i=0;i<procesos.length;i++) {
-	                    	
-	                    	out.write("<option value=" + procesos[i]+ ">" + procesos[i]+"</option>");
-						}
-						%>
-	                    </select>
+	                    <input type="checkbox" id="dLun" name="dLun" value="Lun">Proceso1<br>
+	                    <input type="checkbox" id="dMar" name="dMar" value="Mar">Proceso2<br>
+	                    <input type="checkbox" id="dMie" name="dMie" value="Mie">Proceso3<br>
 	                </div>
 	                <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Servicio">
                   </form>

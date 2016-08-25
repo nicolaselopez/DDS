@@ -1,58 +1,61 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Servicio;
+import modelo.Direccion;
+import modelo.Poi;
 import modelo.Proceso1;
-import modelo.ProcesoContext;
-import modelo.ProcesoStr;
+import modelo.Proceso4;
+import modelo.Servicio;
 
 /**
- * Servlet implementation class ServletRegistrarServicio
+ * Servlet implementation class ServletProceso4
  */
-@WebServlet("/ServletProceso")
-public class ServletProceso extends HttpServlet  {
+@WebServlet("/ServletProceso4")
+public class ServletProceso4 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public ServletProceso4() {
+        // TODO Auto-generated constructor stub
+    }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String dLun=request.getParameter("poi");
-		
 		Boolean RegistroOK = true;
-
-		ProcesoContext context;
 		
-		if(dLun.equals("Proceso4"))
+		String dLun=request.getParameter("dLun");
+		String dMar=request.getParameter("dMar");
+		String dMie=request.getParameter("dMie");
+
+		Proceso4 proceso4 = new Proceso4();
+		if(!dLun.isEmpty())
+		{
+			proceso4.add(new Proceso1());
+		}
+
+		try
+		{
+			proceso4.procesar();
+		}
+		catch(Exception e)
 		{
 			RegistroOK = false;
 		}
-		else
-		{
-			if(dLun.equals("Proceso1"))
-			{
-				context = new ProcesoContext(new Proceso1());
-			}
-			else
-			{
-				context = new ProcesoContext(new Proceso1());
-			}
-			context.executeStrategy();
-		}
-			
 		
 		if(RegistroOK){
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
 		}else{
-			request.getRequestDispatcher("proceso4.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 

@@ -12,16 +12,24 @@ import java.sql.Statement;
 import java.util.StringTokenizer;
 
 public class Proceso1 extends ProcesoStr {
+	String fileOut = "E:\\Progs\\Java\\Randomizar\\src\\output.txt";
+	String fileIn = "E:\\Progs\\Java\\Randomizar\\src\\input.txt";
+
 
 	@Override
 	public void procesar() {
-
-		String fileIn = "E:\\Progs\\Java\\Randomizar\\src\\input.txt";
-
-		String DELIM = ";";
-
 		Reader input = null;
-
+		String DELIM = ";";
+		
+		Writer output = null;
+		
+		try {
+			output = new FileWriter(fileOut);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
 		try {
 			input = new FileReader(fileIn);
 			BufferedReader brProd = new BufferedReader(input);
@@ -35,7 +43,7 @@ public class Proceso1 extends ProcesoStr {
 
 				tags = tags.replaceAll(" ", ";");
 
-				guardarRelacion(nombreFantasia, tags);
+	        	output.write(nombreFantasia+" "+tags+" \n");
 			}
 
 			brProd.close();
@@ -45,6 +53,7 @@ public class Proceso1 extends ProcesoStr {
 			if (input != null) {
 				try {
 					input.close();
+					output.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -54,15 +63,10 @@ public class Proceso1 extends ProcesoStr {
 
 	}
 	
-	public void guardarRelacion(String a, String b) throws IOException
+	public void guardarRelacion(String a, String b, Writer output) throws IOException
 	{
-		Writer output = null;
-		String fileOut = "E:\\Progs\\Java\\Randomizar\\src\\output.txt";
-		
 		try
 		{
-			output = new FileWriter(fileOut);
-			
         	output.write(a+" "+b);
         	output.write("\n");
 		}

@@ -54,4 +54,10 @@ public class listObject{
 		serviciosPoi = Servicio.consultarServicios(idPoi, externo, servicioActivo);
 		return serviciosPoi;
 	}
+	
+	public String[] getlistProcesos()
+	{
+		String[] procesos = {"Proceso1", "Proceso2", "Proceso3", "Proceso4"};
+		return procesos;
+	}
 }
