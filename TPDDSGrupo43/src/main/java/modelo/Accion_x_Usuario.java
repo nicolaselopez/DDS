@@ -10,10 +10,11 @@ public class Accion_x_Usuario {
 	
 	protected int IdUsuario;
 	protected int IdAccion;
-	protected String AccionDescripcion;
 	protected LocalDateTime FechaDeCreacion;
 	protected Boolean Activo;
+	protected int NroSecuencial;
 	public Accion_x_Usuario tabla;
+	
 	Accion_x_Usuario tablaOriginal = new Accion_x_Usuario();
 	
 	public int getIdUsuario() {
@@ -31,15 +32,6 @@ public class Accion_x_Usuario {
 		IdAccion = idAccion;
 	}
 	
-	
-	public String getAccionDescripcion() {
-		return AccionDescripcion;
-	}
-	public void setAccionDescripcion(String accionDescripcion) {
-		AccionDescripcion = accionDescripcion;
-	}
-	
-	
 	public LocalDateTime getFechaDeCreacion() {
 		return FechaDeCreacion;
 	}
@@ -55,29 +47,32 @@ public class Accion_x_Usuario {
 		Activo = activo;
 	}
 	
-	public Accion_x_Usuario getTablaOriginal(){
-		return tablaOriginal;
+	public int getNroSecuencial() {
+		return NroSecuencial;
+	}
+	public void setNroSecuencial(int nroSecuencial) {
+		NroSecuencial = nroSecuencial;
 	}
 	
-	public void setTablaOriginal(Accion_x_Usuario tablaOriginal){
-		tabla = tablaOriginal;
-	}
-	
-	public Accion_x_Usuario(int idUsuario, int idAccion, String accionDescripcion, LocalDateTime fechaDeCreacion, Boolean activo){
+	public Accion_x_Usuario(int idUsuario, int idAccion, LocalDateTime fechaDeCreacion, Boolean activo, int nroSecuencial){
 		super();
 		IdUsuario = idUsuario;
 		IdAccion = idAccion;
-		AccionDescripcion = accionDescripcion;
 		FechaDeCreacion = fechaDeCreacion;
 		Activo = activo;
+		NroSecuencial = nroSecuencial;
+		
 	}
 	
 	public Accion_x_Usuario(){
 		super();
 	}
 	
+	int secuencialActual = 0;
+	
 	public void iniciarProcesoDe(UsuarioAdministrador admin){
 		
+		secuencialActual = this.getSecuencial()+1;
 		this.agregarAccionesAUsuarios(admin);
 	}// Por ahora no se me ocurre otra cosa que pasarle el admin que gejecuto el proces para
 	 // tener acceso a los metodos getAcciones y getUsuarios
@@ -88,23 +83,20 @@ public class Accion_x_Usuario {
 	} // A cada usuario se le agrega la lista de acciones
 	
 	public void agregarAccionesA(Usuario usuario, UsuarioAdministrador admin){
+		Accion.setSecuencialActual(secuencialActual);
 		admin.getAccionesAAgregar().forEach(accion->accion.asignarlaA(usuario));
 	}// Cada accion perteneciente a lista se agrega una por una al usuario parametro
 	
-	public void restaurarAOriginal(){
+	public void hacerRollBack(){
 		
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-
-			Integer ru=st.executeUpdate("UPDATE acciones_x_usuario SET"
-					+ " IdUsuario= "+this.getTablaOriginal().IdUsuario+
-					",IdAccion="+this.getTablaOriginal().IdAccion+
-					", AccionDescripcion = "+this.getTablaOriginal().AccionDescripcion+
-					 ", FechaDeCreacion= "+this.getTablaOriginal().FechaDeCreacion+
-					 ", Activo= "+this.getTablaOriginal().Activo+");");
-		
+			ResultSet rs=st.executeQuery("SELECT MAX(NroSecuencial) from acciones_x_usuario");
+			Integer ru=st.executeUpdate("UPDATE accion_x_usuario SET Activo="+1+" where NroSecuencial ="+(rs.getInt(1)-1)+";");
+			Integer rd=st.executeUpdate("DELETE from acciones_x_usuario where NroSecuencial="+rs.getInt(1)+";");
+			secuencialActual--;
 			if(ru == 1){
 			}
 		}catch(Exception se){
@@ -112,6 +104,20 @@ public class Accion_x_Usuario {
 		}
 	}
 	
+	public int getSecuencial(){
+		int secuencialMaximo=0;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT MAX(NroSecuencial) from acciones_x_usuario");
+			secuencialMaximo = rs.getInt(1);	
+		}
+		catch(Exception se){
+			se.printStackTrace();
+		}
+		return secuencialMaximo;
+	}
 	public static boolean chequeoAccionDeUsuario(int usuario, int IdAccion){
 		boolean OK = false;
 		try{

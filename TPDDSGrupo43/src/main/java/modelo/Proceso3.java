@@ -1,9 +1,9 @@
 package modelo;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.List;
+//import java.sql.Connection;
+//import java.sql.ResultSet;
+//import java.sql.Statement;
+//import java.util.List;
 
 public class Proceso3 extends ProcesoStr {
 
@@ -12,14 +12,7 @@ public class Proceso3 extends ProcesoStr {
 		
 		Accion_x_Usuario AxU = new Accion_x_Usuario(); // Instanciar vacio?
 		UsuarioAdministrador admin = new UsuarioAdministrador();
-		this.copiarTablaParaRestauracion(AxU);
 		AxU.iniciarProcesoDe(admin);
-	}
-
-
-	public void copiarTablaParaRestauracion(Accion_x_Usuario tabla){
-	
-		tabla.setTablaOriginal(tabla);
 	}
 
 }	

@@ -39,7 +39,7 @@ public class UsuarioAdministrador extends Usuario {
 	
 	public void deshacerCambiosAcciones(Accion_x_Usuario tabla){
 		
-		tabla.restaurarAOriginal();
+		tabla.hacerRollBack();
 	}
 	
 }

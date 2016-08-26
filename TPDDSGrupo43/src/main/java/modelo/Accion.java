@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 
@@ -34,6 +35,8 @@ public class Accion {
 		AccionDescripcion = accionDescripcion;
 	}
 	
+	public static int numeroSecuencial;
+	
 	public void asignarlaA(Usuario unUsuario){
 		
 		
@@ -41,18 +44,25 @@ public class Accion {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-
+			ResultSet rs=st.executeQuery("SELECT MAX(NroSecuencial) from acciones_x_usuario where Usuario = idUsuario");
 			Integer ru=st.executeUpdate("INSERT INTO acciones_x_usuario (IdUsuario,IdAccion,"
-				+ "AccionDescripcion,FechaDeCreacion,Activo) VALUES ("+unUsuario.getIdUsuario()+","
-				+this.getIdAccion()+","+this.getAccionDescripcion()+","
-				+LocalDate.now()+","+1+");");
-		
-			if(ru == 1){
-			}
+				+ "FechaDeCreacion,Activo,NroSecuencial) VALUES ("+unUsuario.getIdUsuario()+","
+				+this.getIdAccion()+","+LocalDate.now()+","+1+","+Accion.getSecuencialActual()+");");
+			Integer ru2=st.executeUpdate("UPDATE acciones_x_usuario SET Activo="+0+" where"
+					+ " NroSecuencial="+(Accion.getSecuencialActual()-1)+") and Usuario = idUsuario;");
+			
 		}catch(Exception se){
 			se.printStackTrace();
 	}
 		//INSERT INTO table (id, name, age) VALUES(1, "A", 19) ON DUPLICATE KEY UPDATE    
 		//name="A", age=19 --- Agregar valor y si ya esta actualizar
+	}
+
+	public static void setSecuencialActual(int secuencialActual) {
+		numeroSecuencial = secuencialActual;
+		
+	}
+	public static int getSecuencialActual(){
+		return numeroSecuencial;
 	}
 }
