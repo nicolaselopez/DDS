@@ -114,18 +114,18 @@
                    
                        <%
 						Accion[] acciones = new listObject().getlistAcciones();
-                       	out.write("<input type=\"checkbox\" id=\"acc0\" name=\"acc0\" value="+ acciones[0].getIdAccion()+">"+ acciones[0].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc1\" name=\"acc1\" value="+ acciones[1].getIdAccion()+">"+ acciones[1].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc2\" name=\"acc2\" value="+ acciones[2].getIdAccion()+">"+ acciones[2].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc3\" name=\"acc3\" value="+ acciones[3].getIdAccion()+">"+ acciones[3].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc4\" name=\"acc4\" value="+ acciones[4].getIdAccion()+">"+ acciones[4].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc5\" name=\"acc5\" value="+ acciones[5].getIdAccion()+">"+ acciones[5].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc6\" name=\"acc6\" value="+ acciones[6].getIdAccion()+">"+ acciones[6].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc7\" name=\"acc7\" value="+ acciones[7].getIdAccion()+">"+ acciones[7].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc8\" name=\"acc8\" value="+ acciones[8].getIdAccion()+">"+ acciones[8].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc9\" name=\"acc9\" value="+ acciones[9].getIdAccion()+">"+ acciones[9].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc10\" name=\"acc10\" value="+ acciones[10].getIdAccion()+">"+ acciones[10].getAccionDescripcion()+"<br>");
-                   		out.write("<input type=\"checkbox\" id=\"acc11\" name=\"acc11\" value="+ acciones[11].getIdAccion()+">"+ acciones[11].getAccionDescripcion()+"<br>");
+                       	out.write("<input type=\"checkbox\" id=\"acc1\" name=\"acc0\" value=1>"+ acciones[0].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc2\" name=\"acc1\" value=1>"+ acciones[1].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc3\" name=\"acc2\" value=1>"+ acciones[2].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc4\" name=\"acc3\" value=1>"+ acciones[3].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc5\" name=\"acc4\" value=1>"+ acciones[4].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc6\" name=\"acc5\" value=1>"+ acciones[5].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc7\" name=\"acc6\" value=1>"+ acciones[6].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc8\" name=\"acc7\" value=1>"+ acciones[7].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc9\" name=\"acc8\" value=1>"+ acciones[8].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc10\" name=\"acc9\" value=1>"+ acciones[9].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc11\" name=\"acc10\" value=1>"+ acciones[10].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc12\" name=\"acc11\" value=1>"+ acciones[11].getAccionDescripcion()+"<br>");
                    		
 						%>
 	                <input type="hidden" name="us" value = <%= usu %>>

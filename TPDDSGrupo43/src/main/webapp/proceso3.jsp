@@ -1,6 +1,7 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
 <%@page import="modelo.Usuario" %>
+<%@page import="modelo.Accion" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +102,9 @@
             <br>
             <h2>Proceso</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Seleccionar Usuarios</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Asignar Acciones a Usuarios</a>
+        	<br>
+        	<a href="#" data-toggle="modal" data-target="#rollback-modal" class="btn btn-dark btn-lg">Rollback Usuario</a>
         </div>
     </header>
 
@@ -110,7 +113,7 @@
           <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Seleccione Usuarios</h1>
-                  <form action="ServletSeleccionarAcciones" method="get">
+                  <form action="ServletProceso3" method="get">
                    
                      <div class="styled-select">
                      <select id="proceso" name="proceso">
@@ -119,14 +122,55 @@
                      for(int i=0;i<procesos.length;i++) {
 	                    	if(procesos[i]==null)
 	                    		break;
-	                    	out.write("<option value=" + procesos[i].getIdUsuario()+ ">" + procesos[i].getNombre()+"</option>");
+	                    	out.write("<option value=" + procesos[i].getUsuario()+ ">" + procesos[i].getNombre()+"</option>");
 						}
 						%>
 	                    </select>
-
+						<%
+						Accion[] acciones = new listObject().getlistAcciones();
+                       	out.write("<input type=\"checkbox\" id=\"acc1\" name=\"acc1\" value=1>"+ acciones[0].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc2\" name=\"acc2\" value=1>"+ acciones[1].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc3\" name=\"acc3\" value=1>"+ acciones[2].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc4\" name=\"acc4\" value=1>"+ acciones[3].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc5\" name=\"acc5\" value=1>"+ acciones[4].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc6\" name=\"acc6\" value=1>"+ acciones[5].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc7\" name=\"acc7\" value=1>"+ acciones[6].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc8\" name=\"acc8\" value=1>"+ acciones[7].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc9\" name=\"acc9\" value=1>"+ acciones[8].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc10\" name=\"acc10\" value=1>"+ acciones[9].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc11\" name=\"acc11\" value=1>"+ acciones[10].getAccionDescripcion()+"<br>");
+                   		out.write("<input type=\"checkbox\" id=\"acc12\" name=\"acc12\" value=1>"+ acciones[11].getAccionDescripcion()+"<br>");
+                   		
+						%>
 					</div>
 	                <input type="hidden" name="us" value = <%= usu %>>
 	                <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Servicio">
+                  </form>
+                </div>
+            </div>
+    </div>
+    
+    <!--Servicio Fade-->
+    <!--Disponibilidad Fade-->
+    <div class="modal fade" id="rollback-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h2>Rollback Usuario</h2><br>
+                    <form action="ServletProceso3Rollback" method="get">
+                    <h1>Elegi de esta lista:</h1>
+                    <div class="styled-select">
+	                    <select id="usuarien" name="usuarien">
+	                    <%
+						Usuario[] usuarioo = new listObject().getlistUsuarios();
+                     for(int i=0;i<usuarioo.length;i++) {
+	                    	if(usuarioo[i]==null)
+	                    		break;
+	                    	out.write("<option value=" + usuarioo[i].getUsuario()+ ">" + usuarioo[i].getNombre()+"</option>");
+						}
+						%>
+	                    </select>
+	                </div>
+                    <input type="submit" name="register" class="login loginmodal-submit" value="Rollback">
                   </form>
                 </div>
             </div>

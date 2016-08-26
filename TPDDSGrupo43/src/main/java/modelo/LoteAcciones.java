@@ -4,9 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.logging.Logger;
+
+import controlador.ServletCalculoDisponibilidad2;
 
 public class LoteAcciones {
-
+	
+	private static final Logger log= Logger.getLogger( ServletCalculoDisponibilidad2.class.getName() );
+	
 	private boolean accion1 = false;
 	private boolean accion2 = false;
 	private boolean accion3 = false;
@@ -120,6 +125,9 @@ public class LoteAcciones {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
+			log.info("INSERT INTO acciones_x_usuario (Usuario,Accion,"
+					+ "FechaDeCreacion,Activo,Secuencial) VALUES ("+usuario+","
+					+accion+",'"+LocalDate.now().toString()+"',"+1+","+secuencial+");");
 			Integer rs=st.executeUpdate("INSERT INTO acciones_x_usuario (Usuario,Accion,"
 					+ "FechaDeCreacion,Activo,Secuencial) VALUES ("+usuario+","
 					+accion+",'"+LocalDate.now().toString()+"',"+1+","+secuencial+");");		

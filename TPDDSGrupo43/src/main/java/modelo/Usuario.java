@@ -131,7 +131,7 @@ public class Usuario {
 
 			int i=0;
 			while(rs.next()){
-				busuario[i]=new Usuario(rs.getInt(1),rs.getString(5), null, rs.getString(4),rs.getString(5),rs.getString(3));
+				busuario[i]=new Usuario(rs.getInt(1),rs.getString(5), null, rs.getString(4),rs.getString(2),rs.getString(3));
 				i++;
 			}
 		}catch(SQLException se){

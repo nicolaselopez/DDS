@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.StringTokenizer;
 
 public class Proceso1 extends ProcesoStr {
@@ -20,7 +21,9 @@ public class Proceso1 extends ProcesoStr {
 	public void procesar() {
 		Reader input = null;
 		String DELIM = ";";
-		
+		Date inicio = new Date();
+		String estado = "OK";
+		String msg = "Procesado Correctamente";
 		Writer output = null;
 		
 		try {
@@ -54,6 +57,10 @@ public class Proceso1 extends ProcesoStr {
 			brProd.close();
 		} catch (IOException ioe) {
 			System.out.println("No se pudo abrir el archivo");
+			msg = "No se pudo abrir el archivo";
+			estado = "Error";
+			Date fin = new Date();
+			grabarProceso(2,estado,msg,inicio,fin);
 		} finally {
 			if (input != null) {
 				try {
@@ -65,6 +72,8 @@ public class Proceso1 extends ProcesoStr {
 				}
 			}
 		}
+		Date fin = new Date();
+		grabarProceso(2,estado,msg,inicio,fin);
 
 	}
 	

@@ -20,13 +20,13 @@ import modelo.Servicio;
  * Servlet implementation class ServletProceso4
  */
 @WebServlet("/ServletProceso3")
-public class ServletProceso3 extends HttpServlet {
+public class ServletProceso3Rollback extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public ServletProceso3() {
+    public ServletProceso3Rollback() {
         // TODO Auto-generated constructor stub
     }
 
@@ -36,24 +36,9 @@ public class ServletProceso3 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean RegistroOK = true;
 		String usuario = request.getParameter("us");
-		LoteAcciones acciones = new LoteAcciones();
-		String usuarioAccion = request.getParameter("proceso");
-		acciones.setAccion1((request.getParameter("acc1")!= null) ? true : false);
-		acciones.setAccion2((request.getParameter("acc2")!= null) ? true : false);
-		acciones.setAccion3((request.getParameter("acc3")!= null) ? true : false);
-		acciones.setAccion4((request.getParameter("acc4")!= null) ? true : false);
-		acciones.setAccion5((request.getParameter("acc5")!= null) ? true : false);
-		acciones.setAccion6((request.getParameter("acc6")!= null) ? true : false);
-		acciones.setAccion7((request.getParameter("acc7")!= null) ? true : false);
-		acciones.setAccion8((request.getParameter("acc8")!= null) ? true : false);
-		acciones.setAccion9((request.getParameter("acc9")!= null) ? true : false);
-		acciones.setAccion10((request.getParameter("acc10")!= null) ? true : false);
-		acciones.setAccion11((request.getParameter("acc11")!= null) ? true : false);
-		acciones.setAccion12((request.getParameter("acc12")!= null) ? true : false);
-		
-		ProcesoContext context = null;
-		context = new ProcesoContext(new Proceso3());
-		context.executeStrategy(usuarioAccion,acciones);
+		String usuarioAccion = request.getParameter("usuarien");
+		Proceso3 proceso = new Proceso3();
+		RegistroOK = proceso.rollback(usuarioAccion);
 		if(RegistroOK){
 			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
