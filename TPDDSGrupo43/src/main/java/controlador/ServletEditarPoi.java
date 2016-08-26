@@ -40,10 +40,12 @@ public class ServletEditarPoi extends HttpServlet {
 		String tipoPoi=request.getParameter("tipoPoi");
 		String barrio=request.getParameter("barrio");
 		String rubro=request.getParameter("rubro");
+		String usuario = request.getParameter("us");
 		Direccion poiDireccion = new Direccion (calle,numero,piso,dpto,"0",codpos,1,Integer.parseInt(barrio),1,1);
 		Poi poi= new Poi(Integer.parseInt(idPoi),Integer.parseInt(tipoPoi),descripcion,Integer.parseInt(rubro),poiDireccion,latitud,longitud,1);
 		Boolean RegistroOK = Poi.editarPoi(poi);
 		if(RegistroOK){
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("editarPoiSeleccion.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);

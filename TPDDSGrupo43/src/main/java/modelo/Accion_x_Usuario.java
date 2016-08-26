@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -108,7 +109,23 @@ public class Accion_x_Usuario {
 			}
 		}catch(Exception se){
 			se.printStackTrace();
+		}
 	}
+	
+	public static boolean chequeoAccionDeUsuario(int usuario, int IdAccion){
+		boolean OK = false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from acciones_x_usuario where Usuario="+ usuario +" and Accion = "+ IdAccion +" and Activo=1");
+			while(rs.next()){
+				OK = true;
+			}
+		}catch(Exception se){
+			se.printStackTrace();
+		}
+		return OK;
 	}
 	
 }

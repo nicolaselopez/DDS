@@ -28,6 +28,7 @@ public class ServletRegistrarPoi extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String usuario = request.getParameter("us");
 		String descripcion=request.getParameter("nombrePoi");
 		String latitud=request.getParameter("latitud");
 		String longitud=request.getParameter("longitud");
@@ -45,6 +46,7 @@ public class ServletRegistrarPoi extends HttpServlet {
 		Boolean RegistroOK = Poi.registrarPoi(poi);
 		if(RegistroOK){
 			request.setAttribute("poi", poi);
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("agregarServicio.jsp").forward(request, response);
 		}else{
 			request.setAttribute("poi", poi);

@@ -29,8 +29,10 @@ public class ServletActualizarBancosWS extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean OK = false;
+		String usuario = request.getParameter("us");
 		OK = Banco.consultaBancosWS();
 		if(OK){
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);

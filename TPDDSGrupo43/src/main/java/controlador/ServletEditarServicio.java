@@ -30,7 +30,7 @@ public class ServletEditarServicio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean RegistroOK = true;
-		
+		String usuario = request.getParameter("us");		
 		String idPoi = request.getParameter("poi");
 		Poi poi = Poi.buscarPoi(Integer.parseInt(idPoi));
 		String idServicio=request.getParameter("servicio");
@@ -54,6 +54,7 @@ public class ServletEditarServicio extends HttpServlet {
 		RegistroOK = Servicio.editarServicio(servicio);
 
 		if(RegistroOK){
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("editarPoiSeleccion.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);

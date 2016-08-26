@@ -34,8 +34,10 @@ public class ServletRegistrar extends HttpServlet {
 		String fecnac=request.getParameter("fecnac");
 		Usuario busuario= new Usuario(name, fecnac,email, usuario, pass);
 		Boolean RegistroOK = Usuario.registrarUsuario(busuario);
+		busuario = Usuario.consultarUsuario(usuario);
 		if(RegistroOK){
 			request.setAttribute("busuario", busuario);
+			request.setAttribute("us", Integer.toString(busuario.getIdUsuario()));
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 		}else{
 			Usuario usuarioAux = new Usuario();

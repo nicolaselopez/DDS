@@ -69,6 +69,17 @@ public class Usuario {
 		this.usuario = usuario;
 		this.clave = clave;
 	}
+	
+	public Usuario(int IdUsuario, String nombre, String edad,
+			String correo, String usuario, String clave) {
+		super();
+		this.idUsuario = IdUsuario;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.correo = correo;
+		this.usuario = usuario;
+		this.clave = clave;
+	}
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -82,7 +93,7 @@ public class Usuario {
 			Statement st=con.createStatement();
 			ResultSet rs=st.executeQuery("Select * from usuarios where usuario='"+usuario+"' and activo=1");
 			while(rs.next()){
-				busuario=new Usuario(rs.getString(5), null, rs.getString(4), usuario, rs.getString(3));
+				busuario=new Usuario(rs.getInt(1),rs.getString(5), null, rs.getString(4), usuario, rs.getString(3));
 			}
 		}catch(SQLException se){
 			se.printStackTrace();

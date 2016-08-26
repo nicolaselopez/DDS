@@ -29,6 +29,8 @@ public class ServletEditarPoiSeleccion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idPoi=Integer.parseInt(request.getParameter("poi"));
+		String usuario = request.getParameter("us");
+		request.setAttribute("us", usuario);
 		if(idPoi==0){
 			request.getRequestDispatcher("editarPoiSeleccion.jsp").forward(request, response);
 		}

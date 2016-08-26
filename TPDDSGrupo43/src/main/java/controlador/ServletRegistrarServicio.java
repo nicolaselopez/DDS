@@ -27,6 +27,7 @@ public class ServletRegistrarServicio extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String usuario = request.getParameter("us");
 		String descripcion=request.getParameter("nombreServicio");
 		String poi=request.getParameter("poi");
 		String dLun=request.getParameter("dLun");
@@ -46,6 +47,7 @@ public class ServletRegistrarServicio extends HttpServlet {
 		
 		Boolean RegistroOK = Servicio.registrarServicio(servicio);
 		if(RegistroOK){
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("registrarPoi.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);

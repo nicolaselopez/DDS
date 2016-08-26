@@ -35,6 +35,8 @@ public class ServletReporteSeleccion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Boolean RegistroOK;
+		String usuario = request.getParameter("us");
+
 		String seleccion = new String(request.getParameter("tipo"));
 		RegistroOK = false;
 		/*
@@ -69,6 +71,7 @@ public class ServletReporteSeleccion extends HttpServlet {
 		if (RegistroOK) {
 			request.setAttribute("serv", reportes);
 			request.setAttribute("OK", RegistroOK);
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("reportes.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);

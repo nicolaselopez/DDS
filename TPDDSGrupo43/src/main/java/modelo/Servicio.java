@@ -568,6 +568,7 @@ public class Servicio {
 		//--------------------------------------------------------30/06-MM-
 		long tiempoTranscurrido = System.currentTimeMillis() - tiempoInicio;
 		Servicio.setTiempoBusqueda(tiempoTranscurrido);  
+		tiempoMaximo = 1000000;
 		if (tiempoBusqueda > tiempoMaximo){
 			// Mandar Mail a Admin
 			String destinatarios = Mail.destinatarioAdministrador();

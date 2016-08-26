@@ -31,6 +31,7 @@ public class ServletBorrarServicio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean RegistroOK;
+		String usuario = request.getParameter("us");
 		if(Integer.parseInt(request.getParameter("poi").substring(0, 1)) == 0){
 			RegistroOK = false;
 		}else{
@@ -40,6 +41,7 @@ public class ServletBorrarServicio extends HttpServlet {
 			RegistroOK = Servicio.editarServicio(servicio, poi, 0);
 		}
 		if(RegistroOK){
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("borrarServicio.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);

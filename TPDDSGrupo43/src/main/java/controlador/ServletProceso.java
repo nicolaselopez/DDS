@@ -25,6 +25,7 @@ public class ServletProceso extends HttpServlet  {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String usuario = request.getParameter("us");
 		
 		String select=request.getParameter("proceso");
 		
@@ -51,8 +52,10 @@ public class ServletProceso extends HttpServlet  {
 			
 		
 		if(RegistroOK){
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
 		}else{
+			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("proceso4.jsp").forward(request, response);
 		}
 	}
