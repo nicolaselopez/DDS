@@ -73,7 +73,7 @@ public class Proceso1 extends ProcesoStr {
 			}
 		}
 		Date fin = new Date();
-		grabarProceso(2,estado,msg,inicio,fin);
+		grabarProceso(1,estado,msg,inicio,fin);
 
 	}
 	

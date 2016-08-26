@@ -170,6 +170,7 @@
 						%>
 	                    </select>
 	                </div>
+	                <input type="hidden" name="us" value = <%= usu %>>
                     <input type="submit" name="register" class="login loginmodal-submit" value="Rollback">
                   </form>
                 </div>

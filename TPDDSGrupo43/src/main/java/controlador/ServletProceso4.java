@@ -34,10 +34,12 @@ public class ServletProceso4 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean RegistroOK = true;
-
+		String usuario = request.getParameter("us");
 		String dLun=request.getParameter("dLun");
 		String dMar=request.getParameter("dMar");
 		String dMie=request.getParameter("dMie");
+		
+		boolean proceso3Bool=false;
 
 		Proceso4 proceso4 = new Proceso4();
 
@@ -61,7 +63,7 @@ public class ServletProceso4 extends HttpServlet {
 			{
 				if(!dMie.isEmpty()&& !dMie.equals(null))
 				{
-					proceso4.add(new Proceso3());
+					proceso3Bool = true;
 				}
 			}
 			try
@@ -82,6 +84,13 @@ public class ServletProceso4 extends HttpServlet {
 		catch(Exception e)
 		{
 			RegistroOK = false;
+		}
+		
+		if(proceso3Bool)
+		{
+			RegistroOK = false;
+			request.setAttribute("us", usuario);
+			request.getRequestDispatcher("proceso3.jsp").forward(request, response);
 		}
 		
 		if(RegistroOK){

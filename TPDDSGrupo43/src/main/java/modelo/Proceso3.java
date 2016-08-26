@@ -78,6 +78,9 @@ public class Proceso3 extends ProcesoStr {
 	
 	public boolean rollback(String usu){
 		boolean OK = false;
+		Date inicio = new Date();
+		String estado = "OK";
+		String msg = "Procesado Correctamente Rollback";
 		Usuario usuario = Usuario.consultarUsuario(usu);
 		int secuencial = buscarAccionDeUsuario(usuario.getIdUsuario());
 		if(secuencial != 0){
@@ -87,6 +90,8 @@ public class Proceso3 extends ProcesoStr {
 			}
 		}
 		OK = true;
+		Date fin = new Date();
+		grabarProceso(3,estado,msg,inicio,fin);
 		return OK;
 	}
 	
