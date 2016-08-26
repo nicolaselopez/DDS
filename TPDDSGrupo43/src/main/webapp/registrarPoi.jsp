@@ -2,6 +2,7 @@
 <%@page import="modelo.Barrio" %>
 <%@page import="modelo.Rubro" %>
 <%@page import="modelo.TipoPoi" %>
+<%@page import="modelo.Autenticador" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +43,7 @@
 </head>
 
 <body>
+	
 	<%String usu = "0";
 	if(request.getParameter("us")!= null){
 		usu = request.getParameter("us");
@@ -49,6 +51,11 @@
 		usu = (String)request.getAttribute("us");
 	};
 	 %>
+	<%boolean valid = Autenticador.controlarPermisos(Integer.parseInt(usu), 1);
+	  if(!valid){
+	  request.setAttribute("us", usu);
+	  request.getRequestDispatcher("accesoDenegado.jsp").forward(request, response);
+	  }%>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">

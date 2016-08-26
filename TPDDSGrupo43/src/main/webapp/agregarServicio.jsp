@@ -1,5 +1,6 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
+<%@page import="modelo.Autenticador" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +48,11 @@
 		usu = (String)request.getAttribute("us");
 	};
 	 %>
+	 <%boolean valid = Autenticador.controlarPermisos(Integer.parseInt(usu), 4);
+	  if(!valid){
+	  request.setAttribute("us", usu);
+	  request.getRequestDispatcher("accesoDenegado.jsp").forward(request, response);
+	  }%>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
