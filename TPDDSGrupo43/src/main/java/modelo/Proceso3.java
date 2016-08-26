@@ -8,9 +8,9 @@ package modelo;
 public class Proceso3 extends ProcesoStr {
 
 	@Override
-	public void procesar() {
+	public void procesar(String usuario, LoteAcciones acciones) {
 		
-		Accion_x_Usuario AxU = new Accion_x_Usuario(); // Instanciar vacio?
+		Accion_x_Usuario AxU = new Accion_x_Usuario(); // Instanciar vacio
 		UsuarioAdministrador admin = new UsuarioAdministrador();
 		AxU.iniciarProcesoDe(admin);
 	}
@@ -21,8 +21,8 @@ public class Proceso3 extends ProcesoStr {
 
 /*
 Este proceso tiene como objetivo agregar una lista acciones que puede realizar
- cada Usuario en el Sistema. Este proceso está vinculado a la Entrega 3.  
+ cada Usuario en el Sistema. Este proceso est vinculado a la Entrega 3.  
  Dada una lista de Acciones por Usuario el proceso debe asignar/actualizar las acciones
  que puede realizar cada Usuario. Se debe considerar la posibilidad de deshacer esta 
- acción (undo) y que vuelva todo al estado original.
+ acci (undo) y que vuelva todo al estado original.
 */

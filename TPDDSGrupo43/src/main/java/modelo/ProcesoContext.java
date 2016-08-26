@@ -12,4 +12,8 @@ public class ProcesoContext {
 	{
 		procesoStrategy.procesar();
 	}
+	
+	public void executeStrategy(String usuario,LoteAcciones acciones){
+		procesoStrategy.procesar(usuario, acciones);
+	}
 }

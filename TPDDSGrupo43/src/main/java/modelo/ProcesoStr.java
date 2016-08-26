@@ -11,6 +11,9 @@ public abstract class ProcesoStr {
 	public void procesar() {
 	}
 	
+	public void procesar(String usuario,LoteAcciones acciones) {
+	}
+	
 	public static void generarProcesos(String dLun)
 	{
 		procesos = new ArrayList<String>();
