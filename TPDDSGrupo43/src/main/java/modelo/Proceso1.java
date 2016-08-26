@@ -46,14 +46,8 @@ public class Proceso1 extends ProcesoStr {
 
 				tags = tags.replaceAll(" ", ";");
 			
-				if(consultarServicios(nombreFantasia,tags,id))
-				{
-					output.write("Anduvo!!!");
-				}
-				else
-				{
-					output.write("No Anduvo :(");
-				}
+				updetearDatos(nombreFantasia,tags,id);
+				
 				id++;
 	        	
 			}
@@ -75,7 +69,7 @@ public class Proceso1 extends ProcesoStr {
 
 	}
 	
-	public static boolean consultarServicios(String nombre, String tags, int id){
+	public static boolean updetearDatos(String nombre, String tags, int id){
 
 		boolean OK = false;
 		ResultSet rs;
@@ -88,7 +82,10 @@ public class Proceso1 extends ProcesoStr {
 		
 		rs=st.executeQuery("Select * from poi where PoiDescripcion='" + nombre + "';");
 		
-		ru = st.executeUpdate("update servicio SET ServicioTags='"+tags+"' where ServicioIdPoi="+id+";");
+		while(rs.next())
+		{
+			ru = st.executeUpdate("update servicio SET ServicioTags='"+tags+"' where ServicioIdPoi="+rs.getInt(1)+";");
+		}
 
 		OK=true;
 
