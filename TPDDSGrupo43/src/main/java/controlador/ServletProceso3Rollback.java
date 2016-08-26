@@ -19,7 +19,7 @@ import modelo.Servicio;
 /**
  * Servlet implementation class ServletProceso4
  */
-@WebServlet("/ServletProceso3")
+@WebServlet("/ServletProceso3Rollback")
 public class ServletProceso3Rollback extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
