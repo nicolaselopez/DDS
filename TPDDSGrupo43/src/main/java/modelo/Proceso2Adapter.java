@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 public class Proceso2Adapter {
 	
+	private static Constantes parametros = new Constantes();
 	private static final Logger log= Logger.getLogger( Proceso2Adapter.class.getName() );
 	
 	public static BajaPoiAdapter[] consultaBajaPoiWS(int modo){
@@ -17,9 +18,9 @@ public class Proceso2Adapter {
 		try{
 			JSONArray jsonResponse;
 			if(modo==1){
-				jsonResponse= Proceso2Adapter.consultarWS("http://demo3537367.mockable.io/trash/pois");	
+				jsonResponse= Proceso2Adapter.consultarWS(Constantes.obtenerValor(parametros.getWSP2()));	
 			}else{
-				jsonResponse = Proceso2Adapter.consultarWS("http://demo3537367.mockable.io/trash/pois_bad");
+				jsonResponse = Proceso2Adapter.consultarWS(Constantes.obtenerValor(parametros.getWSP2Bad()));
 			}
 			BajaPoiAdapter[] bajaPoi = new BajaPoiAdapter[jsonResponse.length()];
 			for(int i=0;i<jsonResponse.length();i++){

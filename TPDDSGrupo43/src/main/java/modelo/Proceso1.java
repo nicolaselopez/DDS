@@ -13,9 +13,8 @@ import java.sql.Statement;
 import java.util.StringTokenizer;
 
 public class Proceso1 extends ProcesoStr {
-	String fileOut = "E:\\Progs\\Java\\Randomizar\\src\\output.txt";
-	String fileIn = "E:\\Progs\\Java\\Randomizar\\src\\input.txt";
-
+	
+	private static Constantes parametros = new Constantes();
 
 	@Override
 	public void procesar() {
@@ -25,14 +24,14 @@ public class Proceso1 extends ProcesoStr {
 		Writer output = null;
 		
 		try {
-			output = new FileWriter(fileOut);
+			output = new FileWriter(Constantes.obtenerValor(parametros.getFileOut()));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 			
 		try {
-			input = new FileReader(fileIn);
+			input = new FileReader(Constantes.obtenerValor(parametros.getFileIn()));
 			BufferedReader brProd = new BufferedReader(input);
 
 			int id = 1;

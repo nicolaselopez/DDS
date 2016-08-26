@@ -10,13 +10,15 @@ import org.json.JSONObject;
 
 public class CGPAdapter {
 	
+	private static Constantes parametros = new Constantes();
+	
 	private static final Logger log= Logger.getLogger( CGPAdapter.class.getName() );
 	
 	public static CGP[] consultaCentroWS(){
-		String rutaWebService = "http://trimatek.org/Consultas/centro";
+		//String rutaWebService = "http://trimatek.org/Consultas/centro";
 		try{
 			//Se crea conexion a WebService
-			URL url = new URL(rutaWebService);
+			URL url = new URL(Constantes.obtenerValor(parametros.getWSCentro()));
 			URLConnection conexionUrl = url.openConnection();
 			//Se lee contenido WS
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(conexionUrl.getInputStream()));

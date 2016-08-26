@@ -20,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Banco extends Poi {
+	
+	private static Constantes parametros = new Constantes();
 
 	public Banco(Poi poi) {
 		super();
@@ -95,10 +97,10 @@ public class Banco extends Poi {
 	
 	public static Boolean consultaBancosWS(){
 		Boolean OK = false;
-		String rutaWebService = "http://private-96b476-ddsutn.apiary-mock.com/banks?banco=banco&servicio=servicio";
+		//String rutaWebService = "http://private-96b476-ddsutn.apiary-mock.com/banks?banco=banco&servicio=servicio";
 		try{
 			//Se crea conexion a WebService
-			URL url = new URL(rutaWebService);
+			URL url = new URL(Constantes.obtenerValor(parametros.getWSBanco()));
 			URLConnection conexionUrl = url.openConnection();
 			//Se lee contenido WS
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(conexionUrl.getInputStream()));
