@@ -117,7 +117,7 @@
 	                    <input type="checkbox" id="dMie" name="dMie" value="Mie">Proceso3<br>
 	                </div>
 	                <input type="hidden" name="us" value = <%= usu %>>
-	                <input type="submit" name="register" class="login loginmodal-submit" value="Registrar Servicio">
+	                <input type="submit" name="register" class="login loginmodal-submit" value="Ejecutar">
                   </form>
                 </div>
             </div>

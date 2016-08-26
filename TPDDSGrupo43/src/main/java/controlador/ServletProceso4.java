@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Direccion;
 import modelo.Poi;
 import modelo.Proceso1;
+import modelo.Proceso2;
+import modelo.Proceso3;
 import modelo.Proceso4;
 import modelo.Servicio;
 
@@ -32,17 +34,46 @@ public class ServletProceso4 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean RegistroOK = true;
-		String usuario = request.getParameter("us");
-		
+
 		String dLun=request.getParameter("dLun");
 		String dMar=request.getParameter("dMar");
 		String dMie=request.getParameter("dMie");
 
 		Proceso4 proceso4 = new Proceso4();
-		if(!dLun.isEmpty())
+
+		try
 		{
-			proceso4.add(new Proceso1());
+			if(!dLun.isEmpty() && !dLun.equals(null))
+			{
+				proceso4.add(new Proceso1());
+			}
 		}
+		catch(Exception e)
+		{
+			try
+			{
+				if(!dMar.isEmpty()&& !dMar.equals(null))
+				{
+					proceso4.add(new Proceso2());
+				}
+			}
+			catch(Exception e2)
+			{
+				if(!dMie.isEmpty()&& !dMie.equals(null))
+				{
+					proceso4.add(new Proceso3());
+				}
+			}
+			try
+			{
+				
+			}
+			catch(Exception e3)
+			{
+				RegistroOK = false;
+			}
+		}
+		
 
 		try
 		{
@@ -54,7 +85,6 @@ public class ServletProceso4 extends HttpServlet {
 		}
 		
 		if(RegistroOK){
-			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp").forward(request, response);
