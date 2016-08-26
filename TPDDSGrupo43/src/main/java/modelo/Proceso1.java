@@ -86,7 +86,7 @@ public class Proceso1 extends ProcesoStr {
 		Connection con=c.getConexion();
 		Statement st=con.createStatement();
 		
-		rs=st.executeQuery("Select * from poi where PoiDescripcion=" + nombre + ";");
+		rs=st.executeQuery("Select * from poi where PoiDescripcion='" + nombre + "';");
 		
 		ru = st.executeUpdate("update servicio SET ServicioTags='"+tags+"' where ServicioIdPoi="+id+";");
 
