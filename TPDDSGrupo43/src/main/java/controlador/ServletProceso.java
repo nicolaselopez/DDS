@@ -36,6 +36,14 @@ public class ServletProceso extends HttpServlet  {
 		if(select.equals("Proceso4"))
 		{
 			RegistroOK = false;
+			request.setAttribute("us", usuario);
+			request.getRequestDispatcher("proceso4.jsp").forward(request, response);
+		}
+		if(select.equals("Proceso3"))
+		{
+			RegistroOK = false;
+			request.setAttribute("us", usuario);
+			request.getRequestDispatcher("proceso3.jsp").forward(request, response);
 		}
 		else
 		{
@@ -55,8 +63,6 @@ public class ServletProceso extends HttpServlet  {
 			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
 		}else{
-			request.setAttribute("us", usuario);
-			request.getRequestDispatcher("proceso4.jsp").forward(request, response);
 		}
 	}
 

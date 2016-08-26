@@ -121,5 +121,23 @@ public class Usuario {
 		}		
 		return OK;
 	}
+	public static Usuario[] getUsuarios() {
+		Usuario[] busuario= new Usuario[20];
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from usuarios;");
+
+			int i=0;
+			while(rs.next()){
+				busuario[i]=new Usuario(rs.getInt(1),rs.getString(5), null, rs.getString(4),rs.getString(5),rs.getString(3));
+				i++;
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return busuario;
+	}
 
 }

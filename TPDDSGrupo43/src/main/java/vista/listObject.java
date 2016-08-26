@@ -1,10 +1,12 @@
 package vista;
 
+import modelo.Accion;
 import modelo.Barrio;
 import modelo.Poi;
 import modelo.Rubro;
 import modelo.Servicio;
 import modelo.TipoPoi;
+import modelo.Usuario;
 
 public class listObject{
 	
@@ -53,6 +55,20 @@ public class listObject{
 		Servicio[] serviciosPoi;
 		serviciosPoi = Servicio.consultarServicios(idPoi, externo, servicioActivo);
 		return serviciosPoi;
+	}
+	
+	public Usuario[] getlistUsuarios()
+	{
+		Usuario[] usuarios;
+		usuarios = Usuario.getUsuarios();
+		return usuarios;
+	}
+
+	public Accion[] getlistAcciones()
+	{
+		Accion[] acciones;
+		acciones = Accion.getAcciones();
+		return acciones;
 	}
 	
 	public String[] getlistProcesos()

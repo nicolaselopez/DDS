@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
@@ -64,5 +65,24 @@ public class Accion {
 	}
 	public static int getSecuencialActual(){
 		return numeroSecuencial;
+	}
+
+	public static Accion[] getAcciones() {
+		Accion[] busuario= new Accion[20];
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from acciones;");
+
+			int i=0;
+			while(rs.next()){
+				busuario[i]=new Accion(rs.getInt(1),rs.getString(2));
+				i++;
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return busuario;
 	}
 }
