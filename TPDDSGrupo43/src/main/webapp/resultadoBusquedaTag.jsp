@@ -63,15 +63,22 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>--Servicios Encontrados--</h1>
+        <form action="ServletVerDescripcion" method="get">
+        <select id="poi" name="poi">
            <% for(int i=0;i<serv.length;i++) {
                    	if(serv[i].getIdServicio()== -1){
                    		break;	
                    	}
                    	Poi poi = Poi.buscarPoi(serv[i].getServicioIdPoi());
-                   	out.write("<h3>"+poi.getPoiDescripcion()+" - " + serv[i].getServicioDescripcion()+"</h3>");
+                   	out.write("<option value=" + poi.getIdPoi()+ ">" + poi.getPoiDescripcion()+"</option>");
+					                   	
 			  }
 			%>
+           </select>
+           <input type="submit" name="register" class="login loginmodal-submit" value="Ver POI">
+            
             <br>
+            </form>
         </div>
     </header>
 
