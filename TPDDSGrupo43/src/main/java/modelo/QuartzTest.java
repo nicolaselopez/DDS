@@ -7,6 +7,8 @@ import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
 
+import org.quartz.JobDetail;
+
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
 
@@ -24,10 +26,10 @@ public class QuartzTest {
             scheduler.start();
 
             // define the job and tie it to our HelloJob class
-            JobDetail job = newJob(HelloJob.class)
+            /*JobDetail job = new Job(HelloJob.class)
                 .withIdentity("job1", "group1")
                 .build();
-
+*/
             // Trigger the job to run now, and then repeat every 40 seconds
             Trigger trigger = newTrigger()
                 .withIdentity("trigger1", "group1")
@@ -38,7 +40,7 @@ public class QuartzTest {
                 .build();
 
             // Tell quartz to schedule the job using our trigger
-            scheduler.scheduleJob(job, trigger);
+          //  scheduler.scheduleJob(job, trigger);
             
             scheduler.shutdown();
 

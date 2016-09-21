@@ -26,6 +26,11 @@ public class Colectivo extends Poi {
 		PoiFechaModificacion = poi.getPoiFechaModificacion();
 		PoiActivo = poi.getPoiActivo();
 	}
+
+	public static String getJSP()
+	{
+		return "verPoiColectivo.jsp";
+	}
 	
 	public Boolean calcularDistanciaPoi(Poi poi,LatLng latLngPos,LatLng latLngPoi, int comuna){
 		Boolean OK = false;

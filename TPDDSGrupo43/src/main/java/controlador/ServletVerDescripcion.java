@@ -38,19 +38,8 @@ public class ServletVerDescripcion extends HttpServlet {
 		
 		request.setAttribute("poiElegido", poi);
 		
-		if(poi.getPoiIdTipoPoi()==1)
-		{
-			request.getRequestDispatcher("verPoiColectivo.jsp").forward(request, response);
-		}
-		if(poi.getPoiIdTipoPoi()==2 || poi.getPoiIdTipoPoi()==3)
-		{
-			request.getRequestDispatcher("verPoiCGP.jsp").forward(request, response);
-		}
-		if(poi.getPoiIdTipoPoi()==4)
-		{
-			request.getRequestDispatcher("verPoiComercio.jsp").forward(request, response);
-		}
-		request.getRequestDispatcher("verPoi.jsp").forward(request, response);
+		request.getRequestDispatcher(Poi.getJSP(poi)).forward(request, response);
+		
 	}
 
 	/**

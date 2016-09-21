@@ -25,6 +25,10 @@ public class LocalComercial extends Poi {
 		PoiActivo = poi.getPoiActivo();
 	}
 	
+	public static String getJSP()
+	{
+		return "verPoiComercio.jsp";
+	}
 	public Boolean calcularDistanciaPoi(Poi poi,LatLng latLngPos,LatLng latLngPoi, int comuna){
 		Boolean OK = false;
 		double distancia = DistanceCalculator.distance(latLngPos,latLngPoi);

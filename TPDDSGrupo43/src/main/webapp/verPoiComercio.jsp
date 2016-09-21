@@ -113,7 +113,6 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Datos del POI</h1><br>
                   <form action="ServletEditarPoi" method="get">
                    <div class="styled-select">
 	                <input type="hidden" name="poi" value = <%= poi.getIdPoi() %>>

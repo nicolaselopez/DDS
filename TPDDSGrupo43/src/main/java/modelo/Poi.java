@@ -134,8 +134,6 @@ public class Poi {
 		PoiActivo = poiActivo;
 	}
 
-	
-	
 	public Poi(int idPoi, int poiIdTipoPoi, String poiDescripcion, int poiIdRubro, Rubro poiRubro,
 			Servicio[] poiServicio,Direccion poiDireccion, Barrio poiBarrio,
 			String poiLatitudGeo, String poiLongitudGeo, String poiFechaAlta,
@@ -480,6 +478,17 @@ public class Poi {
 			OK=false;
 		}
 		return OK;
+	}
+
+	public static String getJSP(Poi poi) {
+		
+		switch(poi.getPoiIdTipoPoi()){
+		case 1: return Colectivo.getJSP();
+		case 2: return CGP.getJSP();
+		case 3: return Banco.getJSP();
+		case 4: return LocalComercial.getJSP();
+		default: return"verPoi.jsp";
+		}
 	}
 		
 }
