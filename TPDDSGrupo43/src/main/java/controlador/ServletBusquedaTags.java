@@ -19,6 +19,7 @@ import modelo.Usuario;
 import modelo.UsuarioTerminal;
 import modelo.Barrio;
 import modelo.DistanceCalculator;
+import modelo.HistorialBusqueda;
 
 /**
  * Servlet implementation class ServletCalculoDisponibilidad2
@@ -43,6 +44,18 @@ public class ServletBusquedaTags extends HttpServlet {
 		try{
 			Boolean OK = false;
 			Servicio[] servicios = Servicio.consultarServiciosTag(tag);
+			
+			HistorialBusqueda.registrarHistorial(tag);
+			
+			for(int i=0;i<servicios.length;i++) {
+               	if(servicios[i].getIdServicio()== -1){
+               		break;	
+               	}
+               	Poi poi = Poi.buscarPoi(servicios[i].getServicioIdPoi());
+               	
+               	HistorialBusqueda.registrarResultados(poi);
+			}
+			
 			request.setAttribute("serv", servicios);
 			request.setAttribute("OK", OK);
 			request.getRequestDispatcher("resultadoBusquedaTag.jsp").forward(request, response);
