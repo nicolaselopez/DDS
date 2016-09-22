@@ -49,13 +49,15 @@ public class ServletProceso extends HttpServlet  {
 		{
 			if(select.equals("Proceso1"))
 			{
-				context = new ProcesoContext(new Proceso1());
+				ProcesoStr.insertarAgenda(1, "", Integer.parseInt(usuario));
+				//context = new ProcesoContext(new Proceso1());
 			}
 			else if(select.equals("Proceso2"))
 			{
-				context = new ProcesoContext(new Proceso2());
+				ProcesoStr.insertarAgenda(2, "", Integer.parseInt(usuario));
+				//context = new ProcesoContext(new Proceso2());
 			}
-			context.executeStrategy();
+			//context.executeStrategy();
 		}
 			
 		

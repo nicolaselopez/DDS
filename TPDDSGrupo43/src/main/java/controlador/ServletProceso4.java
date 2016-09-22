@@ -13,6 +13,7 @@ import modelo.Proceso1;
 import modelo.Proceso2;
 import modelo.Proceso3;
 import modelo.Proceso4;
+import modelo.ProcesoStr;
 import modelo.Servicio;
 
 /**
@@ -43,59 +44,30 @@ public class ServletProceso4 extends HttpServlet {
 
 		Proceso4 proceso4 = new Proceso4();
 
-		try
-		{
-			if(!dLun.isEmpty() && !dLun.equals(null))
+		if(dLun!="" && dLun!=null)
 			{
-				proceso4.add(new Proceso1());
+				//proceso4.add(new Proceso1());
+				ProcesoStr.insertarAgenda(1, "", Integer.parseInt(usuario));
 			}
-		}
-		catch(Exception e)
-		{
-			try
+		if(dMar!="" && dMar!=null)
 			{
-				if(!dMar.isEmpty()&& !dMar.equals(null))
-				{
-					proceso4.add(new Proceso2());
-				}
+				ProcesoStr.insertarAgenda(2, "", Integer.parseInt(usuario));
+				//proceso4.add(new Proceso2());
 			}
-			catch(Exception e2)
+		if(dMie!="" && dMie!=null)
 			{
-				if(!dMie.isEmpty()&& !dMie.equals(null))
-				{
-					proceso3Bool = true;
-				}
+				proceso3Bool = true;
 			}
-			try
-			{
-				
-			}
-			catch(Exception e3)
-			{
-				RegistroOK = false;
-			}
-		}
-		
 
-		try
-		{
-			proceso4.procesar();
-		}
-		catch(Exception e)
-		{
-			RegistroOK = false;
-		}
-		
 		if(proceso3Bool)
 		{
-			RegistroOK = false;
 			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("proceso3.jsp").forward(request, response);
 		}
 		
-		if(RegistroOK){
+		if(RegistroOK && !proceso3Bool){
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
-		}else{
+		}else if(!RegistroOK){
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}

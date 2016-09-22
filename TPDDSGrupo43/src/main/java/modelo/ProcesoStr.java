@@ -45,4 +45,23 @@ public abstract class ProcesoStr {
 		}
 	}
 	
+	public static void insertarAgenda(int proceso, String parametros, int usuario){
+		Boolean OK = false;
+		try{
+			Date fecha = new Date();
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			Integer rs=st.executeUpdate("INSERT INTO agenda "+
+				"(agendaproceso,agendaparametros,agendausuario,agendafecha,agendamarca) "+
+				"VALUES "+
+				"("+proceso+",'"+parametros+"',"+usuario+",'"+fecha.toString()+"',0) ; ");
+			if(rs == 1){
+				OK = true;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 }

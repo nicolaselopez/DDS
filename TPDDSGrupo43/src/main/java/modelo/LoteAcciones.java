@@ -137,6 +137,137 @@ public class LoteAcciones {
 		return OK;
 	}
 	
+	public String convertToString(){
+		String resultado = "";
+			if(this.accion1){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion2){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion3){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion4){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion5){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion6){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion7){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion8){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion9){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion10){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion11){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+			if(this.accion12){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
+		return resultado;
+	}
+	
+	public static LoteAcciones convertToLote(String parametros){
+		LoteAcciones resultado = new LoteAcciones();
+		String[] acciones = parametros.split(";");
+			if(acciones[0].equals("1")){
+				resultado.setAccion1(true);
+			}else{
+				resultado.setAccion1(false);
+			}
+			if(acciones[1].equals("1")){
+				resultado.setAccion2(true);
+			}else{
+				resultado.setAccion2(false);
+			}
+			if(acciones[2].equals("1")){
+				resultado.setAccion3(true);
+			}else{
+				resultado.setAccion3(false);
+			}
+			if(acciones[3].equals("1")){
+				resultado.setAccion4(true);
+			}else{
+				resultado.setAccion4(false);
+			}
+			if(acciones[4].equals("1")){
+				resultado.setAccion5(true);
+			}else{
+				resultado.setAccion5(false);
+			}
+			if(acciones[5].equals("1")){
+				resultado.setAccion6(true);
+			}else{
+				resultado.setAccion6(false);
+			}
+			if(acciones[6].equals("1")){
+				resultado.setAccion7(true);
+			}else{
+				resultado.setAccion7(false);
+			}
+			if(acciones[7].equals("1")){
+				resultado.setAccion8(true);
+			}else{
+				resultado.setAccion8(false);
+			}
+			if(acciones[8].equals("1")){
+				resultado.setAccion9(true);
+			}else{
+				resultado.setAccion9(false);
+			}
+			if(acciones[9].equals("1")){
+				resultado.setAccion10(true);
+			}else{
+				resultado.setAccion10(false);
+			}
+			if(acciones[10].equals("1")){
+				resultado.setAccion11(true);
+			}else{
+				resultado.setAccion11(false);
+			}
+			if(acciones[11].equals("1")){
+				resultado.setAccion12(true);
+			}else{
+				resultado.setAccion12(false);
+			}
+		return resultado;
+	}
+	
 }
 
 

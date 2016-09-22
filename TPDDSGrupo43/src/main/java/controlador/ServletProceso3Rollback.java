@@ -14,6 +14,7 @@ import modelo.Proceso1;
 import modelo.Proceso3;
 import modelo.Proceso4;
 import modelo.ProcesoContext;
+import modelo.ProcesoStr;
 import modelo.Servicio;
 
 /**
@@ -37,8 +38,9 @@ public class ServletProceso3Rollback extends HttpServlet {
 		Boolean RegistroOK = true;
 		String usuario = request.getParameter("us");
 		String usuarioAccion = request.getParameter("usuarien");
-		Proceso3 proceso = new Proceso3();
-		RegistroOK = proceso.rollback(usuarioAccion);
+		ProcesoStr.insertarAgenda(3, "rollback;" + usuarioAccion , Integer.parseInt(usuario));
+		//Proceso3 proceso = new Proceso3();
+		//RegistroOK = proceso.rollback(usuarioAccion);
 		if(RegistroOK){
 			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);

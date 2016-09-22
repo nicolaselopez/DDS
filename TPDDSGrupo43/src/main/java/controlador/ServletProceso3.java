@@ -14,6 +14,7 @@ import modelo.Proceso1;
 import modelo.Proceso3;
 import modelo.Proceso4;
 import modelo.ProcesoContext;
+import modelo.ProcesoStr;
 import modelo.Servicio;
 
 /**
@@ -51,9 +52,12 @@ public class ServletProceso3 extends HttpServlet {
 		acciones.setAccion11((request.getParameter("acc11")!= null) ? true : false);
 		acciones.setAccion12((request.getParameter("acc12")!= null) ? true : false);
 		
-		ProcesoContext context = null;
-		context = new ProcesoContext(new Proceso3());
-		context.executeStrategy(usuarioAccion,acciones);
+		//ProcesoContext context = null;
+		String parametros = acciones.convertToString();
+		parametros = parametros + usuarioAccion + ";";
+		ProcesoStr.insertarAgenda(3, parametros, Integer.parseInt(usuario));
+		//context = new ProcesoContext(new Proceso3());
+		//context.executeStrategy(usuarioAccion,acciones);
 		if(RegistroOK){
 			request.setAttribute("us", usuario);
 			request.getRequestDispatcher("resultadoProceso.jsp").forward(request, response);
