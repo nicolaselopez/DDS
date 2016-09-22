@@ -66,11 +66,9 @@
             	<div id="map"></div>
         	</div>
             <br> 
-            <a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-primary btn-lg">Calcular cercanía</a>
-            <br>
-        	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-primary btn-lg">Calcular disponibilidad</a>
-        	<br>
-        	<a href="#" data-toggle="modal" data-target="#tags-modal" class="btn btn-primary btn-lg">Buscar servicios por Tags <span class="glyphicon glyphicon-tags"></span></a>
+            <a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-dark btn-lg">Calcular cercanía</a>
+            <a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-dark btn-lg">Calcular disponibilidad</a>
+        	<a href="#" data-toggle="modal" data-target="#tags-modal" class="btn btn-dark btn-lg">Buscar servicios por Tags <span class="glyphicon glyphicon-tags"></span></a>
         </div>
     </header>
     <!--Cercania Fade-->
