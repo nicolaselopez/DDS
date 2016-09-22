@@ -92,7 +92,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>El Acceso a la acción requerida ha sido denegado.</h1>          
+            <h1>El acceso a la acción requerida ha sido denegado.</h1>          
             <br>
         </div>
     </header>

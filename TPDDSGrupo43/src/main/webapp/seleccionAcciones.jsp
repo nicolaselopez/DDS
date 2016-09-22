@@ -101,7 +101,7 @@
             <br>
             <h2>Proceso</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Selecciona Proceso</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Seleccioná un proceso</a>
         </div>
     </header>
 

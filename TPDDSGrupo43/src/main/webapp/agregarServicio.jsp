@@ -104,9 +104,9 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Alta de Servicios por POI:</h2>
+            <h2>Alta de servicios por POI:</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Registrar Servicio</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Registrar servicio</a>
         </div>
     </header>
 
@@ -135,10 +135,10 @@
                     <h3>Dias Disponible</h3>
                     <input type="checkbox" id="dLun" name="dLun" value="Lun">Lunes
                     <input type="checkbox" id="dMar" name="dMar" value="Mar">Martes
-                    <input type="checkbox" id="dMie" name="dMie" value="Mie">Miercoles
+                    <input type="checkbox" id="dMie" name="dMie" value="Mie">Miércoles
                     <input type="checkbox" id="dJue" name="dJue" value="Jue">Jueves<br>
                     <input type="checkbox" id="dVie" name="dVie" value="Vie">Viernes
-                    <input type="checkbox" id="dSab" name="dSab" value="Sab">Sabado
+                    <input type="checkbox" id="dSab" name="dSab" value="Sab">Sábado
                     <input type="checkbox" id="dDom" name="dDom" value="Dom">Domingo<br>
                     <input type="text" name="horaDesde1" placeholder="Horario Desde Op1">
                     <input type="text" name="horaHasta1" placeholder="Horario Hasta Op1">

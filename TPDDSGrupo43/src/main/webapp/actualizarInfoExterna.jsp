@@ -104,7 +104,7 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Actualizar Info Externa</h2>
+            <h2>Actualizar info externa</h2>
         	<br>
         	<form action="ServletActualizarBancosWS" method="get">
         		<input type="hidden" name="us" value = <%= usu %>>

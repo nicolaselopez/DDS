@@ -104,9 +104,9 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h1>Editar Servicio</h1>
+            <h1>Editar servicio</h1>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Click Aqui</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Click aquí</a>
         </div>
     </header>
 
@@ -114,7 +114,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Seleccione el Servicio a editar:</h1><br>
+                    <h1>Seleccione el servicio a editar:</h1><br>
                   <form action="ServletEditarServicioSeleccion" method="get">
                    <div class="styled-select">
 	                    <select id="poi" name="poi">

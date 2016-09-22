@@ -110,9 +110,9 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h1>Editar Servicio <%=poi.getServicioDescripcion() %> de <%= poiId.getPoiDescripcion()%></h1>  
+            <h1>Editar servicio <%=poi.getServicioDescripcion() %> de <%= poiId.getPoiDescripcion()%></h1>  
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Editar POI Seleccionado</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Editar POI seleccionado</a>
         </div>
     </header>
     
@@ -120,13 +120,13 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Edite los datos de su Servicio</h1><br>
+                    <h1>Edite los datos de su servicio</h1><br>
                   <form action="ServletEditarServicio" method="get">
                    <div class="styled-select">
 	                <input type="hidden" name="servicio" value = <%= poi.getIdServicio() %>>
 	                <input type="hidden" name="poi" value = <%= poiId.getIdPoi() %>>
 	                <input type="text" name="nombrePoi" value ="<%=poi.getServicioDescripcion()%>">
-                    <h3>Dias Disponible</h3>
+                    <h3>Días disponibles</h3>
                     <input type="checkbox" id="dLun" name="dLun" value="Lun">Lunes
                     <input type="checkbox" id="dMar" name="dMar" value="Mar">Martes
                     <input type="checkbox" id="dMie" name="dMie" value="Mie">Miercoles

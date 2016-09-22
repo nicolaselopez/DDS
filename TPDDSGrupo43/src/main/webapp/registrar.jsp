@@ -55,7 +55,7 @@
             <h1>Diseño de Sistemas 2016</h1>
             <h1>Grupo 43</h1>            
             <br>
-            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
+            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz click aquí</a>
         </div>
     </header>
 
@@ -63,7 +63,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Registra tu cuenta</h1><br>
+                    <h1>Registrá tu cuenta</h1><br>
                   <form action="ServletRegistrar" method="get">
                     <input type="text" name="usuario" placeholder="Usuario">
                     <input type="password" name="pass" placeholder="Contraseña">

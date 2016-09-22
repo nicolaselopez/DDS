@@ -95,7 +95,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Gestion de Pois y Servicios</h1>
+            <h1>Gestión de Pois y Servicios</h1>
             <br>
         </div>
     </header>

@@ -117,7 +117,7 @@
                    <div class="styled-select">
 	                <input type="hidden" name="poi" value = <%= poi.getIdPoi() %>>
                     <h2>Datos del POI</h2><br>
-	                <h3>Linea: <%=poi.getPoiDescripcion()%></h3>
+	                <h3>Línea: <%=poi.getPoiDescripcion()%></h3>
 	                </div>
                   </form>
                 </div>

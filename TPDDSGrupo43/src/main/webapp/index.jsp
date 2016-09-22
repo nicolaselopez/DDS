@@ -24,6 +24,9 @@
 
     <!-- Login CSS -->
     <link href="css/login.css" rel="stylesheet">
+    
+     <!-- Estilos nuevos CSS -->
+    <link href="css/estilos.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -57,34 +60,34 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Mapa de POIS</h1>
+            <h1>BA Puntos de interés<span class="glyphicon glyphicon-map-marker"></span></h1>
             <br>
             <div id="outerdiv">
             	<div id="map"></div>
         	</div>
+            <br> 
+            <a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-primary btn-lg">Calcular cercanía</a>
             <br>
-        	<a href="#" data-toggle="modal" data-target="#cercania-modal" class="btn btn-dark btn-lg">Calcular Cercania</a>
-            <br>
-        	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-dark btn-lg">Calcular Disponibilidad</a>
+        	<a href="#" data-toggle="modal" data-target="#disponibilidad-modal" class="btn btn-primary btn-lg">Calcular disponibilidad</a>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#tags-modal" class="btn btn-dark btn-lg">Buscar Servicio por Tags</a>
+        	<a href="#" data-toggle="modal" data-target="#tags-modal" class="btn btn-primary btn-lg">Buscar servicios por Tags <span class="glyphicon glyphicon-tags"></span></a>
         </div>
     </header>
     <!--Cercania Fade-->
     <div class="modal fade" id="cercania-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h2>Calculo de Cercania</h2><br>
+                    <h2>Cálculo de cercanía</h2><br>
                     <form action="ServletCalculoCercania" method="get">
                     <input type="hidden" name="latitud1" id="latitud1" >
                     <input type="hidden" name="longitud1" id="longitud1">
                     <input type="hidden" name="comunaPos" id="comunaPos" >
                     <input type="hidden" name="idPoiMap" id="idPoiMap" value =0>
-                    <h1>Selecciona un Poi del mapa</h1>
+                    <h1>Seleccioná un Poi del mapa</h1>
                     <input type="text" name="latitud2" id="latitud2" placeholder="Latitud Poi">
                     <input type="text" name="longitud2" id="longitud2" placeholder="Longitud Poi">
                     
-                    <h1>O elegi de esta lista:</h1>
+                    <h1>O elegí de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%
@@ -112,9 +115,9 @@
     <div class="modal fade" id="disponibilidad-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h2>Calculo de Disponibilidad</h2><br>
+                    <h2>Cálculo de Disponibilidad</h2><br>
                     <form action="ServletCalculoDisponibilidad" method="get">
-                    <h1>Elegi de esta lista:</h1>
+                    <h1>Elegí de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="poi" name="poi">
 	                    <%
@@ -140,9 +143,9 @@
     <div class="modal fade" id="tags-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h2>Busqueda por Tags</h2><br>
+                    <h2>Búsqueda por Tags</h2><br>
                     <form action="ServletBusquedaTags" method="get">
-                    <h1>Escribi palabra clave</h1>
+                    <h1>Escribí palabra clave</h1>
 					<input type="text" name="tag" id="tag" placeholder="Ej: mcdonalds">
                     <input type="submit" name="register" class="login loginmodal-submit" value="Buscar Servicios">
                   </form>

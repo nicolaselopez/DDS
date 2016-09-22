@@ -121,7 +121,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Registra tu POI</h1><br>
+                    <h1>Registrá tu POI</h1><br>
                   <form action="ServletRegistrarPoi" method="get">
                     <input type="text" name="nombrePoi" placeholder="Nombre del Poi">
                     <input type="text" name="latitud" id="latitud">

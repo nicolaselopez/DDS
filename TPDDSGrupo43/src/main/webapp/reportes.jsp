@@ -106,7 +106,7 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Reporte Creado</h2>
+            <h2>Reporte creado</h2>
             <% 
             int j =0;
             

@@ -102,7 +102,7 @@
             <br>
             <h2>Proceso</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Asignar Acciones a Usuarios</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Asignar acciones a usuarios</a>
         	<br>
         	<a href="#" data-toggle="modal" data-target="#rollback-modal" class="btn btn-dark btn-lg">Rollback Usuario</a>
         </div>
@@ -157,7 +157,7 @@
                 <div class="loginmodal-container">
                     <h2>Rollback Usuario</h2><br>
                     <form action="ServletProceso3Rollback" method="get">
-                    <h1>Elegi de esta lista:</h1>
+                    <h1>Elegí de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="usuarien" name="usuarien">
 	                    <%

@@ -105,9 +105,9 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Recuperar Servicios por POI:</h2>
+            <h2>Recuperar servicios por POI:</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Recuperar Servicio</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Recuperar servicio</a>
         </div>
     </header>
 
@@ -115,7 +115,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Recupera tu Servicio</h1><br>
+                    <h1>Recuperá tu Servicio</h1><br>
                   <form action="ServletRecuperarServicio" method="get">
    						 <div class="styled-select">
  	                    <select id="poi" name="poi">

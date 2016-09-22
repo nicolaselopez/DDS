@@ -115,7 +115,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Recupera un Poi</h1><br>
+                    <h1>Recuperá un Poi</h1><br>
                   <form action="ServletRecuperarPoi" method="get">
                    <div class="styled-select">
 	                    <select id="poi" name="poi">

@@ -109,9 +109,9 @@
     <div class="modal fade" id="disponibilidad-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h2>Seleccionar Servicio</h2><br>
+                    <h2>Seleccionar servicio</h2><br>
                     <form action="ServletCalculoDisponibilidad2" method="get">
-                    <h1>Eleji de esta lista:</h1>
+                    <h1>Elejí de esta lista:</h1>
                     <div class="styled-select">
 	                    <select id="serv" name="serv">
 	                    <%

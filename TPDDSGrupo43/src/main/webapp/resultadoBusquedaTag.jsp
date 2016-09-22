@@ -62,7 +62,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>--Servicios Encontrados--</h1>
+            <h1>--Servicios encontrados--</h1>
         <form action="ServletVerDescripcion" method="get">
         <select id="poi" name="poi">
            <% for(int i=0;i<serv.length;i++) {

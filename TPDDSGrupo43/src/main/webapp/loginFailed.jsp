@@ -57,7 +57,7 @@
             <h1>Grupo 43</h1>
             <h3>Prueba Login</h3>
             <br>
-            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
+            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz click aquí</a>
         </div>
     </header>
 
@@ -68,7 +68,7 @@
                 	<div class="login-error">
                     	<p>El usuario no existe o la contraseña fue incorrecta, intente de nuevo.</p>
                   	</div>
-                    <h1>Ingresa a tu cuenta</h1><br>
+                    <h1>Ingresá a tu cuenta</h1><br>
                   <form action="ServletConsulta" method="get">
                     <input type="text" name="usuario" value=<%= busuario.getUsuario() %>>
                     <input type="password" name="pass" placeholder="Contraseña">

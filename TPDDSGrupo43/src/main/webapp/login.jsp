@@ -51,9 +51,9 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Administracion de POIs</h1>
+            <h1>Administración de POIs</h1>
             <br>
-            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz Click Aqui</a>
+            <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Haz click aquí</a>
         </div>
     </header>
 
@@ -61,16 +61,22 @@
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Ingresa a tu cuenta</h1><br>
+                
+                <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Ingresá a tu cuenta</h4><br>
                   <form action="ServletConsulta" method="get">
-                    <input type="text" name="usuario" placeholder="Usuario">
-                    <input type="password" name="pass" placeholder="Contraseña">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Consultar">
+                  	<label for="usrname"><span class="glyphicon glyphicon-user"></span> Usuario</label>
+                  	<input type="text" name="usuario" placeholder="Ingresar usuario">
+                  	<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                    <input type="password" name="pass" placeholder="Ingresar contraseña">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Ingresar">
                   </form>
                     
                   <div class="login-help">
                     <a href="registrar.jsp">Registrate</a>
                   </div>
+              </div>
                 </div>
             </div>
     </div>

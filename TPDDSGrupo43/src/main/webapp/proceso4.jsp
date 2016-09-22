@@ -100,7 +100,7 @@
             <br>
             <h2>Proceso</h2>
         	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Selecciona Proceso</a>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Seleccioná un proceso</a>
         </div>
     </header>
 
@@ -108,7 +108,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Seleccione un Proceso</h1>
+                    <h1>Seleccione un proceso</h1>
                   <form action="ServletProceso4" method="get">
                    
                      <div class="styled-select">

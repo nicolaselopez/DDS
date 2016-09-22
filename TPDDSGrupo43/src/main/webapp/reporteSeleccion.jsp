@@ -114,7 +114,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Seleccione el tipo de Reporte:</h1><br>
+                    <h1>Seleccione el tipo de reporte:</h1><br>
                   <form action="ServletReporteSeleccion" method="get">
                    <div class="styled-select">
 	                    <select id="tipo" name="tipo">
