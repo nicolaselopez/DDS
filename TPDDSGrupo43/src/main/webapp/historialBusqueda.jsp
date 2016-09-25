@@ -48,7 +48,7 @@
 		usu = (String)request.getAttribute("us");
 	};
 	 %>
-	  <%boolean valid = Autenticador.controlarPermisos(Integer.parseInt(usu), 12);
+	  <%boolean valid = Autenticador.controlarPermisos(Integer.parseInt(usu), 13);
 	  if(!valid){
 	  request.setAttribute("us", usu);
 	  request.getRequestDispatcher("accesoDenegado.jsp").forward(request, response);
