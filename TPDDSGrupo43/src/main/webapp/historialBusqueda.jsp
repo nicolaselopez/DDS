@@ -1,4 +1,6 @@
-<%@page import="modelo.Usuario"%>
+<%@page import="vista.listObject"%>
+<%@page import="modelo.Poi" %>
+<%@page import="modelo.Autenticador" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +35,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
 </head>
 
 <body>
-
 	<%String usu = "0";
 	if(request.getParameter("us")!= null){
 		usu = request.getParameter("us");
@@ -44,14 +48,18 @@
 		usu = (String)request.getAttribute("us");
 	};
 	 %>
-
+	  <%boolean valid = Autenticador.controlarPermisos(Integer.parseInt(usu), 12);
+	  if(!valid){
+	  request.setAttribute("us", usu);
+	  request.getRequestDispatcher("accesoDenegado.jsp").forward(request, response);
+	  }%>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="home.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
                 <a href="registrarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Registrar Poi</a>
@@ -87,9 +95,6 @@
                 <a href="proceso.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Procesos</a>
             </li>
             <li>
-                <a href="historialBusqueda.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Historial Busqueda</a>
-            </li>
-            <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
         </ul>
@@ -97,11 +102,35 @@
 
     <!-- Header -->
     <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Gestión de Pois y Servicios</h1>
+        <div class="text-center">
             <br>
+            <h2>Historial Busquedas</h2>
+        	<br>
+        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Click Aquí</a>
         </div>
     </header>
+
+    <!--Servicio Fade-->
+    <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Ingrese fecha Desde/Hasta</h1>
+                  <form action="ServletHistorialBusquedas" method="get">
+                   
+                     <div class="styled-select">
+	                    
+	                    Desde<br>
+	                    <input id="desde" type="date" name="desde"><br>
+  						Hasta<br>
+	                    <input id="hasta" type="date" name="hasta">
+	                </div>
+	                <input type="hidden" name="us" value = <%= usu %>>
+	                <input type="submit" name="register" class="login loginmodal-submit" value="Buscar">
+                  </form>
+                </div>
+            </div>
+    </div>
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

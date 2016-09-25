@@ -1,4 +1,6 @@
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Poi"%>
+<%@page import="modelo.Servicio"%>
+<%@page import="modelo.HistorialBusqueda"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,73 +34,71 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<style>
+	table {
+    width:100%;
+	}
+	table, th, td {
+	    border: 1px solid black;
+	    border-collapse: collapse;
+	}
+	th, td {
+	    padding: 5px;
+	    text-align: centre;
+	    background-color: #eee;
+	}
+	tr, td{
+	    background-color: white;
+	}
+	</style>
 </head>
 
 <body>
+<%HistorialBusqueda[] historias=(HistorialBusqueda[])request.getAttribute("historias");%>
+<% if(historias == null){
+	historias = new HistorialBusqueda[1];
+	historias[0] = new HistorialBusqueda();
+	historias[0].setIdHistorial(-1);};%>
 
-	<%String usu = "0";
-	if(request.getParameter("us")!= null){
-		usu = request.getParameter("us");
-	}else if( request.getAttribute("us") != null){
-		usu = (String)request.getAttribute("us");
-	};
-	 %>
-
+<%Boolean OK = (Boolean)request.getAttribute("OK"); %>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="index.jsp" onclick = $("#menu-close").click(); >Mapa</a>
             </li>
             <li>
-                <a href="registrarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Registrar Poi</a>
-            </li>
-            <li>
-                <a href="agregarServicio.jsp?us=<%= usu %>"onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
-            </li>
-            <li>
-                <a href="editarPoiSeleccion.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Editar Poi</a>
-            </li>
-            <li>
-                <a href="borrarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Borrar Poi</a>
-            </li>
-        	<li>
-                <a href="recuperarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Recuperar Poi</a>
-            </li>       	
-            <li>
-                <a href="editarServicioSeleccion.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Editar Servicio</a>
-            </li>
-        	<li>
-                <a href="borrarServicio.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
-            </li>      
-            <li>
-                <a href="recuperarServicio.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
-            </li>    
-            <li>
-                <a href="actualizarInfoExterna.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Actualizar Info Externa</a>
-            </li>  
-            <li>
-                <a href="reporteSeleccion.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Generar Reportes</a>
-            </li> 
-            <li>
-                <a href="proceso.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Procesos</a>
-            </li>
-            <li>
-                <a href="historialBusqueda.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Historial Busqueda</a>
-            </li>
-            <li>
-                <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
+                <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
             </li>
         </ul>
     </nav>
-
+    
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Gestión de Pois y Servicios</h1>
+            <h1>--Busquedas encontradas--</h1>
+             <table style="width:100%">
+			  <tr>
+			    <th>Fecha</th>
+			    <th>Parametros</th>
+			    <th>POIs</th>
+			  </tr>
+            <% for(int i=0;i<historias.length;i++) {
+                   	if(historias[i].getIdHistorial()== -1){
+                   		break;	
+                   	}
+                   	HistorialBusqueda his = HistorialBusqueda.buscarHistorial(historias[i].getIdHistorial());
+                   	out.write("<tr>");
+					out.write("<td>" + his.getFechaBusqueda() +"</td>");
+					out.write("<td>" + his.getCriterio() +"</td>");
+					out.write("<td>"+ his.totalPois(his.getIdHistorial()) +"</td>");
+					out.write("</tr>");                   	
+			  }
+			%>
+             </table>
+
             <br>
         </div>
     </header>
