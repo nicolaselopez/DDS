@@ -93,12 +93,17 @@ public class HistorialBusqueda {
 	
 	public static HistorialBusqueda[] consultarHistorial(String desde, String hasta){
 		HistorialBusqueda[] pois = new HistorialBusqueda[5000];
+		
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery("select * from historialbusqueda where date(fechaBusqueda) BETWEEN '"+desde+"' AND '"+hasta+"' ;");
-			
+			ResultSet 
+			rs=st.executeQuery("select * from historialbusqueda where date(fechaBusqueda) BETWEEN '"+desde+"' AND '"+hasta+"' ;");
+			if(hasta.length()==0)
+			{
+				rs=st.executeQuery("select * from historialbusqueda where date(fechaBusqueda) BETWEEN '"+desde+"' AND curdate() ;");
+			}
 			int i=0;
 			while(rs.next()){
 				pois[i]=new HistorialBusqueda(rs.getInt(1), rs.getDate(2), rs.getString(3));

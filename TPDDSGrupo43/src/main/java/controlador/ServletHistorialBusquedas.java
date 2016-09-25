@@ -48,13 +48,9 @@ public class ServletHistorialBusquedas extends HttpServlet {
 			String desde=request.getParameter("desde");
 			
 			String hasta=request.getParameter("hasta");
-			
-			if(desde.isEmpty())
+			if(desde.length()==0)
 			{
-				desde="2016-09-22";
-			}if(hasta.isEmpty())
-			{
-				hasta="2016-09-25";
+				desde="0";
 			}
 			
 			HistorialBusqueda[] historias = HistorialBusqueda.consultarHistorial(desde, hasta);
