@@ -34,23 +34,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<style>
-	table {
-    width:100%;
-	}
-	table, th, td {
-	    border: 1px solid black;
-	    border-collapse: collapse;
-	}
-	th, td {
-	    padding: 5px;
-	    text-align: centre;
-	    background-color: #eee;
-	}
-	tr, td{
-	    background-color: white;
-	}
-	</style>
+    
+    <style type="text/css">
+    table{
+    background-color:white;
+    border: hidden;
+    border-radius: 25px;
+    }
+    </style>
+	
 </head>
 
 <body>
@@ -77,30 +69,35 @@
     
     <!-- Header -->
     <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>--Busquedas encontradas--</h1>
-             <table style="width:100%">
-			  <tr>
-			    <th>Fecha</th>
-			    <th>Parametros</th>
-			    <th>POIs</th>
-			  </tr>
-            <% for(int i=0;i<historias.length;i++) {
-                   	if(historias[i].getIdHistorial()== -1){
-                   		break;	
-                   	}
-                   	HistorialBusqueda his = HistorialBusqueda.buscarHistorial(historias[i].getIdHistorial());
-                   	out.write("<tr>");
-					out.write("<td>" + his.getFechaBusqueda() +"</td>");
-					out.write("<td>" + his.getCriterio() +"</td>");
-					out.write("<td>"+ his.totalPois(his.getIdHistorial()) +"</td>");
-					out.write("</tr>");                   	
-			  }
-			%>
-             </table>
-
-            <br>
-        </div>
+              <div class="container"> 
+  				<h1>Búsquedas encontradas</h1> <br>
+  				 <div class="table-responsive">
+  					<table class="table table-hover">
+    					<thead>
+      						<tr>
+        						<th>Fecha</th>
+        						<th>Parámetros</th>
+        						<th>POIS</th>
+      						</tr>
+    					</thead>
+    					<tbody>
+     						<% for(int i=0;i<historias.length;i++) {
+                   				if(historias[i].getIdHistorial()== -1){
+                   				break;	
+                   				}
+                   					HistorialBusqueda his = HistorialBusqueda.buscarHistorial(historias[i].getIdHistorial());
+                   					out.write("<tr>");
+									out.write("<td>" + his.getFechaBusqueda() +"</td>");
+									out.write("<td>" + his.getCriterio() +"</td>");
+									out.write("<td>"+ his.totalPois(his.getIdHistorial()) +"</td>");
+									out.write("</tr>");                   	
+			  					}
+							%>
+    				</tbody>    
+  				</table>
+  				</div>  
+			</div>       
+            <br>      
     </header>
 
     <!-- jQuery -->

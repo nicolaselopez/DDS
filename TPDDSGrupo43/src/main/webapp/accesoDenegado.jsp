@@ -92,10 +92,11 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-           <!-- <h1>El acceso a la acción requerida ha sido denegado.</h1>          
-            <br> --> 
-            <div class="alert alert-danger" role="alert" style="margin-left: auto; margin-right: auto;">
-  			<h3><strong>¡Oh no!</strong>El acceso a la acción requerida ha sido denegado</h3>
+          	<div class="container"style = " text-align: center; width: 600px;">
+          		<div class="panel panel-warning">
+      			<div class="panel-heading"><h2><strong>¡Oh no! :(</strong></h2></div>
+      			<div class="panel-body"><h3>El acceso a la acción requerida ha sido denegado</h3></div>
+    			</div>
 			</div>
 			<br>
         </div>

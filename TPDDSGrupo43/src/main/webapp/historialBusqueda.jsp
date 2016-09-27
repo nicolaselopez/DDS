@@ -107,7 +107,7 @@
     <header id="top" class="header">
         <div class="text-center">
             <br>
-            <h2>Historial Busquedas</h2>
+            <h2>Historial de búsquedas</h2>
         	<br>
         	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Click Aquí</a>
         </div>
@@ -117,7 +117,7 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Ingrese fecha Desde/Hasta</h1>
+                    <h1>Ingrese la fecha Desde/Hasta</h1>
                   <form action="ServletHistorialBusquedas" method="get">
                    
                      <div class="styled-select">
