@@ -357,6 +357,65 @@ public class Poi {
 		}
 		return poi;
 	}
+	
+	public static Poi buscarPoiDesc(String descripcion){
+		Poi poi=null;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi where PoiDescripcion like '%" + descripcion + "%' and PoiActivo = 1;");
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+
+			}
+			
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return poi;
+	}
+	
+	public static Poi buscarPoiActivo(int idPoi){
+		Poi poi=null;
+		Boolean externo = false;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi where idPoi=" + idPoi + "and PoiActivo = 1;");
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+
+			}
+			if(poi == null){
+				rs=st.executeQuery("Select * from bancoexterno where IdPoiExterno="+ idPoi + "and PoiExternoActivo = 1;");
+				while(rs.next()){
+					Direccion poiDireccion = Direccion.parametrizarDireccionBancoExterno(rs);
+					poi=new Poi(rs.getInt(1),rs.getInt(2),rs.getString(3),3,poiDireccion,rs.getString(6),rs.getString(7),rs.getInt(10));
+					externo = true;
+				}
+			}if(poi != null){
+				poi.setPoiBarrio(Barrio.consultarBarrio(poi.getPoiDireccion().getPoiIdBarrio()));
+				poi.setPoiServicio(Servicio.consultarServicios(idPoi,externo,true));
+			}
+			if(poi!=null && poi.getPoiIdTipoPoi()==4){
+				poi.setPoiRubro(Rubro.consultarRubro(poi.getPoiIdRubro()));
+			}if(poi == null){
+				Poi[] cgpExterno = CGPAdapter.consultaCentroWS();
+				for(int j=0;j<cgpExterno.length;j++){
+					if(cgpExterno[j].getIdPoi() == idPoi){
+						poi = cgpExterno[j];
+					}
+				}
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return poi;
+	}
 
 	public static Boolean editarPoi(Poi poi){
 		Boolean OK = false;
@@ -469,7 +528,8 @@ public class Poi {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo =" + estado + " where IdPoi = " + idPoi + ";");
+			Integer rs = st.executeUpdate("UPDATE poi SET PoiActivo = " + estado + " where IdPoi = " + idPoi + ";");
+										//"Select * from poi where PoiDescripcion like '%" + descripcion + "%' and PoiActivo = 1;");
 		if(rs==1){
 			OK=true;
 		}

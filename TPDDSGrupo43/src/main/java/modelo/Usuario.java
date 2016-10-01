@@ -121,6 +121,29 @@ public class Usuario {
 		}		
 		return OK;
 	}
+	
+	public static Boolean editarUsuario(Usuario usuario){
+		Boolean OK = false;
+		BasicPasswordEncryptor encriptador = new BasicPasswordEncryptor();
+		usuario.setClave(encriptador.encryptPassword(usuario.getClave()));
+	
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			
+			Integer rs=st.executeUpdate("UPDATE usuarios SET  nombre = "+usuario.getNombre()+ " where idusuarios = "+usuario.getIdUsuario()+"  ;");
+			
+			if(rs == 1){
+				OK = true;
+			}			
+		}catch(SQLException se){
+			se.printStackTrace();
+			OK=false;
+		}		
+		return OK;
+	}
+	
 	public static Usuario[] getUsuarios() {
 		Usuario[] busuario= new Usuario[20];
 		try{
