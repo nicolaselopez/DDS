@@ -550,5 +550,29 @@ public class Poi {
 		default: return"verPoi.jsp";
 		}
 	}
-		
+//----------------------------Agrego Para tests--------------------//
+	
+	public static Poi buscaPoi(int idPoi){
+		Poi poi=null;
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi where idPoi=" + idPoi + ";");
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				poi=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return poi;
+	}
+	
+
 }
+
+
+
+

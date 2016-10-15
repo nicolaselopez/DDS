@@ -28,8 +28,12 @@ public class TestEntrega6 {
 	
 	@Before
 	public void darContexto(){
-		usuarioPrueba = new Usuario( "nombre", "16",  "correo", "usuario", " clave");
-		
+		usuarioPrueba = new Usuario( );
+		usuarioPrueba.setNombre("nombre");
+		usuarioPrueba.setClave("clave");
+		usuarioPrueba.setCorreo("correo@asd.com");
+		usuarioPrueba.setUsuario("usuario");
+		usuarioPrueba.setRol(0);
 		poiPrueba = new Poi();
 		rubroPrueba = new Rubro();
 		barrioPrueba = new Barrio();
@@ -73,7 +77,7 @@ public void test1y2(){
 	
 	Assert.assertTrue(borrarPoi);
 }
-/*
+
 @Test
 public void test3(){
 	subirPoi = Poi.registrarPoi(poiPrueba);
@@ -81,7 +85,7 @@ public void test3(){
 	subirPoi = Poi.registrarPoi(nuevoPoi);
 	log.info("id del nuevo poi " + nuevoPoi.IdPoi);
 	
-	poiPrueba = Poi.buscarPoi(nuevoPoi.IdPoi);
+	poiPrueba = Poi.buscaPoi(nuevoPoi.IdPoi);
 	
 	Assert.assertTrue(nuevoPoi.IdPoi == poiPrueba.IdPoi) ;
 	
@@ -90,18 +94,16 @@ public void test3(){
 public void test4(){
 	
 	editado = Usuario.registrarUsuario(usuarioPrueba);
-	log.info("usuario agregado"+ usuarioPrueba.getNombre() + editado);
-	usuarioPrueba2 = usuarioPrueba;
-	usuarioPrueba.setNombre("pepepepepe"); 
-	
-	Usuario.editarUsuario(usuarioPrueba);
 
-	log.info( usuarioPrueba2.getNombre()+ "   " + usuarioPrueba.getNombre() + editado);
+	usuarioPrueba2 = Usuario.consultarUsuario("usuario");
+	usuarioPrueba.setNombre("eppepee");
+	log.info("nombre " + usuarioPrueba.getNombre() + usuarioPrueba2.getNombre());
 	
 	if(editado == true && !usuarioPrueba.getNombre().equals(usuarioPrueba2.getNombre())){
-	editado = true;	
-	}
+		editado = true;	
+		}
 	Assert.assertTrue(editado);
+
 }
-*/
+
 }
