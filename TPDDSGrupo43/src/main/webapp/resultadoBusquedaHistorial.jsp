@@ -1,7 +1,9 @@
 <%@page import="modelo.Poi"%>
 <%@page import="modelo.Servicio"%>
 <%@page import="modelo.HistorialBusqueda"%>
+<%@page import="modelo.ResultadosHistorial"%>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ page import="com.google.gson.Gson" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,15 +36,18 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
     <style type="text/css">
     table{
     background-color:white;
     border: hidden;
     border-radius: 25px;
     }
+    #registroOK {
+	display: none;
+	}
     </style>
-	
+
 </head>
 
 <body>
@@ -66,7 +71,7 @@
             </li>
         </ul>
     </nav>
-    
+
     <!-- Header -->
     <header id="top" class="header">
               <div class="container"> 
@@ -78,10 +83,13 @@
         						<th>Fecha</th>
         						<th>Parámetros</th>
         						<th>POIS</th>
+        						<th>Id</th>
       						</tr>
     					</thead>
     					<tbody>
-     						<% for(int i=0;i<historias.length;i++) {
+     						<%  Gson gson = new Gson();
+
+     							for(int i=0;i<historias.length;i++) {
                    				if(historias[i].getIdHistorial()== -1){
                    				break;	
                    				}
@@ -90,14 +98,31 @@
 									out.write("<td>" + his.getFechaBusqueda() +"</td>");
 									out.write("<td>" + his.getCriterio() +"</td>");
 									out.write("<td>"+ his.totalPois(his.getIdHistorial()) +"</td>");
-									out.write("</tr>");                   	
+
+									ResultadosHistorial[] resultados = his.poisBuscados(his.getIdHistorial());
+									String resultadosJs = ResultadosHistorial.convertArray(resultados);
+									
+									resultadosJs = resultadosJs.replaceAll("\"", "@");
+									System.out.println(resultadosJs);
+									
+									out.write("<td><button type=\"button\" onclick=\" return mostrarPois('"+resultadosJs+"')\">"+ his.getIdHistorial() +"</button>");
+
+									out.write("</td></tr>");
 			  					}
 							%>
-    				</tbody>    
+    				</tbody>
+    				
+    				
   				</table>
-  				</div>  
-			</div>       
-            <br>      
+  				</div>
+			</div>
+            <br>
+
+	<table id="registroOK" class="table table-hover">
+	    <tr>
+	    	<th>POI</th>
+	    </tr>
+	</table>
     </header>
 
     <!-- jQuery -->
@@ -136,6 +161,28 @@
             }
         });
     });
+
+    function mostrarPois(data) {
+        data = data.replace(/@/g, '"');
+        var resultado = JSON.parse(data);
+
+	    $("#registroOK").text("");
+        var len = resultado.length;
+        var txt = "<tr><th>POI</th><th>Detalle</th></tr>";
+        if(len > 0){
+            for(var i=0;i<len;i++){
+            	if(resultado[i].IdPoi!=0)
+                {
+            		txt +="<tr><td>"+resultado[i].IdPoi+"</td><td>"+resultado[i].PoiDescripcion+"</td></tr>";
+                }
+            }
+        }
+        
+	    $("#registroOK").show();
+	    $("#registroOK").append(txt);
+		$("#registro").hide();
+
+	};
     </script>
 
 </body>

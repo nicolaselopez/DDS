@@ -571,6 +571,24 @@ public class Poi {
 	}
 	
 
+	public static String buscarPoiDescripcion(int idPoi){
+		String desc = "Hola";
+		
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("Select * from poi where idPoi=" + idPoi + ";");
+			while(rs.next()){
+				desc = rs.getString(3);
+
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return desc;
+	}
+	
 }
 
 

@@ -141,4 +141,9 @@ public class HistorialBusqueda {
 		
 		return ResultadosHistorial.totalPois(idHistorial);
 	}
+	
+	public ResultadosHistorial[] poisBuscados(int idHistorial){
+		
+		return ResultadosHistorial.poisHistorial(idHistorial);
+	}
 }
