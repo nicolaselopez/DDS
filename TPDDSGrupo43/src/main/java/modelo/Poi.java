@@ -5,16 +5,22 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import modelo.Barrio;
 import modelo.Rubro;
 import modelo.Servicio;
 
 public class Poi {
+	
+	private static final Logger log= Logger.getLogger( Poi.class.getName() );
 	
 	protected int IdPoi;
 	protected int PoiIdTipoPoi;
@@ -587,6 +593,52 @@ public class Poi {
 			se.printStackTrace();
 		}
 		return desc;
+	}
+	
+	public static Poi[] busquedaPorCriterio(String criterio){
+		String[] parametros = criterio.split(";");
+		String filtro1 = "(";
+		String filtro2 = "(";
+		String filtro3 = "(";
+		for(int i=0; i<parametros.length;i++){
+			filtro1 = filtro1 + "ServicioTags like '%" + parametros[i] + "%' ";
+			filtro2 = filtro2 + "PoiDescripcion like '%" + parametros[i] + "%' ";
+			filtro3 = filtro3 + "ServicioDescripcion like '%" + parametros[i] + "%' ";
+			if(i!=(parametros.length-1)){
+				filtro1 = filtro1 + "or ";
+				filtro2 = filtro2 + "or ";
+				filtro3 = filtro3 + "or ";
+			}else{
+				filtro1 = filtro1 + ") or ";
+				filtro2 = filtro2 + ") or ";
+				filtro3 = filtro3 + ");";
+			}
+		}
+		Poi[] pois = new Poi[5000];
+		try{
+			Conexion c=new Conexion();
+			Connection con=c.getConexion();
+			Statement st=con.createStatement();
+			String consulta = "Select poi.* from poi inner join servicio on IdPoi = ServicioIdPoi";
+			consulta = consulta + " where " + filtro1 + filtro2 + filtro3;
+			log.info("El query a realizar es: " + consulta);
+			ResultSet rs=st.executeQuery(consulta);
+			int i=0;
+			while(rs.next()){
+				Direccion poiDireccion = Direccion.parametrizarDireccion(rs);
+				pois[i]=new Poi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), poiDireccion,rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getInt(19));
+				pois[i].setPoiServicio(Servicio.consultarServicios(pois[i].getIdPoi(),false,true));
+				i++;
+			}
+			for(int k=i;k<5000;k++){
+				pois[k]=new Poi();
+				pois[k].setIdPoi(-1);
+			}
+			
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		return pois;
 	}
 	
 }
