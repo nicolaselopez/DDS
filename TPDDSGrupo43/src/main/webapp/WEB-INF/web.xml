@@ -9,5 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
+  <servlet>
+	<servlet-name>REST WebService</servlet-name>
+	<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>REST WebService</servlet-name>
+	<url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
 </web-app>
