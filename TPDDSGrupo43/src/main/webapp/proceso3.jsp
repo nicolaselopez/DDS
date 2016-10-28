@@ -143,7 +143,7 @@
                    		out.write("<input type=\"checkbox\" id=\"acc10\" name=\"acc10\" value=1>"+ acciones[9].getAccionDescripcion()+"<br>");
                    		out.write("<input type=\"checkbox\" id=\"acc11\" name=\"acc11\" value=1>"+ acciones[10].getAccionDescripcion()+"<br>");
                    		out.write("<input type=\"checkbox\" id=\"acc12\" name=\"acc12\" value=1>"+ acciones[11].getAccionDescripcion()+"<br>");
-                   		
+                   		out.write("<input type=\"checkbox\" id=\"acc13\" name=\"acc13\" value=1>"+ acciones[12].getAccionDescripcion()+"<br>");
 						%>
 					</div>
 	                <input type="hidden" name="us" value = <%= usu %>>

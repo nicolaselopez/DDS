@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +25,7 @@ import modelo.Servicio;
 @WebServlet("/ServletProceso3")
 public class ServletProceso3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 
     /**
      * Default constructor. 
@@ -51,6 +54,7 @@ public class ServletProceso3 extends HttpServlet {
 		acciones.setAccion10((request.getParameter("acc10")!= null) ? true : false);
 		acciones.setAccion11((request.getParameter("acc11")!= null) ? true : false);
 		acciones.setAccion12((request.getParameter("acc12")!= null) ? true : false);
+		acciones.setAccion13((request.getParameter("acc13")!= null) ? true : false);
 		
 		//ProcesoContext context = null;
 		String parametros = acciones.convertToString();

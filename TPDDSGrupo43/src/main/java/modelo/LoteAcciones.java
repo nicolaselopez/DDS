@@ -24,6 +24,8 @@ public class LoteAcciones {
 	private boolean accion10 = false;
 	private boolean accion11 = false;
 	private boolean accion12 = false;
+	private boolean accion13 = false;
+	
 	public boolean isAccion1() {
 		return accion1;
 	}
@@ -96,6 +98,12 @@ public class LoteAcciones {
 	public void setAccion12(boolean accion12) {
 		this.accion12 = accion12;
 	}
+	public boolean isAccion13() {
+		return accion13;
+	}
+	public void setAccion13(boolean accion13) {
+		this.accion13 = accion13;
+	}
 	public LoteAcciones() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -116,6 +124,7 @@ public class LoteAcciones {
 		OK = (this.accion10) ? registrarAccion(usuario,secuencial,10) : true;
 		OK = (this.accion11) ? registrarAccion(usuario,secuencial,11) : true;
 		OK = (this.accion12) ? registrarAccion(usuario,secuencial,12) : true;
+		OK = (this.accion13) ? registrarAccion(usuario,secuencial,13) : true;
 		return OK;
 	}
 	
@@ -199,6 +208,11 @@ public class LoteAcciones {
 			}else{
 				resultado = resultado + "0;";
 			}
+			if(this.accion13){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
 		return resultado;
 	}
 	
@@ -264,6 +278,11 @@ public class LoteAcciones {
 				resultado.setAccion12(true);
 			}else{
 				resultado.setAccion12(false);
+			}
+			if(acciones[12].equals("1")){
+				resultado.setAccion13(true);
+			}else{
+				resultado.setAccion13(false);
 			}
 		return resultado;
 	}
