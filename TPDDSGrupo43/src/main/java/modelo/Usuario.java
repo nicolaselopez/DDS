@@ -145,7 +145,7 @@ public class Usuario {
 	}
 	
 	public static Usuario[] getUsuarios() {
-		Usuario[] busuario= new Usuario[20];
+		Usuario[] busuario= new Usuario[100];
 		try{
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
