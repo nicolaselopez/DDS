@@ -25,7 +25,14 @@ public class LoteAcciones {
 	private boolean accion11 = false;
 	private boolean accion12 = false;
 	private boolean accion13 = false;
+	private boolean accion14 = false;
 	
+	public boolean isAccion14() {
+		return accion14;
+	}
+	public void setAccion14(boolean accion14) {
+		this.accion14 = accion14;
+	}
 	public boolean isAccion1() {
 		return accion1;
 	}
@@ -125,6 +132,7 @@ public class LoteAcciones {
 		OK = (this.accion11) ? registrarAccion(usuario,secuencial,11) : true;
 		OK = (this.accion12) ? registrarAccion(usuario,secuencial,12) : true;
 		OK = (this.accion13) ? registrarAccion(usuario,secuencial,13) : true;
+		OK = (this.accion14) ? registrarAccion(usuario,secuencial,14) : true;
 		return OK;
 	}
 	
@@ -213,6 +221,11 @@ public class LoteAcciones {
 			}else{
 				resultado = resultado + "0;";
 			}
+			if(this.accion14){
+				resultado = resultado + "1;";
+			}else{
+				resultado = resultado + "0;";
+			}
 		return resultado;
 	}
 	
@@ -283,6 +296,11 @@ public class LoteAcciones {
 				resultado.setAccion13(true);
 			}else{
 				resultado.setAccion13(false);
+			}
+			if(acciones[13].equals("1")){
+				resultado.setAccion14(true);
+			}else{
+				resultado.setAccion14(false);
 			}
 		return resultado;
 	}

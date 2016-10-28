@@ -97,6 +97,9 @@
                 <a href="historialBusqueda.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Historial Busqueda</a>
             </li>
             <li>
+                <a href="busquedaCriterio.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Busqueda por Criterio</a>
+            </li>
+            <li>
                 <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
         </ul>

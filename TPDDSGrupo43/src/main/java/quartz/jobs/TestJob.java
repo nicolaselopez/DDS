@@ -54,7 +54,7 @@ public class TestJob implements Job {
 				}else{
 					LoteAcciones acciones = LoteAcciones.convertToLote(proceso.getParametros());
 					context = new ProcesoContext(new Proceso3());
-					context.executeStrategy(parametros[13],acciones);	
+					context.executeStrategy(parametros[14],acciones);	
 				}
 				
 			}

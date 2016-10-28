@@ -55,6 +55,7 @@ public class ServletProceso3 extends HttpServlet {
 		acciones.setAccion11((request.getParameter("acc11")!= null) ? true : false);
 		acciones.setAccion12((request.getParameter("acc12")!= null) ? true : false);
 		acciones.setAccion13((request.getParameter("acc13")!= null) ? true : false);
+		acciones.setAccion14((request.getParameter("acc14")!= null) ? true : false);
 		
 		//ProcesoContext context = null;
 		String parametros = acciones.convertToString();
