@@ -198,6 +198,11 @@ public class Servicio {
 			servicio[k]=new Servicio();
 			servicio[k].setIdServicio(-1);
 		};
+		Servicio[] servicioaux = new Servicio[i];
+		for(int p=0; p<i; p++){
+			servicioaux[p] = servicio[p];
+		}
+		servicio = servicioaux;
 		}catch(Exception se){
 			se.printStackTrace();
 		}
