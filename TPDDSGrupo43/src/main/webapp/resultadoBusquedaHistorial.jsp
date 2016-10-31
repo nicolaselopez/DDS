@@ -83,7 +83,6 @@
         						<th>Fecha</th>
         						<th>Parámetros</th>
         						<th>POIS</th>
-        						<th>Id</th>
       						</tr>
     					</thead>
     					<tbody>
@@ -97,7 +96,6 @@
                    					out.write("<tr>");
 									out.write("<td>" + his.getFechaBusqueda() +"</td>");
 									out.write("<td>" + his.getCriterio() +"</td>");
-									out.write("<td>"+ his.totalPois(his.getIdHistorial()) +"</td>");
 
 									ResultadosHistorial[] resultados = his.poisBuscados(his.getIdHistorial());
 									String resultadosJs = ResultadosHistorial.convertArray(resultados);
@@ -105,7 +103,7 @@
 									resultadosJs = resultadosJs.replaceAll("\"", "@");
 									System.out.println(resultadosJs);
 									
-									out.write("<td><button type=\"button\" onclick=\" return mostrarPois('"+resultadosJs+"')\">"+ his.getIdHistorial() +"</button>");
+									out.write("<td><button type=\"button\" onclick=\" return mostrarPois('"+resultadosJs+"')\">"+ his.totalPois(his.getIdHistorial()) +"</button>");
 
 									out.write("</td></tr>");
 			  					}
