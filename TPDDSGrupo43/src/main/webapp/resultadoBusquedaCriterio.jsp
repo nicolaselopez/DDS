@@ -77,7 +77,6 @@
               <div class="container"> 
   				<h1>Búsquedas encontradas</h1> <br>
   				 <div class="table-responsive">
-        <form action="ServletVerDescripcion" method="get">
   					<table class="table table-hover">
     					<thead>
       						<tr>
@@ -97,14 +96,12 @@
 									out.write("<td>" + poi.getPoiDescripcion() +"</td>");
 									out.write("<td>" + poi.getPoiDireccion().getPoiCalle() + " " + poi.getPoiDireccion().getPoiNumero() +"</td>");
 									out.write("</tr>");
-           out.write("<td><input type=\"submit\" name=\"register\" class=\"login loginmodal-submit\" value=\"Ver POI\">");
 			  					}
 							%>
     				</tbody>
     				
     				
   				</table>
-            </form>
   				</div>
 			</div>
             <br>
