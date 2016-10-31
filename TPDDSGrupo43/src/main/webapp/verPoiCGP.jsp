@@ -1,5 +1,6 @@
 <%@page import="vista.listObject"%>
 <%@page import="modelo.Poi" %>
+<%@page import="modelo.Servicio"%>
 <%@page import="modelo.Barrio" %>
 <%@page import="modelo.Rubro" %>
 <%@page import="modelo.TipoPoi" %>
@@ -126,13 +127,13 @@
                    <h3>Piso: <%=poi.getPoiDireccion().getPoiPiso()%>&nbsp; Depto: <%=poi.getPoiDireccion().getPoiDepto()%></h3>
 	               <h3>SERVICIOS:</h3>
 	                    <%
-	                    int k=0;
-	                    while(poi.getPoiServicio()[k].getServicioDescripcion()!=null){
-
-							out.write("<h3>"+poi.getPoiServicio()[k].getServicioDescripcion()+"</h3>");
-	                    	k++;
-	          			  
-	                    }
+	                    Servicio[] servicioPoi = poi.getPoiServicio();
+	                    for(int i=0;i<servicioPoi.length;i++) {
+	                    	if(servicioPoi[i].getIdServicio()== -1){
+	                    		break;	
+	                    	}
+	                    	out.write("<h3>" + servicioPoi[i].getServicioDescripcion()+"</h3>");
+						}
 						%>
             <br>
 	               

@@ -126,7 +126,7 @@
   				 <div class="table-responsive">
   					<table class="table table-hover">
     					<thead>
-      						<tr>
+      						<tr style="background-color: #FFD700">
         						<th>Fecha</th>
         						<th>Parámetros</th>
         						<th>POIS</th>
@@ -165,7 +165,7 @@
 		<div  class="container"> 
 		<div class="table-responsive">
 		<table id="registroOK" class="table table-hover">
-		    <tr>
+		    <tr style="background-color: #FFD700">
 		    	<th>POI</th>
 		    </tr>
 		</table>
@@ -216,7 +216,7 @@
 
 	    $("#registroOK").text("");
         var len = resultado.length;
-        var txt = "<tr><th>POI</th><th>Detalle</th></tr>";
+        var txt = "<tr  style=\"background-color: #FFD700\"><th>POI</th><th>Detalle</th></tr>";
         if(len > 0){
             for(var i=0;i<len;i++){
             	if(resultado[i].IdPoi!=0)
