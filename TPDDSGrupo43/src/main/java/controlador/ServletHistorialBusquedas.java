@@ -40,7 +40,9 @@ public class ServletHistorialBusquedas extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		String usuario = request.getParameter("us");
+		request.setAttribute("us", usuario);
 		
 		try{
 			Boolean OK = false;

@@ -2,6 +2,7 @@
 <%@page import="modelo.Servicio"%>
 <%@page import="modelo.HistorialBusqueda"%>
 <%@page import="modelo.ResultadosHistorial"%>
+<%@page import="modelo.Usuario" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.google.gson.Gson" %>
 <!DOCTYPE html>
@@ -58,16 +59,62 @@
 	historias[0].setIdHistorial(-1);};%>
 
 <%Boolean OK = (Boolean)request.getAttribute("OK"); %>
+	<%String usu = "0";
+	if(request.getParameter("us")!= null){
+		usu = request.getParameter("us");
+	}else if( request.getAttribute("us") != null){
+		usu = (String)request.getAttribute("us");
+	};
+	 %>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li>
-                <a href="index.jsp" onclick = $("#menu-close").click(); >Mapa</a>
+                <a href="home.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
-                <a href="login.jsp" onclick = $("#menu-close").click(); >LogIn</a>
+                <a href="registrarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Registrar Poi</a>
+            </li>
+            <li>
+                <a href="agregarServicio.jsp?us=<%= usu %>"onclick = $("#menu-close").click(); >Registrar Servicio a Poi</a>
+            </li>
+            <li>
+                <a href="editarPoiSeleccion.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Editar Poi</a>
+            </li>
+            <li>
+                <a href="borrarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Borrar Poi</a>
+            </li>
+        	<li>
+                <a href="recuperarPoi.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Recuperar Poi</a>
+            </li>       	
+            <li>
+                <a href="editarServicioSeleccion.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Editar Servicio</a>
+            </li>
+        	<li>
+                <a href="borrarServicio.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Borrar Servicio a Poi</a>
+            </li>      
+            <li>
+                <a href="recuperarServicio.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Recuperar Servicio a Poi</a>
+            </li>    
+            <li>
+                <a href="actualizarInfoExterna.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Actualizar Info Externa</a>
+            </li>  
+            <li>
+                <a href="reporteSeleccion.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Generar Reportes</a>
+            </li> 
+            <li>
+                <a href="proceso.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Procesos</a>
+            </li>
+            <li>
+                <a href="historialBusqueda.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Historial Busqueda</a>
+            </li>
+            <li>
+                <a href="busquedaCriterio.jsp?us=<%= usu %>" onclick = $("#menu-close").click(); >Busqueda por Criterio</a>
+            </li>
+            <li>
+                <a href="index.jsp" onclick = $("#menu-close").click(); >Logout</a>
             </li>
         </ul>
     </nav>
@@ -115,12 +162,15 @@
   				</div>
 			</div>
             <br>
-
-	<table id="registroOK" class="table table-hover">
-	    <tr>
-	    	<th>POI</th>
-	    </tr>
-	</table>
+		<div  class="container"> 
+		<div class="table-responsive">
+		<table id="registroOK" class="table table-hover">
+		    <tr>
+		    	<th>POI</th>
+		    </tr>
+		</table>
+	  	</div>
+		</div>
     </header>
 
     <!-- jQuery -->
