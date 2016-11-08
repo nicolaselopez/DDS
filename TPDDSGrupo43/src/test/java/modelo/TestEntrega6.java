@@ -90,20 +90,5 @@ public void test3(){
 	Assert.assertTrue(nuevoPoi.IdPoi == poiPrueba.IdPoi) ;
 	
 }
-@Test
-public void test4(){
-	
-	editado = Usuario.registrarUsuario(usuarioPrueba);
-
-	usuarioPrueba2 = Usuario.consultarUsuario("usuario");
-	usuarioPrueba.setNombre("eppepee");
-	log.info("nombre " + usuarioPrueba.getNombre() + usuarioPrueba2.getNombre());
-	
-	if(editado == true && !usuarioPrueba.getNombre().equals(usuarioPrueba2.getNombre())){
-		editado = true;	
-		}
-	Assert.assertTrue(editado);
-
-}
 
 }

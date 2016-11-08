@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ws.rs.GET;
@@ -17,12 +19,15 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.DBCollection;
+import com.mongodb.MongoClient;
 
 import controlador.ServletCalculoDisponibilidad2;
 import modelo.CGPAdapter;
 import modelo.Conexion;
 import modelo.Direccion;
 import modelo.HistorialBusqueda;
+import modelo.MongoConnection;
 import modelo.Poi;
 import modelo.Servicio;
  
@@ -44,7 +49,6 @@ public class HistorialConsultas {
 	  @Produces("application/json")
 	  public Response historialConsultas(@PathParam("f") String f) throws JSONException {
  
-		JSONObject jsonObject = new JSONObject();
 		String[] parametros = f.split("&");
 		String desde = "";
 		String hasta = "";
@@ -59,8 +63,7 @@ public class HistorialConsultas {
 			Conexion c=new Conexion();
 			Connection con=c.getConexion();
 			Statement st=con.createStatement();
-			ResultSet 
-			rs=st.executeQuery("select * from historialbusqueda where date(fechaBusqueda) BETWEEN '"+desde+"' AND '"+hasta+"' ;");
+			ResultSet rs=st.executeQuery("select * from historialbusqueda where date(fechaBusqueda) BETWEEN '"+desde+"' AND '"+hasta+"' ;");
 			if(hasta.length()==0)
 			{
 				rs=st.executeQuery("select * from historialbusqueda where date(fechaBusqueda) BETWEEN '"+desde+"' AND curdate() ;");
@@ -76,7 +79,7 @@ public class HistorialConsultas {
 			}
 			for(int p = 0; p<i;p++){
 				try {
-			result = result + mapper.writeValueAsString(pois[p]) +"\n";
+					result = result + mapper.writeValueAsString(pois[p]) +"\n";
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
