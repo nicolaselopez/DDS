@@ -1,7 +1,12 @@
-<%@page import="vista.listObject"%>
-<%@page import="modelo.Poi" %>
-<%@page import="modelo.Autenticador" %>
+<%@page import="modelo.Poi"%>
+<%@page import="modelo.Servicio"%>
+<%@page import="modelo.HistorialMongo"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.ResultadosMongo"%>
+<%@page import="modelo.Usuario" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ page import="com.google.gson.Gson" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,12 +40,26 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
+    <style type="text/css">
+    table{
+    background-color:white;
+    border: hidden;
+    border-radius: 25px;
+    }
+    #registroOK {
+	display: none;
+	}
+    </style>
 
 </head>
 
 <body>
+<%List<HistorialMongo> historias=(List<HistorialMongo>)request.getAttribute("historias");%>
+<% if(historias == null){
+	historias = new ArrayList<HistorialMongo>();
+	};%>
+
+<%Boolean OK = (Boolean)request.getAttribute("OK"); %>
 	<%String usu = "0";
 	if(request.getParameter("us")!= null){
 		usu = request.getParameter("us");
@@ -48,11 +67,6 @@
 		usu = (String)request.getAttribute("us");
 	};
 	 %>
-	  <%boolean valid = Autenticador.controlarPermisos(Integer.parseInt(usu), 13);
-	  if(!valid){
-	  request.setAttribute("us", usu);
-	  request.getRequestDispatcher("accesoDenegado.jsp").forward(request, response);
-	  }%>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
@@ -108,35 +122,50 @@
 
     <!-- Header -->
     <header id="top" class="header">
-        <div class="text-center">
+              <div class="container"> 
+  				<h1>Búsquedas encontradas</h1> <br>
+  				 <div class="table-responsive">
+  					<table class="table table-hover">
+    					<thead>
+      						<tr style="background-color: #FFD700">
+        						<th>Fecha</th>
+        						<th>Parámetros</th>
+        						<th>POIS</th>
+      						</tr>
+    					</thead>
+    					<tbody>
+     						<%  Gson gson = new Gson();
+
+     							for(int i=0;i<historias.size();i++) {
+                   					HistorialMongo his = historias.get(i);
+                   					out.write("<tr>");
+									out.write("<td>" + his.getFechaBusqueda() +"</td>");
+									out.write("<td>" + his.getCriterio() +"</td>");
+									List<ResultadosMongo> resultados = his.getResultado();
+									String resultadosJs = ResultadosMongo.convertArray(resultados);
+									resultadosJs = resultadosJs.replaceAll("\"", "@");
+									System.out.println(resultadosJs);						
+									out.write("<td><button type=\"button\" onclick=\" return mostrarPois('"+resultadosJs+"')\">"+ his.getResultado().size() +"</button>");
+									out.write("</td></tr>");
+			  					}
+							%>
+    				</tbody>
+    				
+    				
+  				</table>
+  				</div>
+			</div>
             <br>
-            <h2>Historial de búsquedas</h2>
-        	<br>
-        	<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-dark btn-lg">Click Aquí</a>
-        </div>
+		<div  class="container"> 
+		<div class="table-responsive">
+		<table id="registroOK" class="table table-hover">
+		    <tr style="background-color: #FFD700">
+		    	<th>POI</th>
+		    </tr>
+		</table>
+	  	</div>
+		</div>
     </header>
-
-    <!--Servicio Fade-->
-    <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-          <div class="modal-dialog">
-                <div class="loginmodal-container">
-                    <h1>Ingrese la fecha Desde/Hasta</h1>
-                  <form action="ServletHistorialBusquedasMongo" method="get">
-                   
-                     <div class="styled-select">
-	                    
-	                    Desde<br>
-	                    <input id="desde" type="date" name="desde"><br>
-  						Hasta<br>
-	                    <input id="hasta" type="date" name="hasta">
-	                </div>
-	                <input type="hidden" name="us" value = <%= usu %>>
-	                <input type="submit" name="register" class="login loginmodal-submit" value="Buscar">
-                  </form>
-                </div>
-            </div>
-    </div>
-
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -174,6 +203,28 @@
             }
         });
     });
+
+    function mostrarPois(data) {
+        data = data.replace(/@/g, '"');
+        var resultado = JSON.parse(data);
+
+	    $("#registroOK").text("");
+        var len = resultado.length;
+        var txt = "<tr  style=\"background-color: #FFD700\"><th>POI</th><th>Detalle</th></tr>";
+        if(len > 0){
+            for(var i=0;i<len;i++){
+            	if(resultado[i].idPoi!=0)
+                {
+            		txt +="<tr><td>"+resultado[i].idPoi+"</td><td>"+resultado[i].poiDescripcion+"</td></tr>";
+                }
+            }
+        }
+        
+	    $("#registroOK").show();
+	    $("#registroOK").append(txt);
+		$("#registro").hide();
+
+	};
     </script>
 
 </body>

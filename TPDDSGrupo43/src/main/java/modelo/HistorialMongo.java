@@ -7,14 +7,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
+
 public class HistorialMongo {
+	
+	private static final Logger log= Logger.getLogger( HistorialMongo.class.getName() );
 
 	private String _id;
 	private Date fechaBusqueda;
@@ -88,13 +94,29 @@ public class HistorialMongo {
 	public static List<HistorialMongo> filtrarHistorial(String fechaDesde, String fechaHasta, DBCollection col){
 		List<HistorialMongo> hist = new ArrayList<HistorialMongo>();
 		ObjectMapper mapper = new ObjectMapper();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(df);
 		try{
-			BasicDBObject query = new BasicDBObject("FechaBusqueda", //
-                    new BasicDBObject("$gte", fechaDesde).append("$lt", fechaHasta));
-			DBCursor cursor = col.find(query);
+			BasicDBObject query = new BasicDBObject("fechaBusqueda", //
+                    new BasicDBObject("$gte", fechaDesde).append("$lte", fechaHasta));
+			DBObject removeIdProjection = new BasicDBObject("_id", 0);
+			DBCursor cursor = col.find(query,removeIdProjection);
 			while(cursor.hasNext()){
-				hist.add(mapper.readValue(cursor.next().toString(), HistorialMongo.class));
+				String dato = cursor.next().toString();
+				hist.add(mapper.readValue(dato, HistorialMongo.class));
 			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return hist;
+	}
+	
+	public static List<HistorialMongo> consultarHistorial(String fechaDesde, String fechaHasta){
+		List<HistorialMongo> hist = new ArrayList<HistorialMongo>();
+		MongoClient mongo = MongoConnection.crearConexion();
+		DBCollection histCol = MongoConnection.getHistorial(mongo);
+		try{
+			hist = HistorialMongo.filtrarHistorial(fechaDesde, fechaHasta, histCol);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
