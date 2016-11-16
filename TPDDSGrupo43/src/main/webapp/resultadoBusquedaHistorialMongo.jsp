@@ -210,12 +210,12 @@
 
 	    $("#registroOK").text("");
         var len = resultado.length;
-        var txt = "<tr  style=\"background-color: #FFD700\"><th>POI</th><th>Detalle</th></tr>";
+        var txt = "<tr  style=\"background-color: #FFD700\"><th>Detalle</th></tr>";
         if(len > 0){
             for(var i=0;i<len;i++){
             	if(resultado[i].idPoi!=0)
                 {
-            		txt +="<tr><td>"+resultado[i].idPoi+"</td><td>"+resultado[i].poiDescripcion+"</td></tr>";
+            		txt +="<tr><td>"+resultado[i].poiDescripcion+"</td></tr>";
                 }
             }
         }

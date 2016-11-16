@@ -122,16 +122,14 @@
                 <div class="loginmodal-container">
                     <h1>Ingrese la fecha Desde/Hasta</h1>
                   <form action="ServletHistorialBusquedasMongo" method="get">
-                   
                      <div class="styled-select">
-	                    
 	                    Desde<br>
 	                    <input id="desde" type="date" name="desde"><br>
   						Hasta<br>
 	                    <input id="hasta" type="date" name="hasta">
 	                </div>
 	                <input type="hidden" name="us" value = <%= usu %>>
-	                <input type="submit" name="register" class="login loginmodal-submit" value="Buscar">
+	                <input type="submit" name="register" class="login loginmodal-submit" onsubmit="return validateForm()" value="Buscar">
                   </form>
                 </div>
             </div>
@@ -174,6 +172,21 @@
             }
         });
     });
+    
+    function validateForm() {
+        var x = $('#desde').val();
+        var y = $('#hasta').val();
+        if (x == null || y == null || y < x) {
+            if(x == null){
+            	alert("Debe seleccionar una fecha desde");
+            }else if(y == null){
+            	alert("Debe seleccionar una fecha hasta");
+            }else if(y < x){
+            	alert("fecha Hasta no puede ser menor que fecha Desde");
+            }
+            return false;
+        }
+    }
     </script>
 
 </body>
