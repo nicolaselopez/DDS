@@ -129,7 +129,7 @@
 	                    <input id="hasta" type="date" name="hasta">
 	                </div>
 	                <input type="hidden" name="us" value = <%= usu %>>
-	                <input type="submit" name="register" class="login loginmodal-submit" onsubmit="return validateForm()" value="Buscar">
+	                <input type="submit" name="register" class="login loginmodal-submit" value="Buscar">
                   </form>
                 </div>
             </div>
@@ -173,20 +173,20 @@
         });
     });
     
-    function validateForm() {
+    $('form').submit(function () {
         var x = $('#desde').val();
         var y = $('#hasta').val();
-        if (x == null || y == null || y < x) {
-            if(x == null){
-            	alert("Debe seleccionar una fecha desde");
-            }else if(y == null){
-            	alert("Debe seleccionar una fecha hasta");
+        if (x == "" || y == "" || y < x) {
+            if(x == ""){
+            	alert("Debe seleccionar una Fecha Desde");
+            }else if(y == ""){
+            	alert("Debe seleccionar una Fecha Hasta");
             }else if(y < x){
-            	alert("fecha Hasta no puede ser menor que fecha Desde");
+            	alert("La Fecha Hasta no puede ser menor que la Fecha Desde, por favor modifiquelo y vuelva a intentar.");
             }
             return false;
         }
-    }
+    });
     </script>
 
 </body>
