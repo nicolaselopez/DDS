@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.ResultadosMongo"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="modelo.Usuario" %>
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.google.gson.Gson" %>
@@ -135,11 +136,13 @@
     					</thead>
     					<tbody>
      						<%  Gson gson = new Gson();
-
+								SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+								String fecha = "";
      							for(int i=0;i<historias.size();i++) {
                    					HistorialMongo his = historias.get(i);
+                   					fecha = sdf.format(his.getFechaBusqueda());
                    					out.write("<tr>");
-									out.write("<td>" + his.getFechaBusqueda() +"</td>");
+									out.write("<td>" +fecha+"</td>");
 									out.write("<td>" + his.getCriterio() +"</td>");
 									List<ResultadosMongo> resultados = his.getResultado();
 									String resultadosJs = ResultadosMongo.convertArray(resultados);
