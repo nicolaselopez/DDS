@@ -68,10 +68,10 @@
                   	</div>
                     <h1>Registrá tu cuenta</h1><br>
                   <form action="ServletRegistrar" method="get">
-                    <input id="username" type="text" name="usuario" placeholder="Usuario"><p>
-                    <input id="password" type="password" name="pass" placeholder="Contraseña"><p>
-                    <input type="text" name="name" placeholder="Nombre">
-                    <input id="mail" type="text" name="mail" placeholder="Email">
+                    <input id="username" type="text" name="usuario" placeholder="Usuario" required><p>
+                    <input id="password" type="password" name="pass" placeholder="Contraseña" required><p>
+                    <input type="text" name="name" placeholder="Nombre" required>
+                    <input id="mail" type="text" name="mail" placeholder="Email" required>
                     <input type="text" name="fecnac" placeholder="Fecha Nacimiento (AAAAMMDD)">
                     <input type="submit" name="register" class="login loginmodal-submit" value="Registrar">
                   </form>
@@ -124,19 +124,6 @@
     $('form').submit(function () {
         var x = $('#username').val();
         var y = $('#password').val();
-        
-        if (x=="") {
-            
-            	alert("Ingrese un username.");
-            
-            return false;
-        }
-        if (y=="") {
-            
-            	alert("Ingrese un password.");
-            
-            return false;
-        }
     });
     </script>
 
