@@ -43,7 +43,7 @@ public class ServletRegistrar extends HttpServlet {
 			Usuario usuarioAux = new Usuario();
 			usuarioAux.setUsuario(usuario);
 			request.setAttribute("busuario", usuarioAux);
-			request.getRequestDispatcher("loginFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("registrarFailed.jsp").forward(request, response);
 		}
 	}
 

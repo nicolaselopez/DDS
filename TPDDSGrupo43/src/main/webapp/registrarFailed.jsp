@@ -63,10 +63,13 @@
     <div class="modal fade" id="login-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
+                <div class="login-error">
+                    	<p>El usuario o email ya existen intente de nuevo.</p>
+                  	</div>
                     <h1>Registrá tu cuenta</h1><br>
                   <form action="ServletRegistrar" method="get">
-                    <input id="username" type="text" name="usuario" placeholder="Usuario"><p>*</p>
-                    <input id="password" type="password" name="pass" placeholder="Contraseña"><p>*</p>
+                    <input id="username" type="text" name="usuario" placeholder="Usuario"><p>
+                    <input id="password" type="password" name="pass" placeholder="Contraseña"><p>
                     <input type="text" name="name" placeholder="Nombre">
                     <input id="mail" type="text" name="mail" placeholder="Email">
                     <input type="text" name="fecnac" placeholder="Fecha Nacimiento (AAAAMMDD)">
