@@ -216,12 +216,12 @@
 
 	    $("#registroOK").text("");
         var len = resultado.length;
-        var txt = "<tr  style=\"background-color: #FFD700\"><th>POI</th><th>Detalle</th></tr>";
+        var txt = "<tr  style=\"background-color: #FFD700\"><th>Detalle POI</th></tr>";
         if(len > 0){
             for(var i=0;i<len;i++){
             	if(resultado[i].IdPoi!=0)
                 {
-            		txt +="<tr><td>"+resultado[i].IdPoi+"</td><td>"+resultado[i].PoiDescripcion+"</td></tr>";
+            		txt +="<tr><td>"+resultado[i].PoiDescripcion+"</td></tr>";
                 }
             }
         }

@@ -176,14 +176,10 @@
     $('form').submit(function () {
         var x = $('#desde').val();
         var y = $('#hasta').val();
-        if (x == "" || y == "" || y < x) {
-            if(x == ""){
-            	alert("Debe seleccionar una Fecha Desde");
-            }else if(y == ""){
-            	alert("Debe seleccionar una Fecha Hasta");
-            }else if(y < x){
+        if (y < x) {
+            
             	alert("La Fecha Hasta no puede ser menor que la Fecha Desde, por favor modifiquelo y vuelva a intentar.");
-            }
+            
             return false;
         }
     });
