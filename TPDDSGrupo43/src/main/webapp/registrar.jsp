@@ -121,20 +121,6 @@
     $('form').submit(function () {
         var x = $('#username').val();
         var y = $('#password').val();
-        /*
-        if (x=="") {
-            
-            	alert("Ingrese un username.");
-            
-            return false;
-        }
-        if (y=="") {
-            
-            	alert("Ingrese un password.");
-            
-            return false;
-        }
-        */
     });
     </script>
 
